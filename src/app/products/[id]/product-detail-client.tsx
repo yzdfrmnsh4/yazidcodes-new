@@ -36,7 +36,7 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
       <div className="mb-10">
         <button 
           onClick={handleBack}
-          className="flex items-center gap-2 text-text-muted hover:text-white text-sm font-semibold mb-6 transition-colors cursor-pointer group"
+          className="inline-flex items-center gap-2 btn-ghost-tactile px-3.5 py-1.5 rounded-xl text-text-muted hover:text-white text-sm font-semibold mb-6 cursor-pointer group"
         >
           <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
           Kembali
@@ -168,7 +168,7 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
               <div className="space-y-4">
                 <button
                   onClick={() => window.open(product.previewUrl, '_blank', 'noopener,noreferrer')}
-                  className="w-full py-4 rounded-2xl bg-gradient-to-r from-primary via-primary/90 to-secondary text-on-primary font-black text-sm flex items-center justify-center gap-2 shadow-xl shadow-primary/25 hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer group"
+                  className="w-full py-4 rounded-2xl btn-gradient-tactile text-white font-black text-sm flex items-center justify-center gap-2 shadow-xl shadow-primary/25 cursor-pointer group"
                 >
                   Beli Sekarang di Lynk.id
                   <ExternalLink className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />

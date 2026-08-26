@@ -9,7 +9,7 @@ export default function FloatingWhatsApp() {
       <button
         onClick={() => handleOpenInquiry()}
         aria-label="Tanya Rencana Web via WhatsApp"
-        className="relative flex items-center justify-center w-20 h-20 rounded-[1.35rem] hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer overflow-hidden group  "
+        className="relative flex items-center justify-center w-20 h-20 rounded-[1.35rem] btn-tactile-base shadow-[inset_0_1px_0_rgba(255,255,255,0.12),inset_0_-1px_0_rgba(0,0,0,0.28),0_3px_0_rgba(0,0,0,0.28),0_6px_12px_rgba(0,0,0,0.16)] hover:-translate-y-1 active:translate-y-0.5 transition-all duration-200 cursor-pointer overflow-hidden group border border-white/10"
       >
         <img
           src="icon/whatsapp.png"

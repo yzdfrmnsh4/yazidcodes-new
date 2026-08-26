@@ -30,14 +30,28 @@ export default function PortfolioClient() {
     if (portfolioCategory === 'E-Commerce') {
       return matchesSearch && project.category.toLowerCase().includes('commerce');
     }
-    if (portfolioCategory === 'SaaS & AI') {
-      return matchesSearch && (project.category.toLowerCase().includes('saas') || project.category.toLowerCase().includes('ai'));
+    if (portfolioCategory === 'Sistem Informasi') {
+      return matchesSearch && (
+        project.category.toLowerCase().includes('system') || 
+        project.category.toLowerCase().includes('enterprise') || 
+        project.category.toLowerCase().includes('inventory') || 
+        project.category.toLowerCase().includes('hr')
+      );
     }
-    if (portfolioCategory === 'Web3') {
-      return matchesSearch && project.category.toLowerCase().includes('web3');
+    if (portfolioCategory === 'Web & Instansi') {
+      return matchesSearch && (
+        project.category.toLowerCase().includes('web') || 
+        project.category.toLowerCase().includes('government') || 
+        project.category.toLowerCase().includes('redesign') || 
+        project.category.toLowerCase().includes('services')
+      );
     }
-    if (portfolioCategory === 'Branding') {
-      return matchesSearch && project.category.toLowerCase().includes('branding');
+    if (portfolioCategory === 'Portfolio & Design') {
+      return matchesSearch && (
+        project.category.toLowerCase().includes('design') || 
+        project.category.toLowerCase().includes('portfolio') || 
+        project.category.toLowerCase().includes('personal')
+      );
     }
     return matchesSearch;
   });
@@ -54,7 +68,7 @@ export default function PortfolioClient() {
       <div className="mb-12">
         <button 
           onClick={() => handleNavigate('/')}
-          className="flex items-center gap-2 text-text-muted hover:text-white text-sm font-semibold mb-6 transition-colors cursor-pointer group"
+          className="inline-flex items-center gap-2 btn-ghost-tactile px-3.5 py-1.5 rounded-xl text-text-muted hover:text-white text-sm font-semibold mb-6 cursor-pointer group"
         >
           <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
           Kembali ke Landing
@@ -64,7 +78,7 @@ export default function PortfolioClient() {
           Portofolio Karya <span className="text-primary italic font-semibold">Premium</span>
         </h1>
         <p className="text-text-muted text-base md:text-lg max-w-2xl leading-relaxed">
-          Jelajahi seluruh karya digital, sistem SaaS, dan e-commerce eksklusif yang kami bangun untuk klien global kami. Klik karya untuk review simulator responsif langsung.
+          Jelajahi seluruh karya digital, sistem informasi, dan e-commerce eksklusif yang telah kami kembangkan. Klik karya untuk melihat detail serta simulasi responsif langsung.
         </p>
       </div>
 
@@ -88,14 +102,14 @@ export default function PortfolioClient() {
             <Filter className="w-3.5 h-3.5" />
             Kategori:
           </span>
-          {['Semua', 'E-Commerce', 'SaaS & AI', 'Web3', 'Branding'].map((cat) => (
+          {['Semua', 'E-Commerce', 'Sistem Informasi', 'Web & Instansi', 'Portfolio & Design'].map((cat) => (
             <button
               key={cat}
               onClick={() => setPortfolioCategory(cat)}
               className={`px-4 py-2 rounded-xl text-xs font-semibold cursor-pointer transition-all ${
                 portfolioCategory === cat
-                  ? 'bg-primary text-on-primary shadow-lg shadow-primary/10 font-bold'
-                  : 'bg-white/5 hover:bg-white/10 text-text-muted hover:text-white border border-white/5'
+                  ? 'btn-active-tactile font-bold shadow-lg shadow-primary/10'
+                  : 'btn-ghost-tactile text-text-muted hover:text-white'
               }`}
             >
               {cat}
@@ -122,7 +136,7 @@ export default function PortfolioClient() {
               setPortfolioSearch('');
               setPortfolioCategory('Semua');
             }}
-            className="px-5 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-white font-semibold text-xs border border-white/10 cursor-pointer"
+            className="px-5 py-2.5 rounded-xl btn-outline-tactile text-white font-semibold text-xs cursor-pointer"
           >
             Reset Pencarian
           </button>

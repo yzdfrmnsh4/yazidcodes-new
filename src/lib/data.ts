@@ -26,58 +26,58 @@ export const SERVICES: ServiceItem[] = [
 
 export const PORTFOLIO: PortfolioProject[] = [
   {
-    id: 'luxury-brand',
-    title: 'Luxury Brand Identity',
-    category: 'E-Commerce & Branding',
-    image: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=1200&auto=format&fit=crop',
-    description: 'Sebuah website e-commerce mewah dengan estetika premium yang berfokus pada detail produk perhiasan, transisi halus, dan navigasi minimalis yang mencerminkan kemewahan tingkat tinggi.',
-    alt: 'High-fidelity jewelry ecommerce mockup',
-    features: ['Smooth fluid scrolling', '3D interactive product grid', 'Secured fast-checkout', 'Tailored animations', 'Tailwind CSS & Framer Motion', 'Next.js Server Actions Integration']
+    id: 'caysie',
+    title: 'Caysie Fashion E-Commerce',
+    category: 'E-Commerce & Web Development',
+    image: '/porto/caysie/preview.png',
+    description: 'Project mini e-commerce fashion yang dibuat menggunakan Laravel 11 dan Tailwind CSS.',
+    alt: 'Caysie Fashion E-Commerce Preview',
+    features: ['Laravel 11 Backend', 'Tailwind CSS Styling', 'Fashion Mini E-Commerce', 'Product Management', 'Cart & Checkout System', 'Responsive UI/UX']
   },
   {
-    id: 'saas-analytics',
-    title: 'SaaS Analytics Engine',
-    category: 'Interface Design & Development',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop',
-    description: 'Dashboard SaaS futuristik dengan visualisasi data real-time, panel semi-transparan dengan gaya glassmorphism pekat, dan skema warna neon untuk antarmuka analisis cloud performa tinggi.',
-    alt: 'Futuristic SaaS dashboard mockup',
-    features: ['Dynamic data visualization', 'Custom dashboard widgets', 'Realtime cloud metrics tracking', 'Responsive charts', 'D3.js integration', 'State-of-the-art WebSockets']
+    id: 'himba',
+    title: 'Himba Natura Senentang Website Redesign',
+    category: 'Web Redesign & Frontend',
+    image: '/porto/himba/preview.png',
+    description: 'Redesign website Himba Natura Senentang yang dibuat menggunakan React dan Tailwind CSS saja.',
+    alt: 'Himba Natura Senentang Preview',
+    features: ['React Frontend', 'Tailwind CSS Styling', 'Modern Web Redesign', 'Interactive Components', 'Fluid Responsive Layout', 'Optimized Visual Performance']
   },
   {
-    id: 'cryptoverse-defi',
-    title: 'Cryptoverse Platform',
-    category: 'Web3 & DeFi App',
-    image: 'https://images.unsplash.com/photo-1621761191319-c6fb62004040?q=80&w=1200&auto=format&fit=crop',
-    description: 'Aplikasi desentralisasi keuangan (DeFi) dengan integrasi dompet Web3 instan, visualisasi portofolio real-time, dan charting candlestick interaktif menggunakan lightweight-charts.',
-    alt: 'DeFi Web3 Cryptoverse Interface',
-    features: ['Web3 wallet connections', 'Fast token swap panel', 'Candlestick live charts', 'Transaction tracking ledger', 'Liquid glass border highlighting']
+    id: 'nelson',
+    title: 'Nelson Graphic Designer Portfolio',
+    category: 'Personal Portfolio & Graphic Design',
+    image: '/porto/nelson/prview.png',
+    description: 'Website portofolio pribadi untuk graphic designer dengan desain yang menarik dan modern.',
+    alt: 'Nelson Graphic Designer Portfolio Preview',
+    features: ['Modern Graphic Design Showcase', 'Personal Portfolio', 'Creative Layout & Typography', 'Interactive Gallery', 'Responsive Multi-Device Support', 'Fast Page Performance']
   },
   {
-    id: 'ai-copywriter',
-    title: 'AI Copywriter Suite',
-    category: 'AI Tool & SaaS',
-    image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1200&auto=format&fit=crop',
-    description: 'Platfom asisten penulisan bertenaga AI dengan editor teks kaya, fitur penulisan ulang sekali-klik, dan integrasi mulus dengan model Gemini AI untuk menghasilkan artikel berkualitas tinggi.',
-    alt: 'AI Copywriting Assistant application',
-    features: ['Rich-text dynamic editor', 'Gemini AI API content generator', 'Grammar analyzer widget', 'Plagiarism analysis scanner', 'Export as PDF/HTML format']
+    id: 'satpol',
+    title: 'Satpol PP Kotawaringin Barat Website',
+    category: 'Government & Public Services',
+    image: '/porto/satpol/preview.png',
+    description: 'Project website resmi untuk instansi Satpol PP Kotawaringin Barat.',
+    alt: 'Satpol PP Kotawaringin Barat Website Preview',
+    features: ['Official Public Service Portal', 'Government Agency Website', 'Information & News Module', 'Public Service Announcements', 'Responsive & Accessible Design', 'Structured Content Navigation']
   },
   {
-    id: 'creative-studio',
-    title: 'Creative Studio Hub',
-    category: 'Branding & Agency Portfolio',
-    image: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=1200&auto=format&fit=crop',
-    description: 'Website portfolio agensi kreatif pemenang penghargaan dengan layout asimetris yang berani, interaksi magnetis kursor, dan performa transisi halaman yang luar biasa mulus.',
-    alt: 'Award winning creative agency website',
-    features: ['Custom physics-based cursor', 'Staggered image scroll grids', 'WebGL particle background', 'Fully responsive fluid grid', 'Localization (ID/EN) auto-detect']
+    id: 'sipekar',
+    title: 'SIPEKAR - E-Recruitment System',
+    category: 'Enterprise & HR System',
+    image: '/porto/sipekar/preview.png',
+    description: 'Sistem Informasi Penerimaan Karyawan untuk PT Sariling Aneka Energi yang dibuat menggunakan Laravel 11 dan Tailwind CSS.',
+    alt: 'SIPEKAR E-Recruitment System Preview',
+    features: ['Laravel 11 Backend', 'Tailwind CSS Styling', 'E-Recruitment Information System', 'Applicant Tracking System', 'Candidate Assessment & Scoring', 'Corporate UI Design']
   },
   {
-    id: 'fintech-wealth',
-    title: 'FinTech Wealth Manager',
-    category: 'Finance & Cloud Computing',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop',
-    description: 'Aplikasi manajemen kekayaan digital terenkripsi tingkat tinggi dengan pemindai portofolio investasi otomatis, kalkulator dividen proyeksi 10-tahun, dan integrasi open-banking aman.',
-    alt: 'Cryptographic Wealth Management Portal',
-    features: ['Open-Banking Secure OAuth', 'AI Investment recommendations', 'Dynamic dividend projections', 'AES-256 local encrypted storage', 'Detailed analytics reports download']
+    id: 'smoq',
+    title: 'SMOQ - Sparepart Monitoring Order Quickly',
+    category: 'Inventory & Order Management',
+    image: '/porto/smoq/preview.png',
+    description: 'Sistem Informasi untuk mencatat order sparepart (Sparepart Monitoring Order Quickly) untuk bengkel Astra Isuzu.',
+    alt: 'SMOQ Sparepart Monitoring System Preview',
+    features: ['Sparepart Monitoring Order Quickly', 'Astra Isuzu Workshop System', 'Order Tracking & Inventory Logs', 'Workflow Automation', 'Efficient Management Dashboard', 'Tailored Corporate Information System']
   }
 ];
 

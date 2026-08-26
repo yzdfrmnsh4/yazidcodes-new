@@ -272,7 +272,7 @@ export default function Navbar() {
 
           {/* Desktop Only: Hamburger on the left */}
           <div
-            className={`hamburger-menu ${isHamburgerOpen ? 'open' : ''} group h-12 w-12 hidden md:flex flex-col items-center justify-center cursor-pointer gap-[6px] rounded-xl hover:bg-white/5 active:scale-95 transition-all`}
+            className={`hamburger-menu ${isHamburgerOpen ? 'open' : ''} group h-12 w-12 hidden md:flex flex-col items-center justify-center cursor-pointer gap-[6px] rounded-xl btn-ghost-tactile transition-all`}
             onClick={toggleMenu}
             onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) => {
               if (e.key === 'Enter' || e.key === ' ') {
@@ -303,9 +303,9 @@ export default function Navbar() {
               onClick={() => {
                 setIsExpanded(false);
                 setIsHamburgerOpen(false);
-                onOpenInquiry();
+                handleOpenInquiry();
               }}
-              className="resin-button px-3.5 py-2 rounded-xl text-white font-bold text-[11px] flex items-center gap-1 cursor-pointer active:scale-95 transition-transform"
+              className="resin-button px-3.5 py-2 rounded-xl text-white font-bold text-[11px] flex items-center gap-1 cursor-pointer transition-all"
             >
               Hubungi
               <Send className="w-3 h-3" />
@@ -313,7 +313,7 @@ export default function Navbar() {
 
             {/* Hamburger on mobile */}
             <div
-              className={`hamburger-menu ${isHamburgerOpen ? 'open' : ''} group h-10 w-10 flex flex-col items-center justify-center cursor-pointer gap-[5px] rounded-xl hover:bg-white/5 active:scale-95 transition-all`}
+              className={`hamburger-menu ${isHamburgerOpen ? 'open' : ''} group h-10 w-10 flex flex-col items-center justify-center cursor-pointer gap-[5px] rounded-xl btn-ghost-tactile transition-all`}
               onClick={toggleMenu}
               role="button"
               aria-label={isExpanded ? 'Close menu' : 'Open menu'}
@@ -337,9 +337,9 @@ export default function Navbar() {
             onClick={() => {
               setIsExpanded(false);
               setIsHamburgerOpen(false);
-              onOpenInquiry();
+              handleOpenInquiry();
             }}
-            className="relative bg-[rgba(59, 130, 246, 0.12)] backdrop-blur-2xl border border-[rgba(59, 130, 246, 0.2)] border-t-[rgba(255, 255, 255, 0.35)] hidden md:flex px-6 py-2.5 rounded-xl text-white font-bold text-sm items-center gap-2 group cursor-pointer"
+            className="resin-button hidden md:flex px-6 py-2.5 rounded-xl text-white font-bold text-sm items-center gap-2 group cursor-pointer transition-all"
           >
             Hubungi
             <Send className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />

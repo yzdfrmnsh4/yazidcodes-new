@@ -22,8 +22,8 @@ export default function PlanCard({ plan, onSelectPlan }: PlanCardProps) {
     >
       {/* Most Popular Badge */}
       {isPremium && (
-        <div className="absolute -top-5 left-1/2 -translate-x-1/2 px-6 py-2 bg-gradient-to-r from-primary to-secondary rounded-full text-on-primary text-xs font-black uppercase tracking-widest shadow-lg shadow-primary/40 flex items-center gap-1.5">
-          <Star className="w-3 h-3 fill-on-primary" />
+        <div className="absolute -top-5 left-1/2 -translate-x-1/2 px-6 py-2 bg-primary border border-primary/30 rounded-full text-white text-xs font-black uppercase tracking-widest shadow-lg shadow-black/40 flex items-center gap-1.5">
+          <Star className="w-3 h-3 fill-white" />
           Most Popular
         </div>
       )}
@@ -69,10 +69,10 @@ export default function PlanCard({ plan, onSelectPlan }: PlanCardProps) {
       {/* Call to action button */}
       <button
         onClick={() => onSelectPlan(plan.name)}
-        className={`w-full py-4 rounded-2xl font-bold text-sm transition-all duration-300 cursor-pointer ${
+        className={`w-full py-4 rounded-2xl font-bold text-sm transition-all duration-200 cursor-pointer ${
           isPremium
-            ? 'resin-button text-on-primary shadow-lg shadow-primary/20 text-base'
-            : 'border border-white/10 hover:bg-white/5 text-white'
+            ? 'btn-gradient-tactile text-white text-base'
+            : 'btn-outline-tactile text-white'
         }`}
       >
         {plan.buttonText}

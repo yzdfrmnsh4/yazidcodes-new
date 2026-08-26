@@ -225,14 +225,6 @@ export default function ProductCard({ product, onSelectProduct }: ProductCardPro
               </div>
             </div>
           )}
-          {/* Quick Floating Category Badge */}
-          <span className={`absolute top-4 left-4 text-[9px] uppercase tracking-widest font-extrabold px-3 py-1 rounded-full border backdrop-blur-md bg-black/50 ${colors.badge}`}>
-            {meta.category}
-          </span>
-          {/* Quick Floating Icon */}
-          <div className="absolute top-4 right-4 w-8 h-8 rounded-xl bg-black/50 border border-white/10 backdrop-blur-md flex items-center justify-center">
-            {getIcon(product.iconName, "w-4 h-4")}
-          </div>
         </div>
 
         {/* Info */}
@@ -249,12 +241,16 @@ export default function ProductCard({ product, onSelectProduct }: ProductCardPro
             <span className="text-[10px] text-text-muted uppercase block tracking-wider">
               {isPortfolio ? "Kategori Proyek" : "Aset Digital"}
             </span>
-            <span className={`text-base font-extrabold ${colors.text}`}>{product.price}</span>
+            <span className="text-base font-extrabold text-white">{product.price}</span>
           </div>
           
-          <span className="text-xs text-primary font-bold flex items-center gap-1.5 group-hover:translate-x-1 transition-all">
-            Lihat Detail <ArrowRight className="w-3.5 h-3.5" />
-          </span>
+          <button
+            type="button"
+            className="px-4 py-2 rounded-xl btn-outline-tactile text-white font-bold text-xs flex items-center gap-1.5 cursor-pointer group-hover:border-white/20 transition-all"
+          >
+            Lihat Detail
+            <ArrowRight className="w-3.5 h-3.5 text-primary group-hover:translate-x-0.5 transition-transform" />
+          </button>
         </div>
       </div>
 
@@ -275,7 +271,7 @@ export default function ProductCard({ product, onSelectProduct }: ProductCardPro
               </div>
               <button
                 onClick={handleCloseDetailModal}
-                className="w-7 h-7 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-white/15 transition-colors cursor-pointer"
+                className="w-7 h-7 rounded-full btn-ghost-tactile flex items-center justify-center text-white cursor-pointer"
               >
                 <X className="w-3.5 h-3.5" />
               </button>
@@ -339,8 +335,7 @@ export default function ProductCard({ product, onSelectProduct }: ProductCardPro
                     {isPortfolio ? (
                       <button
                         onClick={handleWhatsAppInquiry}
-                        className="w-full py-3 px-5 rounded-2xl bg-gradient-to-r from-primary to-secondary text-on-primary font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all cursor-pointer animate-pulse"
-                        style={{ animationDuration: '3s' }}
+                        className="w-full py-3 px-5 rounded-2xl btn-gradient-tactile text-white font-bold text-sm flex items-center justify-center gap-2 cursor-pointer"
                       >
                         <HeartHandshake className="w-4 h-4" />
                         Pesan Website Serupa
@@ -348,7 +343,7 @@ export default function ProductCard({ product, onSelectProduct }: ProductCardPro
                     ) : (
                       <button
                         onClick={handleTriggerCheckout}
-                        className="w-full py-3 px-5 rounded-2xl bg-primary text-on-primary font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all cursor-pointer"
+                        className="w-full py-3 px-5 rounded-2xl btn-primary-tactile text-white font-bold text-sm flex items-center justify-center gap-2 cursor-pointer"
                       >
                         <ExternalLink className="w-4 h-4" />
                         Beli di Lynk.id
@@ -407,7 +402,7 @@ export default function ProductCard({ product, onSelectProduct }: ProductCardPro
             <div className="py-2 px-4 md:py-2.5 md:px-5 border-t border-white/5 bg-[#12131a]/40 flex justify-end gap-3 shrink-0">
               <button
                 onClick={handleCloseDetailModal}
-                className="px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 text-white font-semibold text-[10px] md:text-[11px] transition-all cursor-pointer"
+                className="px-3.5 py-1.5 rounded-xl btn-outline-tactile text-white font-semibold text-[10px] md:text-[11px] cursor-pointer"
               >
                 Kembali ke Katalog
               </button>
@@ -431,7 +426,7 @@ export default function ProductCard({ product, onSelectProduct }: ProductCardPro
               </div>
               <button
                 onClick={handleCloseCheckout}
-                className="text-xs text-text-muted hover:text-white border border-white/10 rounded-lg px-2.5 py-1 cursor-pointer"
+                className="text-xs text-white btn-ghost-tactile rounded-lg px-2.5 py-1 cursor-pointer"
               >
                 Kembali
               </button>
@@ -488,7 +483,7 @@ export default function ProductCard({ product, onSelectProduct }: ProductCardPro
                     <button
                       type="button"
                       onClick={handleApplyPromo}
-                      className="px-4 py-2 rounded-xl bg-primary hover:bg-primary/95 text-xs text-white font-bold transition-colors cursor-pointer"
+                      className="px-4 py-2 rounded-xl btn-primary-tactile text-xs text-white font-bold cursor-pointer"
                     >
                       Terapkan
                     </button>
@@ -511,10 +506,10 @@ export default function ProductCard({ product, onSelectProduct }: ProductCardPro
                     <button
                       type="button"
                       onClick={() => setPaymentMethod('qris')}
-                      className={`p-3 rounded-xl border flex flex-col items-center justify-center gap-1.5 transition-all cursor-pointer ${
+                      className={`p-3 rounded-xl border flex flex-col items-center justify-center gap-1.5 cursor-pointer ${
                         paymentMethod === 'qris'
-                          ? 'border-primary bg-primary/10 text-white'
-                          : 'border-white/5 bg-white/[0.02] text-text-muted hover:border-white/10'
+                          ? 'btn-active-tactile text-white'
+                          : 'btn-ghost-tactile text-text-muted'
                       }`}
                     >
                       <QrCode className="w-5 h-5 text-primary" />
@@ -523,10 +518,10 @@ export default function ProductCard({ product, onSelectProduct }: ProductCardPro
                     <button
                       type="button"
                       onClick={() => setPaymentMethod('gopay')}
-                      className={`p-3 rounded-xl border flex flex-col items-center justify-center gap-1.5 transition-all cursor-pointer ${
+                      className={`p-3 rounded-xl border flex flex-col items-center justify-center gap-1.5 cursor-pointer ${
                         paymentMethod === 'gopay'
-                          ? 'border-primary bg-primary/10 text-white'
-                          : 'border-white/5 bg-white/[0.02] text-text-muted hover:border-white/10'
+                          ? 'btn-active-tactile text-white'
+                          : 'btn-ghost-tactile text-text-muted'
                       }`}
                     >
                       <ShoppingBag className="w-5 h-5 text-primary" />
@@ -535,10 +530,10 @@ export default function ProductCard({ product, onSelectProduct }: ProductCardPro
                     <button
                       type="button"
                       onClick={() => setPaymentMethod('va')}
-                      className={`p-3 rounded-xl border flex flex-col items-center justify-center gap-1.5 transition-all cursor-pointer ${
+                      className={`p-3 rounded-xl border flex flex-col items-center justify-center gap-1.5 cursor-pointer ${
                         paymentMethod === 'va'
-                          ? 'border-primary bg-primary/10 text-white'
-                          : 'border-white/5 bg-white/[0.02] text-text-muted hover:border-white/10'
+                          ? 'btn-active-tactile text-white'
+                          : 'btn-ghost-tactile text-text-muted'
                       }`}
                     >
                       <CreditCard className="w-5 h-5 text-primary" />
@@ -595,7 +590,7 @@ export default function ProductCard({ product, onSelectProduct }: ProductCardPro
                     handleCloseCheckout();
                     handleCloseDetailModal();
                   }}
-                  className="w-full py-3 rounded-xl bg-white/10 hover:bg-white/15 text-white font-semibold text-sm transition-colors cursor-pointer"
+                  className="w-full py-3 rounded-xl btn-outline-tactile text-white font-semibold text-sm cursor-pointer"
                 >
                   Selesai
                 </button>

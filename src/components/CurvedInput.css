@@ -33,24 +33,34 @@
 .curved-input__button {
   cursor: pointer;
   outline: none;
+  transition: transform 180ms ease, filter 180ms ease;
 }
 
 .curved-input__button-bg {
   transition:
-    filter 0.2s ease,
-    opacity 0.2s ease;
+    filter 0.18s ease,
+    opacity 0.18s ease;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.3));
+}
+
+.curved-input__button:hover {
+  transform: translateY(-1px);
 }
 
 .curved-input__button:hover .curved-input__button-bg {
-  filter: brightness(1.12);
+  filter: brightness(1.15) drop-shadow(0 6px 14px rgba(0, 0, 0, 0.4));
+}
+
+.curved-input__button:active {
+  transform: translateY(1px);
 }
 
 .curved-input__button:active .curved-input__button-bg {
-  filter: brightness(0.94);
+  filter: brightness(0.92) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.25));
 }
 
 .curved-input__button:focus-visible .curved-input__button-bg {
-  filter: brightness(1.18);
+  filter: brightness(1.2) drop-shadow(0 6px 14px rgba(0, 0, 0, 0.4));
 }
 
 .curved-input__field {

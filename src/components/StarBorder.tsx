@@ -24,7 +24,7 @@ const StarBorder = <T extends React.ElementType = 'button'>({
 
   return (
     <Component
-      className={`relative inline-block overflow-hidden rounded-xl ${className}`}
+      className={`relative inline-block overflow-hidden rounded-xl btn-tactile-base transition-all duration-180 ${className}`}
       {...(rest as any)}
       style={{
         padding: `${thickness}px`,
@@ -47,7 +47,7 @@ const StarBorder = <T extends React.ElementType = 'button'>({
           '--star-speed': speed
         } as React.CSSProperties}
       ></div>
-      <div className={`relative z-1 text-center text-[16px] rounded-[11px] ${innerClassName || 'bg-gradient-to-b from-black to-gray-900 border border-gray-800 text-white py-[16px] px-[26px]'}`}>
+      <div className={`relative z-1 text-center text-[16px] rounded-[11px] shadow-[inset_0_1px_0_rgba(255,255,255,0.08),inset_0_-1px_0_rgba(0,0,0,0.22),0_3px_0_rgba(0,0,0,0.24),0_6px_12px_rgba(0,0,0,0.14)] ${innerClassName || 'bg-gradient-to-b from-gray-900 via-[#0c0c0e] to-black border border-white/10 text-white py-[16px] px-[26px]'}`}>
         {children}
       </div>
     </Component>

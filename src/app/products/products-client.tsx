@@ -51,7 +51,7 @@ export default function ProductsClient() {
       <div className="mb-12">
         <button 
           onClick={() => handleNavigate('/')}
-          className="flex items-center gap-2 text-text-muted hover:text-white text-sm font-semibold mb-6 transition-colors cursor-pointer group"
+          className="inline-flex items-center gap-2 btn-ghost-tactile px-3.5 py-1.5 rounded-xl text-text-muted hover:text-white text-sm font-semibold mb-6 cursor-pointer group"
         >
           <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
           Kembali ke Landing
@@ -91,8 +91,8 @@ export default function ProductsClient() {
               onClick={() => setProductsCategory(cat)}
               className={`px-4 py-2 rounded-xl text-xs font-semibold cursor-pointer transition-all ${
                 productsCategory === cat
-                  ? 'bg-secondary text-on-secondary shadow-lg shadow-secondary/10 font-bold'
-                  : 'bg-white/5 hover:bg-white/10 text-text-muted hover:text-white border border-white/5'
+                  ? 'btn-active-tactile font-bold shadow-lg shadow-secondary/10'
+                  : 'btn-ghost-tactile text-text-muted hover:text-white'
               }`}
             >
               {cat}
@@ -124,7 +124,7 @@ export default function ProductsClient() {
               setProductsSearch('');
               setProductsCategory('Semua');
             }}
-            className="px-5 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-white font-semibold text-xs border border-white/10 cursor-pointer"
+            className="px-5 py-2.5 rounded-xl btn-outline-tactile text-white font-semibold text-xs cursor-pointer"
           >
             Reset Pencarian
           </button>

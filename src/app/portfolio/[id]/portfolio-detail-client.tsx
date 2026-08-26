@@ -36,7 +36,7 @@ export default function PortfolioDetailClient({ project }: PortfolioDetailClient
       <div className="mb-10">
         <button 
           onClick={handleBack}
-          className="flex items-center gap-2 text-text-muted hover:text-white text-sm font-semibold mb-6 transition-colors cursor-pointer group"
+          className="inline-flex items-center gap-2 btn-ghost-tactile px-3.5 py-1.5 rounded-xl text-text-muted hover:text-white text-sm font-semibold mb-6 cursor-pointer group"
         >
           <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
           Kembali
@@ -70,8 +70,8 @@ export default function PortfolioDetailClient({ project }: PortfolioDetailClient
             <div className="bg-white/5 border border-white/10 rounded-xl p-1 flex gap-1 self-stretch sm:self-auto justify-center">
               <button
                 onClick={() => setProjectViewMode('desktop')}
-                className={`px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer ${
-                  projectViewMode === 'desktop' ? 'bg-primary text-on-primary shadow-md' : 'text-text-muted hover:text-white'
+                className={`px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 cursor-pointer transition-all ${
+                  projectViewMode === 'desktop' ? 'btn-active-tactile text-white shadow-md' : 'btn-ghost-tactile text-text-muted'
                 }`}
               >
                 <Monitor className="w-3.5 h-3.5" />
@@ -79,8 +79,8 @@ export default function PortfolioDetailClient({ project }: PortfolioDetailClient
               </button>
               <button
                 onClick={() => setProjectViewMode('mobile')}
-                className={`px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer ${
-                  projectViewMode === 'mobile' ? 'bg-primary text-on-primary shadow-md' : 'text-text-muted hover:text-white'
+                className={`px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 cursor-pointer transition-all ${
+                  projectViewMode === 'mobile' ? 'btn-active-tactile text-white shadow-md' : 'btn-ghost-tactile text-text-muted'
                 }`}
               >
                 <Smartphone className="w-3.5 h-3.5" />
@@ -189,7 +189,7 @@ export default function PortfolioDetailClient({ project }: PortfolioDetailClient
             </div>
             <button
               onClick={() => handleWhatsAppInquiryProject(project.title)}
-              className="w-full py-3 rounded-xl bg-gradient-to-r from-primary to-secondary text-on-primary font-bold text-xs flex items-center justify-center gap-2 shadow-lg shadow-primary/25 hover:scale-[1.02] active:scale-95 transition-all cursor-pointer"
+              className="w-full py-3.5 rounded-xl btn-gradient-tactile text-white font-bold text-xs flex items-center justify-center gap-2 shadow-lg shadow-primary/25 cursor-pointer"
             >
               Tanya Rencana Proyek Website
               <ArrowRight className="w-4 h-4" />
