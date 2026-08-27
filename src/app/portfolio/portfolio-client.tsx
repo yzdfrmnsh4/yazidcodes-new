@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useTransition } from 'react';
 import { ArrowLeft, Search, Filter, SlidersHorizontal } from 'lucide-react';
 import { motion } from 'motion/react';
 import { useRouter } from 'next/navigation';
@@ -9,12 +9,14 @@ import { PORTFOLIO } from '../../lib/data';
 
 export default function PortfolioClient() {
   const router = useRouter();
+  const [isPending, startTransition] = useTransition();
   const [portfolioSearch, setPortfolioSearch] = useState('');
   const [portfolioCategory, setPortfolioCategory] = useState('Semua');
 
   const handleNavigate = (path: string) => {
-    router.push(path);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    startTransition(() => {
+      router.push(path);
+    });
   };
 
   // --- Portfolio filtering logic ---

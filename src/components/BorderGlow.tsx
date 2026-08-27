@@ -133,11 +133,14 @@ const BorderGlow: React.FC<BorderGlowProps> = ({
     targetAngleRef.current = getCursorAngle(card, x, y);
   }, [getEdgeProximity, getCursorAngle]);
 
-  // RequestAnimationFrame lerp loop for ultra-smooth updates
+  // RequestAnimationFrame lerp loop for ultra-smooth updates — pauses offscreen
   useEffect(() => {
     let animationFrameId: number;
+    let isVisible = true;
 
     const update = () => {
+      if (!isVisible) return;
+
       setCursorAngle(prevAngle => {
         const target = targetAngleRef.current;
         let diff = target - prevAngle;
@@ -146,7 +149,7 @@ const BorderGlow: React.FC<BorderGlowProps> = ({
         if (Math.abs(diff) < 0.01) {
           return target;
         }
-        return prevAngle + diff * 0.12; // Smooth interpolation speed
+        return prevAngle + diff * 0.12;
       });
 
       setEdgeProximity(prevProximity => {
@@ -161,8 +164,24 @@ const BorderGlow: React.FC<BorderGlowProps> = ({
       animationFrameId = requestAnimationFrame(update);
     };
 
+    // IntersectionObserver to pause/resume rAF when offscreen
+    const el = cardRef.current;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisible = entry.isIntersecting;
+        if (isVisible) {
+          animationFrameId = requestAnimationFrame(update);
+        }
+      },
+      { threshold: 0 }
+    );
+    if (el) observer.observe(el);
+
     animationFrameId = requestAnimationFrame(update);
-    return () => cancelAnimationFrame(animationFrameId);
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+      observer.disconnect();
+    };
   }, []);
 
   useEffect(() => {

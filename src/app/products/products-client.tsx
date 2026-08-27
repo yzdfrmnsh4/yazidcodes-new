@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useTransition } from 'react';
 import { ArrowLeft, Search, Filter, SlidersHorizontal } from 'lucide-react';
 import { motion } from 'motion/react';
 import { useRouter } from 'next/navigation';
@@ -9,12 +9,14 @@ import { PRODUCTS } from '../../lib/data';
 
 export default function ProductsClient() {
   const router = useRouter();
+  const [isPending, startTransition] = useTransition();
   const [productsSearch, setProductsSearch] = useState('');
   const [productsCategory, setProductsCategory] = useState('Semua');
 
   const handleNavigate = (path: string) => {
-    router.push(path);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    startTransition(() => {
+      router.push(path);
+    });
   };
 
   // --- Products filtering logic ---

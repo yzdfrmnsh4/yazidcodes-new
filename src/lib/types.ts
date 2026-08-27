@@ -33,6 +33,7 @@ export interface PricingPlan {
   name: string;
   price: string;
   period: string;
+  description?: string;
   features: string[];
   isPopular?: boolean;
   color: string;

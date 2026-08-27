@@ -2,7 +2,7 @@
 
 import React, { useLayoutEffect, useRef, useCallback } from 'react';
 import type { ReactNode } from 'react';
-import Lenis from 'lenis';
+import type Lenis from 'lenis';
 
 export interface ScrollStackItemProps {
   itemClassName?: string;
@@ -256,39 +256,37 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
 
   const setupLenis = useCallback(() => {
     if (useWindowScroll) {
-      // For window scroll, we do NOT initialize a separate Lenis smooth scroll instance
-      // because it intercepts standard browser/iframe scrolling and breaks under custom iframe constraints or CSS zoom.
-      // Standard native scrolling with passive scroll listeners is 100% reliable and robust!
       return null;
     } else {
       const scroller = scrollerRef.current;
       if (!scroller) return;
 
-      const lenis = new Lenis({
-        wrapper: scroller,
-        content: scroller.querySelector('.scroll-stack-inner') as HTMLElement,
-        duration: 1.2,
-        easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        smoothWheel: true,
-        touchMultiplier: 1.5,
-        infinite: false,
-        gestureOrientation: 'vertical',
-        wheelMultiplier: 1,
-        lerp: 0.1,
-        syncTouch: true,
-        syncTouchLerp: 0.075
-      });
+      import('lenis').then(({ default: LenisClass }) => {
+        const lenis = new LenisClass({
+          wrapper: scroller,
+          content: scroller.querySelector('.scroll-stack-inner') as HTMLElement,
+          duration: 1.2,
+          easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          smoothWheel: true,
+          touchMultiplier: 1.5,
+          infinite: false,
+          gestureOrientation: 'vertical',
+          wheelMultiplier: 1,
+          lerp: 0.1,
+          syncTouch: true,
+          syncTouchLerp: 0.075
+        });
 
-      lenis.on('scroll', handleScroll);
+        lenis.on('scroll', handleScroll);
 
-      const raf = (time: number) => {
-        lenis.raf(time);
+        const raf = (time: number) => {
+          lenis.raf(time);
+          animationFrameRef.current = requestAnimationFrame(raf);
+        };
         animationFrameRef.current = requestAnimationFrame(raf);
-      };
-      animationFrameRef.current = requestAnimationFrame(raf);
 
-      lenisRef.current = lenis;
-      return lenis;
+        lenisRef.current = lenis;
+      });
     }
   }, [handleScroll, useWindowScroll]);
 

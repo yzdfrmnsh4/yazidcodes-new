@@ -7,6 +7,12 @@ interface PageProps {
   params: Promise<{ id: string }>;
 }
 
+export async function generateStaticParams() {
+  return PORTFOLIO.map((project) => ({
+    id: project.id,
+  }));
+}
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { id } = await params;
   const project = PORTFOLIO.find((p) => p.id === id);

@@ -103,10 +103,10 @@ body {
 /* Base Tactile Utility Behavior */
 .btn-tactile-base {
   position: relative;
-  transition: transform 180ms cubic-bezier(0.2, 0, 0, 1),
-              box-shadow 180ms cubic-bezier(0.2, 0, 0, 1),
-              background-color 180ms cubic-bezier(0.2, 0, 0, 1),
-              border-color 180ms cubic-bezier(0.2, 0, 0, 1);
+  transition: transform 180ms cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 180ms cubic-bezier(0.22, 1, 0.36, 1),
+              background-color 180ms cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 180ms cubic-bezier(0.22, 1, 0.36, 1);
   outline: none;
   touch-action: manipulation;
 }

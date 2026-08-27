@@ -12,71 +12,107 @@ export default function PlanCard({ plan, onSelectPlan }: PlanCardProps) {
 
   return (
     <div
-      style={{
-        transform: isPremium ? 'scale(1.03)' : 'scale(1)',
-        transition: 'transform 0.4s ease',
-      }}
-      className={`glass-card p-6 sm:p-8 md:p-10 rounded-[1.75rem] sm:rounded-[2.5rem] flex flex-col relative h-full transition-all duration-300 hover:border-white/10 ${
-        isPremium ? 'bg-white/[0.07] border border-primary/20 shadow-2xl' : 'border border-white/5'
+      className={`relative h-full flex flex-col transition-all duration-500 ${
+        isPremium ? 'lg:-translate-y-6' : ''
       }`}
     >
       {/* Most Popular Badge */}
       {isPremium && (
-        <div className="absolute -top-5 left-1/2 -translate-x-1/2 px-6 py-2 bg-primary border border-primary/30 rounded-full text-white text-xs font-black uppercase tracking-widest shadow-lg shadow-black/40 flex items-center gap-1.5">
+        <div className="absolute -top-6 left-1/2 -translate-x-1/2 z-20 px-4 py-2 bg-primary border border-primary/50 rounded-full text-white text-xs font-black uppercase tracking-widest flex items-center gap-1.5 shadow-lg shadow-primary/30">
           <Star className="w-3 h-3 fill-white" />
-          Most Popular
+          Paling Populer
         </div>
       )}
 
-      <h4 className="text-xl font-bold text-white mb-2 font-headline">{plan.name}</h4>
-      
-      {/* Price section */}
-      <div className="text-3xl font-black text-white mb-6 flex items-baseline">
-        <span className={isPremium ? 'text-primary' : 'text-white'}>{plan.price}</span>
-        {plan.period && (
-          <span className="text-sm font-normal text-text-muted ml-1">{plan.period}</span>
-        )}
-      </div>
-
-      {/* Separator line */}
-      <div className="h-[1px] w-full bg-white/5 mb-8"></div>
-
-      {/* Features List */}
-      <ul className="space-y-4 mb-10 flex-grow">
-        {plan.features.map((feature, i) => {
-          // Check if feature is not supported in Starter
-          const isUnavailable = plan.id === 'starter' && feature.includes('Custom Animation');
-          return (
-            <li
-              key={i}
-              className={`flex items-center gap-3 text-sm font-medium transition-colors ${
-                isUnavailable ? 'opacity-30 line-through text-text-muted' : 'text-text-muted hover:text-white'
-              }`}
-            >
-              {isUnavailable ? (
-                <X className="w-4 h-4 text-red-400 shrink-0" />
-              ) : (
-                <Check
-                  className={`w-4 h-4 shrink-0 ${isPremium ? 'text-primary' : 'text-primary'}`}
-                />
-              )}
-              <span>{feature}</span>
-            </li>
-          );
-        })}
-      </ul>
-
-      {/* Call to action button */}
-      <button
-        onClick={() => onSelectPlan(plan.name)}
-        className={`w-full py-4 rounded-2xl font-bold text-sm transition-all duration-200 cursor-pointer ${
+      <div
+        className={`relative rounded-[1.5rem] md:rounded-[2rem] overflow-hidden flex flex-col h-full transition-all duration-400 ${
           isPremium
-            ? 'btn-gradient-tactile text-white text-base'
-            : 'btn-outline-tactile text-white'
+            ? 'border border-white/10'
+            : 'border border-white/5'
         }`}
+        style={{
+          background: isPremium
+            ? 'radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.08), transparent 60%), linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%)'
+            : 'linear-gradient(135deg, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0.01) 100%)',
+          boxShadow: isPremium
+            ? 'inset 0 1px 2px rgba(255, 255, 255, 0.15), inset 0 -1px 2px rgba(0, 0, 0, 0.3), 0 20px 50px -15px rgba(59, 130, 246, 0.2), 0 20px 60px -20px rgba(0, 0, 0, 0.8)'
+            : 'inset 0 1px 1px rgba(255, 255, 255, 0.08), inset 0 -1px 1px rgba(0, 0, 0, 0.2), 0 10px 30px -10px rgba(0, 0, 0, 0.5)',
+        }}
       >
-        {plan.buttonText}
-      </button>
+        {/* Top Shiny Border */}
+        {isPremium && (
+          <div
+            className="absolute top-0 left-0 right-0 h-px z-10 pointer-events-none"
+            style={{
+              background: 'linear-gradient(90deg, transparent 0%, rgba(59, 130, 246, 0.4) 30%, rgba(255, 255, 255, 0.2) 50%, rgba(59, 130, 246, 0.4) 70%, transparent 100%)',
+            }}
+          />
+        )}
+
+        {/* Inner highlight layer */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-white/[0.05] to-transparent" />
+        </div>
+
+        {/* Content */}
+        <div className="relative z-10 p-7 md:p-9 flex flex-col flex-grow">
+          {/* Header */}
+          <div className="mb-6">
+            <h4 className="text-2xl md:text-3xl font-bold text-white mb-4 font-headline leading-tight">
+              {plan.name}
+            </h4>
+
+            {/* Price section */}
+            <div className="flex items-baseline gap-1">
+              <span className={`text-4xl md:text-5xl font-semibold tracking-tight ${isPremium ? 'text-primary' : 'text-white'}`}>
+                {plan.price}
+              </span>
+              {plan.period && (
+                <span className="text-sm md:text-base font-normal text-text-muted">
+                  {plan.period}
+                </span>
+              )}
+            </div>
+          </div>
+
+          {/* Separator line */}
+          <div className="h-px w-16 bg-gradient-to-r from-white/20 to-transparent mb-6" />
+
+          {/* Description */}
+          {plan.description && (
+            <p className="text-sm md:text-base text-text-muted mb-6 leading-relaxed line-clamp-3">
+              {plan.description}
+            </p>
+          )}
+
+          {/* Features List */}
+          <ul className="space-y-3 mb-8 flex-grow">
+            {plan.features.map((feature, i) => (
+              <li
+                key={i}
+                className="flex items-start gap-3 text-sm md:text-base font-medium text-text-muted transition-colors hover:text-white/90"
+              >
+                <Check
+                  className={`w-5 h-5 shrink-0 mt-0.5 ${isPremium ? 'text-primary' : 'text-white/40'}`}
+                />
+                <span>{feature}</span>
+              </li>
+            ))}
+          </ul>
+
+          {/* Call to action button */}
+          <button
+            onClick={() => onSelectPlan(plan.name)}
+            className={`w-full py-3 md:py-4 px-6 rounded-xl md:rounded-2xl font-bold text-sm md:text-base transition-all duration-400 cursor-pointer mt-auto ${
+              isPremium
+                ? 'btn-gradient-tactile text-white'
+                : 'btn-outline-tactile text-white'
+            }`}
+          >
+            {plan.buttonText}
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

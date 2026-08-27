@@ -8,9 +8,16 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  webpack: (config, { dev }) => {
-    // Disable disk cache to prevent ENOSPC (no space left on device) errors
-    config.cache = false;
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        pathname: '/**',
+      },
+    ],
+  },
+  webpack: (config) => {
     return config;
   }
 };

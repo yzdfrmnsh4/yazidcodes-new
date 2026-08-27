@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
 import {
   ChevronLeft,
   ChevronRight,
@@ -15,10 +17,9 @@ import { PortfolioProject } from '../lib/types';
 
 interface ProjectShowcaseProps {
   projects: PortfolioProject[];
-  onSelectProject?: (project: PortfolioProject) => void;
 }
 
-export default function ProjectShowcase({ projects, onSelectProject }: ProjectShowcaseProps) {
+export default function ProjectShowcase({ projects }: ProjectShowcaseProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [selectedProject, setSelectedProject] = useState<PortfolioProject | null>(null);
   const [viewMode, setViewMode] = useState<'desktop' | 'mobile'>('desktop');
@@ -50,12 +51,8 @@ export default function ProjectShowcase({ projects, onSelectProject }: ProjectSh
 
   const handleCardClick = (index: number, project: PortfolioProject) => {
     if (index === activeIndex) {
-      if (onSelectProject) {
-        onSelectProject(project);
-      } else {
-        setSelectedProject(project);
-        setViewMode('desktop');
-      }
+      setSelectedProject(project);
+      setViewMode('desktop');
     } else {
       setActiveIndex(index);
     }
@@ -75,8 +72,6 @@ export default function ProjectShowcase({ projects, onSelectProject }: ProjectSh
   return (
     <div className="relative w-full max-w-8xl mx-auto py-4 select-none">
       {/* LEFT & RIGHT CAROUSEL EDGE FADE MASKS */}
-      <div className="absolute top-0 bottom-16 left-0 w-16 sm:w-24 md:w-36 z-40 bg-gradient-to-r from-[#0c0c0e] via-[#0c0c0e]/80 to-transparent pointer-events-none" />
-      <div className="absolute top-0 bottom-16 right-0 w-16 sm:w-24 md:w-36 z-40 bg-gradient-to-l from-[#0c0c0e] via-[#0c0c0e]/80 to-transparent pointer-events-none" />
 
       {/* 3D PERSPECTIVE CAROUSEL STAGE */}
       <div
@@ -153,13 +148,15 @@ export default function ProjectShowcase({ projects, onSelectProject }: ProjectSh
               >
                 {/* 1. FULL-BLEED ABSOLUTE IMAGE LAYER (100% Width & Height) */}
                 <div className="absolute inset-0 w-full h-full bg-[#0a0b10]">
-                  <img
+                  <Image
                     src={project.image}
                     alt={project.alt || project.title}
-                    referrerPolicy="no-referrer"
+                    sizes="(max-width: 768px) 88vw, (max-width: 1024px) 540px, 620px"
+                    fill
+                    className="object-cover object-center transition-transform duration-700"
+                    priority={index === activeIndex}
+                    loading={index === activeIndex ? "eager" : "lazy"}
                     onLoad={() => setLoadedImages((prev) => ({ ...prev, [project.id]: true }))}
-                    className={`w-full h-full object-cover object-center transition-transform duration-700 ${isActive ? 'group-hover:scale-[1.03]' : ''
-                      } ${loadedImages[project.id] ? 'opacity-100' : 'opacity-0'}`}
                   />
                   {!loadedImages[project.id] && (
                     <div className="absolute inset-0 bg-[#0d0e14] animate-pulse flex items-center justify-center">
@@ -174,7 +171,7 @@ export default function ProjectShowcase({ projects, onSelectProject }: ProjectSh
                 {/* 3. OVERLAY CONTENT AT BOTTOM OF CARD */}
                 <div className="relative z-10 p-6 sm:p-7 md:p-8 flex items-end justify-between gap-4">
                   <div className="min-w-0 flex-1 space-y-1">
-                    <span className="text-[10px] sm:text-[11px] font-bold font-geist uppercase tracking-[0.12em] text-[#3A7FF0] block truncate">
+                    <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.12em] text-[#3A7FF0] block truncate">
                       {project.category}
                     </span>
                     <h3 className="font-headline text-lg sm:text-xl md:text-2xl font-bold text-white truncate leading-tight">
@@ -187,17 +184,13 @@ export default function ProjectShowcase({ projects, onSelectProject }: ProjectSh
 
                   {/* Circular Compact Action Arrow */}
                   <div className="shrink-0">
-                    <button
-                      type="button"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleCardClick(index, project);
-                      }}
+                    <Link
+                      href={`/portfolio/${project.id}`}
+                      className="w-10 h-10 sm:w-11 sm:h-11 rounded-full btn-outline-tactile flex items-center justify-center text-primary backdrop-blur-md bg-black/40 border border-white/15 transition-all duration-300 hover:scale-105 cursor-pointer group inline-flex"
                       aria-label={`Lihat detail ${project.title}`}
-                      className="w-10 h-10 sm:w-11 sm:h-11 rounded-full btn-outline-tactile flex items-center justify-center text-primary backdrop-blur-md bg-black/40 border border-white/15 transition-all duration-300 hover:scale-105 cursor-pointer group"
                     >
                       <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5 text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </motion.div>

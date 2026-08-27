@@ -1,7 +1,15 @@
+# Dependencies
 node_modules/
 build/
 dist/
 coverage/
+
+# Next.js
+.next/
+out/
+next-env.d.ts
+
+# Misc
 .DS_Store
 *.log
 .env*

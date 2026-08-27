@@ -39,6 +39,7 @@ export const SideRays: React.FC<SideRaysProps> = ({
     if (!ctx) return;
 
     let animationId: number;
+    let isVisible = true;
     let width = (canvas.width = canvas.offsetWidth || window.innerWidth);
     let height = (canvas.height = canvas.offsetHeight || window.innerHeight);
 
@@ -65,7 +66,7 @@ export const SideRays: React.FC<SideRaysProps> = ({
     let time = 0;
 
     const render = () => {
-      if (!ctx || !canvas) return;
+      if (!ctx || !canvas || !isVisible) return;
       ctx.clearRect(0, 0, width, height);
 
       time += 0.005 * speed;
@@ -140,10 +141,23 @@ export const SideRays: React.FC<SideRaysProps> = ({
       animationId = requestAnimationFrame(render);
     };
 
+    // IntersectionObserver to pause/resume animation when offscreen
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisible = entry.isIntersecting;
+        if (isVisible) {
+          animationId = requestAnimationFrame(render);
+        }
+      },
+      { threshold: 0 }
+    );
+    observer.observe(canvas);
+
     render();
 
     return () => {
       cancelAnimationFrame(animationId);
+      observer.disconnect();
       window.removeEventListener('resize', handleResize);
     };
   }, [speed, rayColor1, rayColor2, intensity, spread, origin, tilt, saturation, blend, falloff, opacity]);

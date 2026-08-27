@@ -1,8 +1,9 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
+import type { gsap as GsapType } from 'gsap';
 import { Sparkles, Send, ArrowUpRight } from 'lucide-react';
+import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import { handleOpenInquiry } from '../lib/utils';
 import StarBorder from './StarBorder';
@@ -83,10 +84,8 @@ export default function Navbar() {
 
     if (id === 'portfolio') {
       router.push('/portfolio');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
     } else if (id === 'products') {
       router.push('/products');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
       // It's a homepage anchor
       if (pathname === '/') {
@@ -178,46 +177,45 @@ export default function Navbar() {
     const navEl = navRef.current;
     if (!navEl) return;
 
-    if (isExpanded) {
-      const targetHeight = calculateHeight();
+    import('gsap').then(({ gsap }) => {
+      if (isExpanded) {
+        const targetHeight = calculateHeight();
 
-      // Animate container height immediately
-      gsap.to(navEl, {
-        height: targetHeight,
-        duration: 0.3,
-        ease: 'power3.out',
-        overwrite: 'auto'
-      });
+        gsap.to(navEl, {
+          height: targetHeight,
+          duration: 0.3,
+          ease: 'power3.out',
+          overwrite: 'auto'
+        });
 
-      // Stagger in navigation cards instantly
-      gsap.to(cardsRef.current, {
-        y: 0,
-        opacity: 1,
-        scale: 1,
-        duration: 0.28,
-        ease: 'power2.out',
-        stagger: 0.04,
-        overwrite: 'auto'
-      });
-    } else {
-      // Collapse immediately
-      gsap.to(navEl, {
-        height: 72,
-        duration: 0.25,
-        ease: 'power3.inOut',
-        overwrite: 'auto'
-      });
+        gsap.to(cardsRef.current, {
+          y: 0,
+          opacity: 1,
+          scale: 1,
+          duration: 0.28,
+          ease: 'power2.out',
+          stagger: 0.04,
+          overwrite: 'auto'
+        });
+      } else {
+        gsap.to(navEl, {
+          height: 72,
+          duration: 0.25,
+          ease: 'power3.inOut',
+          overwrite: 'auto'
+        });
 
-      gsap.to(cardsRef.current, {
-        y: 15,
-        opacity: 0,
-        scale: 0.97,
-        duration: 0.2,
-        ease: 'power2.in',
-        stagger: 0.02,
-        overwrite: 'auto'
-      });
-    }
+        gsap.to(cardsRef.current, {
+          y: 15,
+          opacity: 0,
+          scale: 0.97,
+          duration: 0.2,
+          ease: 'power2.in',
+          stagger: 0.02,
+          overwrite: 'auto'
+        });
+      }
+    });
   }, [isExpanded]);
 
   // Handle immediate window resize updates
@@ -225,7 +223,9 @@ export default function Navbar() {
     const handleResize = () => {
       if (isExpanded && navRef.current) {
         const newHeight = calculateHeight();
-        gsap.set(navRef.current, { height: newHeight });
+        import('gsap').then(({ gsap }) => {
+          gsap.set(navRef.current!, { height: newHeight });
+        });
       }
     };
     window.addEventListener('resize', handleResize);
@@ -263,7 +263,7 @@ export default function Navbar() {
             onClick={() => handleItemClick('hero')}
           >
             <div className="w-14 h-14 ">
-              <img src="/web-app-manifest-512x512.png" alt="Logo Yazidcodes" className='w-full h-full ' />
+              <Image src="/web-app-manifest-512x512.png" alt="Logo Yazidcodes" width={56} height={56} className='w-full h-full' priority />
             </div>
             <span className="font-headline font-bold text-sm md:text-xl tracking-tight text-white group-hover:text-primary transition-colors">
               yazidcodes
@@ -305,7 +305,7 @@ export default function Navbar() {
                 setIsHamburgerOpen(false);
                 handleOpenInquiry();
               }}
-              className="resin-button px-3.5 py-2 rounded-xl text-white font-bold text-[11px] flex items-center gap-1 cursor-pointer transition-all"
+              className="btn-gradient-tactile px-3.5 py-2 rounded-xl text-white font-bold text-[11px] flex items-center gap-1 cursor-pointer transition-all"
             >
               Hubungi
               <Send className="w-3 h-3" />
@@ -339,7 +339,7 @@ export default function Navbar() {
               setIsHamburgerOpen(false);
               handleOpenInquiry();
             }}
-            className="resin-button hidden md:flex px-6 py-2.5 rounded-xl text-white font-bold text-sm items-center gap-2 group cursor-pointer transition-all"
+            className="btn-gradient-tactile hidden md:flex px-6 py-2.5 rounded-xl text-white font-bold text-sm items-center gap-2 group cursor-pointer transition-all"
           >
             Hubungi
             <Send className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />

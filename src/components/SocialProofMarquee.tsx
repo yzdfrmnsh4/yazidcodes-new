@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import Image from 'next/image';
 import { Activity, Cpu, Layers, Zap, Play, ArrowUpRight, Star, TrendingUp } from 'lucide-react';
 import { PORTFOLIO } from '../lib/data';
 
@@ -25,7 +26,7 @@ const FitnessMockup = () => (
         <span className="w-2 h-2 rounded-full bg-orange-500 animate-pulse" />
         <span className="text-[9px] md:text-[11px] font-black font-headline text-white tracking-widest uppercase">FitPlay</span>
       </div>
-      <div className="flex items-center gap-2 text-[8px] md:text-[10px] text-text-muted font-geist">
+      <div className="flex items-center gap-2 text-[8px] md:text-[10px] text-text-muted">
         <span>Transform</span>
         <span>•</span>
         <span>Coaches</span>
@@ -82,7 +83,7 @@ const AdPlayMockup = () => (
         <Cpu className="w-3.5 h-3.5 text-blue-500" />
         <span className="text-[9px] md:text-[11px] font-black font-headline text-white tracking-wider uppercase">AdPlay</span>
       </div>
-      <div className="flex items-center gap-2 text-[8px] md:text-[10px] text-text-muted font-geist">
+      <div className="flex items-center gap-2 text-[8px] md:text-[10px] text-text-muted">
         <span>Platform</span>
         <span>Features</span>
         <span>Pricing</span>
@@ -139,11 +140,13 @@ const ImageMockupCard = ({ item }: { item: MarqueeItem }) => (
   >
     {/* Full Brightness Image Background */}
     {item.image && (
-      <img
+      <Image
         src={item.image}
         alt={item.title}
-        referrerPolicy="no-referrer"
+        fill
+        sizes="(max-width: 768px) 300px, 480px"
         className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+        priority={false}
       />
     )}
 
@@ -184,7 +187,7 @@ export default function SocialProofMarquee({ items }: SocialProofMarqueeProps) {
     <section id="portfolio-marquee" className="relative w-full overflow-hidden py-16 md:py-24 bg-gradient-to-r from-transparent via-white/[0.01] to-transparent">
       {/* Background Section Header */}
       <div className="text-center mb-8 md:mb-12 relative z-10">
-        <span className="text-[10px] md:text-xs font-semibold font-geist text-primary uppercase tracking-widest bg-primary/10 border border-primary/20 px-3 py-1 rounded-full">
+        <span className="text-[10px] md:text-xs font-semibold text-primary uppercase tracking-widest bg-primary/10 border border-primary/20 px-3 py-1 rounded-full">
           Featured Showroom
         </span>
         <h3 className="font-headline text-lg md:text-2xl font-bold text-white mt-3 tracking-tight">
@@ -193,8 +196,8 @@ export default function SocialProofMarquee({ items }: SocialProofMarqueeProps) {
       </div>
 
       {/* Absolute Edge Gradient Overlays for Fade Out Effect */}
-      <div className="absolute top-0 left-0 h-full w-24 md:w-48 bg-gradient-to-r from-[#0c0c0e] to-transparent z-10 pointer-events-none" />
-      <div className="absolute top-0 right-0 h-full w-24 md:w-48 bg-gradient-to-l from-[#0c0c0e] to-transparent z-10 pointer-events-none" />
+      {/* <div className="absolute top-0 left-0 h-full w-24 md:w-48 bg-gradient-to-r from-[#0c0c0e] to-transparent z-10 pointer-events-none" /> */}
+      {/* <div className="absolute top-0 right-0 h-full w-24 md:w-48 bg-gradient-to-l from-[#0c0c0e] to-transparent z-10 pointer-events-none" /> */}
 
       {/* Scrolling Marquee Wrapper */}
       <div className="marquee-container flex overflow-hidden w-full select-none">

@@ -10,38 +10,33 @@ import {
   HeartHandshake
 } from 'lucide-react';
 import { motion } from 'motion/react';
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
-import SocialProofMarquee from '../components/SocialProofMarquee';
-import ServiceCard from '../components/ServiceCard';
-import ProjectShowcase from '../components/ProjectShowcase';
-import ProductCard from '../components/ProductCard';
-import PlanCard from '../components/PlanCard';
 import dynamic from 'next/dynamic';
+
+const SocialProofMarquee = dynamic(() => import('../components/SocialProofMarquee'), { ssr: false });
+const ServiceCard = dynamic(() => import('../components/ServiceCard'));
+const ProjectShowcase = dynamic(() => import('../components/ProjectShowcase'), { ssr: false });
+const ProductCard = dynamic(() => import('../components/ProductCard'), { ssr: false });
+const PlanCard = dynamic(() => import('../components/PlanCard'));
 const Beams = dynamic(() => import('../components/Beams'), { ssr: false });
-import WhyChooseBento from '../components/WhyChooseBento';
-import BorderGlow from '../components/BorderGlow';
-import SideRays from '../components/SideRays';
-import BlurText from '../components/BlurText';
-import StarBorder from '../components/StarBorder';
-import ShinyText from '../components/ShinyText';
+const WhyChooseBento = dynamic(() => import('../components/WhyChooseBento'));
+const BorderGlow = dynamic(() => import('../components/BorderGlow'), { ssr: false });
+const SideRays = dynamic(() => import('../components/SideRays'), { ssr: false });
+const BlurText = dynamic(() => import('../components/BlurText'));
+const StarBorder = dynamic(() => import('../components/StarBorder'));
+const ShinyText = dynamic(() => import('../components/ShinyText'));
+const StatCounter = dynamic(() => import('../components/StatCounter'), { ssr: false });
 
 import { SERVICES, PORTFOLIO, PRODUCTS, PLANS, FAQS } from '../lib/data';
 import { handleOpenInquiry } from '../lib/utils';
 
 export default function HomeClient() {
-  const router = useRouter();
-
   // Interactive FAQ active item state
   const [activeFaq, setActiveFaq] = useState<string | null>(null);
 
   const handleToggleFaq = (id: string) => {
     setActiveFaq(activeFaq === id ? null : id);
-  };
-
-  const handleNavigate = (path: string) => {
-    router.push(path);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleScrollToSection = (id: string) => {
@@ -116,9 +111,10 @@ export default function HomeClient() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md mx-auto sm:max-w-none">
             <button
               onClick={() => handleScrollToSection('layanan')}
-              className="btn-hero-primary px-10 py-4.5 rounded-xl text-[#FEFEFE] font-bold text-base w-full sm:w-auto cursor-pointer"
+              className="w-full sm:w-auto px-8 py-4 rounded-xl btn-gradient-tactile text-white font-bold text-base cursor-pointer group"
             >
               Lihat Jasa
+              <ArrowRight className="w-4 h-4 inline ml-2 group-hover:translate-x-1 transition-transform" />
             </button>
             <StarBorder
               as="button"
@@ -126,7 +122,7 @@ export default function HomeClient() {
               color="rgba(93, 105, 160, 0.45)"
               speed="6s"
               className="w-full sm:w-auto cursor-pointer rounded-xl"
-              innerClassName="btn-hero-secondary px-10 py-4.5 rounded-[11px] text-[#FEFEFE] font-semibold text-base"
+              innerClassName="w-full h-full px-8 py-4 rounded-xl btn-outline-tactile text-white font-semibold text-base"
             >
               Eksplor Produk Digital
             </StarBorder>
@@ -135,7 +131,7 @@ export default function HomeClient() {
       </section>
 
       {/* MARQUEE */}
-      <section className="relative mb-28 md:mb-40 overflow-hidden bg-gradient-to-b from-[#0c0c0e] via-[#0c0c0e]/60 to-indigo-950/20">
+      <section className="relative mb-28 md:mb-40 overflow-hidden bg-gradient-to-b from-[#0c0c0e] via-[#0c0c0e]/60 to-[#0e0e12]">
         <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-full max-w-[1400px] h-[400px] bg-gradient-to-b from-[#4f46e5]/[0.06] to-transparent blur-[120px] rounded-full pointer-events-none -z-10" />
         <SocialProofMarquee />
       </section>
@@ -221,7 +217,7 @@ export default function HomeClient() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <span className="text-xs font-bold font-geist text-primary uppercase tracking-widest block mb-2">Aset Digital Premium</span>
+            <span className="text-xs font-bold  text-primary uppercase tracking-widest block mb-2">Aset Digital Premium</span>
             <h2 className="font-headline text-3xl md:text-5xl font-extrabold text-white mb-4 tracking-tight">
               Produk Digital Pilihan
             </h2>
@@ -230,17 +226,13 @@ export default function HomeClient() {
             </p>
           </motion.div>
 
-          <motion.button
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            onClick={() => handleNavigate('/products')}
-            className="text-white font-bold flex items-center gap-2 group text-sm md:text-base btn-outline-tactile rounded-xl px-5 py-2.5 cursor-pointer"
+          <Link
+            href="/products"
+            className="text-white font-bold flex items-center gap-2 group text-sm md:text-base btn-outline-tactile rounded-xl px-5 py-2.5 cursor-pointer inline-flex"
           >
             Eksplor Semua Produk ({PRODUCTS.length})
             <ArrowRight className="w-4 h-4 text-primary group-hover:translate-x-1.5 transition-transform" />
-          </motion.button>
+          </Link>
         </div>
 
         {/* Cards Grid for Products */}
@@ -267,7 +259,6 @@ export default function HomeClient() {
             >
               <ProductCard
                 product={product}
-                onSelectProduct={(p) => handleNavigate(`/products/${p.id}`)}
               />
             </motion.div>
           ))}
@@ -291,7 +282,7 @@ export default function HomeClient() {
             transition={{ duration: 0.6 }}
             className="text-center md:text-left"
           >
-            <span className="text-xs font-bold font-geist text-primary uppercase tracking-widest block mb-2">Showcase Karya Terbaik</span>
+            <span className="text-xs font-bold text-primary uppercase tracking-widest block mb-2">Showcase Karya Terbaik</span>
             <h2 className="font-headline text-3xl md:text-5xl font-extrabold text-white mb-4 tracking-tight">
               Karya Terpilih
             </h2>
@@ -300,17 +291,13 @@ export default function HomeClient() {
             </p>
           </motion.div>
 
-          <motion.button
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            onClick={() => handleNavigate('/portfolio')}
-            className="mt-6 md:mt-0 px-6 py-3 rounded-xl btn-outline-tactile text-white text-xs md:text-sm font-bold flex items-center gap-2 cursor-pointer"
+          <Link
+            href="/portfolio"
+            className="mt-6 md:mt-0 px-6 py-3 rounded-xl btn-outline-tactile text-white text-xs md:text-sm font-bold flex items-center gap-2 cursor-pointer inline-flex"
           >
             Semua Portofolio ({PORTFOLIO.length})
             <ArrowRight className="w-4 h-4 text-primary" />
-          </motion.button>
+          </Link>
         </div>
 
         {/* Project Showcase */}
@@ -323,7 +310,6 @@ export default function HomeClient() {
         >
           <ProjectShowcase
             projects={PORTFOLIO}
-            onSelectProject={(proj) => handleNavigate(`/portfolio/${proj.id}`)}
           />
         </motion.div>
       </motion.section>
@@ -344,7 +330,7 @@ export default function HomeClient() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16 md:mb-20"
         >
-          <span className="text-xs font-bold font-geist text-primary uppercase tracking-widest block mb-2">Flexible Investment</span>
+          <span className="text-xs font-bold text-primary uppercase tracking-widest block mb-2">Flexible Investment</span>
           <h2 className="font-headline text-3xl md:text-5xl font-extrabold text-white mb-4 tracking-tight">
             Investasi Digital Anda
           </h2>
@@ -364,7 +350,7 @@ export default function HomeClient() {
               transition: { staggerChildren: 0.15 }
             }
           }}
-          className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 items-center"
+          className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-10 items-start"
         >
           {PLANS.map((plan) => (
             <motion.div
@@ -373,6 +359,7 @@ export default function HomeClient() {
                 hidden: { opacity: 0, y: 40 },
                 show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 100, damping: 15 } }
               }}
+              className="h-full"
             >
               <PlanCard
                 plan={plan}
@@ -392,24 +379,34 @@ export default function HomeClient() {
         transition={{ duration: 0.8 }}
         className="max-w-7xl mx-auto px-6 md:px-12 mb-40 md:mb-48"
       >
-        <div className="text-center mb-14 md:mb-20">
-          <span className="text-xs font-bold font-geist text-primary uppercase tracking-widest block mb-2">WHY YAZIDCODES</span>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 items-center mb-16 md:mb-20">
+          {/* Left: Header */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="font-headline text-3xl md:text-5xl font-extrabold text-white mb-4 tracking-tight"
           >
-            Mengapa Yazidcodes?
-          </motion.h2>
+            <span className="text-xs font-bold text-primary uppercase tracking-widest block mb-4">WHY YAZIDCODES</span>
+            <h2 className="font-headline text-4xl md:text-5xl font-extrabold text-white mb-6 tracking-tight leading-tight">
+              Mengapa Yazidcodes?
+            </h2>
+            <p className="text-text-muted text-base md:text-lg leading-relaxed max-w-lg">
+              Kami telah membantu puluhan bisnis untuk membangun identitas digital yang kuat dan presisi. Dengan pengalaman bertahun-tahun di industri digital, kami siap menjadi partner terpercaya Anda.
+            </p>
+          </motion.div>
+
+          {/* Right: Stats */}
           <motion.div
-            initial={{ width: 0 }}
-            whileInView={{ width: 48 }}
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="h-1 bg-primary mx-auto rounded-full opacity-80"
-          ></motion.div>
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="grid grid-cols-2 gap-8 md:gap-12"
+          >
+            <StatCounter value={20} label="Clients Aktif" suffix="+" duration={2} />
+            <StatCounter value={4} label="Tahun Pengalaman" suffix="+" duration={2} />
+          </motion.div>
         </div>
 
         <WhyChooseBento />
@@ -418,7 +415,7 @@ export default function HomeClient() {
       {/* FAQ ACCORDION */}
       <section id="faq" className="max-w-4xl mx-auto px-6 md:px-12 mb-28 md:mb-40">
         <div className="text-center mb-16">
-          <span className="text-xs font-bold font-geist text-primary uppercase tracking-widest block mb-2">Tanya Jawab</span>
+          <span className="text-xs font-bold text-primary uppercase tracking-widest block mb-2">Tanya Jawab</span>
           <h2 className="font-headline text-3xl md:text-4xl font-extrabold text-white tracking-tight">
             Pertanyaan Umum
           </h2>
@@ -474,7 +471,7 @@ export default function HomeClient() {
       </section>
 
       {/* CALL TO ACTION SECTION */}
-      <section id="cta" className="max-w-5xl mx-auto px-6 md:px-12 mb-28 md:mb-40 relative">
+      <section id="cta" className="max-w-7xl mx-auto px-6 md:px-12 mb-28 md:mb-40 relative">
         <div className="absolute -left-12 -top-12 w-64 h-64 bg-primary/15 blur-3xl rounded-full pointer-events-none" />
         <div className="absolute -right-12 -bottom-12 w-64 h-64 bg-secondary/15 blur-3xl rounded-full pointer-events-none" />
 
@@ -488,36 +485,30 @@ export default function HomeClient() {
           coneSpread={25}
           animated={true}
           colors={['#b8c4ff', '#ff9191', '#38bdf8']}
-          className="w-full text-center py-10 px-6 md:py-12 md:px-16 relative overflow-hidden backdrop-blur-xl bg-gradient-to-br from-white/[0.03] to-[#0c0c0e]/90 shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
+          className="w-full text-center py-14 px-8 md:py-14 md:px-20 relative overflow-hidden backdrop-blur-xl bg-gradient-to-br from-white/[0.04] via-[#0d0e14]/95 to-[#0c0c0e]/90 shadow-[0_20px_60px_rgba(0,0,0,0.6)]"
         >
           {/* Visual Accent glow */}
-          <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-primary/40 to-transparent pointer-events-none" />
 
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 mb-4 backdrop-blur-md mx-auto">
-            <Sparkles className="w-3.5 h-3.5 text-primary animate-pulse" />
-            <span className="text-[10px] font-semibold text-primary uppercase tracking-wider">Mulai Sekarang</span>
-          </div>
-
-          <h2 className="font-headline text-2xl md:text-4xl font-extrabold text-white mb-3 leading-tight max-w-3xl mx-auto tracking-tight">
+          <h2 className="font-headline text-3xl md:text-5xl lg:text-5xl font-bold text-white mb-6 leading-[1.15] max-w-4xl mx-auto tracking-tight">
             Siap Mewujudkan Website Impian Anda?
           </h2>
 
-          <p className="font-sans text-text-muted text-xs md:text-sm max-w-2xl mx-auto leading-relaxed mb-8">
+          <p className="font-sans text-text-muted text-base  max-w-2xl mx-auto leading-relaxed mb-10 font-medium">
             Konsultasikan kebutuhan digital Anda secara gratis dengan kami. Dapatkan website premium berkinerja tinggi yang dirancang khusus untuk mempercepat pertumbuhan bisnis Anda.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <button
               onClick={() => handleOpenInquiry('General')}
-              className="w-full sm:w-auto px-6 py-3 rounded-xl btn-gradient-tactile text-white font-bold text-xs flex items-center justify-center gap-2 cursor-pointer group"
+              className="w-full sm:w-auto px-8 py-4 rounded-xl md:rounded-2xl btn-gradient-tactile text-white font-bold text-sm md:text-base flex items-center justify-center gap-2.5 cursor-pointer group"
             >
               Mulai Konsultasi Gratis
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </button>
 
             <button
               onClick={() => handleNavigate('/portfolio')}
-              className="w-full sm:w-auto px-6 py-3 rounded-xl btn-outline-tactile text-white font-semibold text-xs flex items-center justify-center gap-2 cursor-pointer"
+              className="w-full sm:w-auto px-8 py-4 rounded-xl md:rounded-2xl btn-outline-tactile text-white font-semibold text-sm md:text-base flex items-center justify-center gap-2.5 cursor-pointer"
             >
               Lihat Hasil Karya
             </button>

@@ -29,7 +29,7 @@ export const PORTFOLIO: PortfolioProject[] = [
     id: 'caysie',
     title: 'Caysie Fashion E-Commerce',
     category: 'E-Commerce & Web Development',
-    image: '/porto/caysie/preview.png',
+    image: '/porto/caysie/preview.webp',
     description: 'Project mini e-commerce fashion yang dibuat menggunakan Laravel 11 dan Tailwind CSS.',
     alt: 'Caysie Fashion E-Commerce Preview',
     features: ['Laravel 11 Backend', 'Tailwind CSS Styling', 'Fashion Mini E-Commerce', 'Product Management', 'Cart & Checkout System', 'Responsive UI/UX']
@@ -38,7 +38,7 @@ export const PORTFOLIO: PortfolioProject[] = [
     id: 'himba',
     title: 'Himba Natura Senentang Website Redesign',
     category: 'Web Redesign & Frontend',
-    image: '/porto/himba/preview.png',
+    image: '/porto/himba/preview.webp',
     description: 'Redesign website Himba Natura Senentang yang dibuat menggunakan React dan Tailwind CSS saja.',
     alt: 'Himba Natura Senentang Preview',
     features: ['React Frontend', 'Tailwind CSS Styling', 'Modern Web Redesign', 'Interactive Components', 'Fluid Responsive Layout', 'Optimized Visual Performance']
@@ -47,7 +47,7 @@ export const PORTFOLIO: PortfolioProject[] = [
     id: 'nelson',
     title: 'Nelson Graphic Designer Portfolio',
     category: 'Personal Portfolio & Graphic Design',
-    image: '/porto/nelson/prview.png',
+    image: '/porto/nelson/prview.webp',
     description: 'Website portofolio pribadi untuk graphic designer dengan desain yang menarik dan modern.',
     alt: 'Nelson Graphic Designer Portfolio Preview',
     features: ['Modern Graphic Design Showcase', 'Personal Portfolio', 'Creative Layout & Typography', 'Interactive Gallery', 'Responsive Multi-Device Support', 'Fast Page Performance']
@@ -56,7 +56,7 @@ export const PORTFOLIO: PortfolioProject[] = [
     id: 'satpol',
     title: 'Satpol PP Kotawaringin Barat Website',
     category: 'Government & Public Services',
-    image: '/porto/satpol/preview.png',
+    image: '/porto/satpol/preview.webp',
     description: 'Project website resmi untuk instansi Satpol PP Kotawaringin Barat.',
     alt: 'Satpol PP Kotawaringin Barat Website Preview',
     features: ['Official Public Service Portal', 'Government Agency Website', 'Information & News Module', 'Public Service Announcements', 'Responsive & Accessible Design', 'Structured Content Navigation']
@@ -65,7 +65,7 @@ export const PORTFOLIO: PortfolioProject[] = [
     id: 'sipekar',
     title: 'SIPEKAR - E-Recruitment System',
     category: 'Enterprise & HR System',
-    image: '/porto/sipekar/preview.png',
+    image: '/porto/sipekar/preview.webp',
     description: 'Sistem Informasi Penerimaan Karyawan untuk PT Sariling Aneka Energi yang dibuat menggunakan Laravel 11 dan Tailwind CSS.',
     alt: 'SIPEKAR E-Recruitment System Preview',
     features: ['Laravel 11 Backend', 'Tailwind CSS Styling', 'E-Recruitment Information System', 'Applicant Tracking System', 'Candidate Assessment & Scoring', 'Corporate UI Design']
@@ -74,7 +74,7 @@ export const PORTFOLIO: PortfolioProject[] = [
     id: 'smoq',
     title: 'SMOQ - Sparepart Monitoring Order Quickly',
     category: 'Inventory & Order Management',
-    image: '/porto/smoq/preview.png',
+    image: '/porto/smoq/preview.webp',
     description: 'Sistem Informasi untuk mencatat order sparepart (Sparepart Monitoring Order Quickly) untuk bengkel Astra Isuzu.',
     alt: 'SMOQ Sparepart Monitoring System Preview',
     features: ['Sparepart Monitoring Order Quickly', 'Astra Isuzu Workshop System', 'Order Tracking & Inventory Logs', 'Workflow Automation', 'Efficient Management Dashboard', 'Tailored Corporate Information System']
@@ -154,30 +154,32 @@ export const PLANS: PricingPlan[] = [
   {
     id: 'starter',
     name: 'Starter',
-    price: 'IDR 2.5jt',
-    period: '/proyek',
+    price: '900K',
+    period: '/project',
     features: [
-      '5 Halaman Landing',
-      'Responsive Design',
-      'Basic SEO Optimization',
-      'Desain Modern & Clean',
-      'Integrasi Form Kontak'
+      'Landing page profesional',
+      'Responsive di semua perangkat',
+      'Desain modern & clean',
+      'Basic SEO & optimasi performa',
+      'Form kontak / WhatsApp',
+      '1x revisi'
     ],
     color: 'border-white/5',
-    buttonText: 'Pilih Starter'
+    buttonText: 'Mulai Starter'
   },
   {
     id: 'premium',
     name: 'Premium',
-    price: 'IDR 7.5jt',
-    period: '/proyek',
+    price: '4Jt',
+    period: '/project',
     features: [
-      'Unlimited Halaman',
-      '3D Glassmorphism UI',
-      'CMS Integration (Sanity/Strapi)',
-      'Premium Custom Animations',
-      'Priority Support 24/7',
-      'Peningkatan Kecepatan Maksimal'
+      'Website multi-section lengkap',
+      'Custom UI/UX sesuai brand',
+      'Animasi & interaction premium',
+      'SEO & performa optimal',
+      'Integrasi WhatsApp & form',
+      'Struktur website siap berkembang',
+      'Prioritas support'
     ],
     isPopular: true,
     color: 'border-primary/30',
@@ -186,17 +188,18 @@ export const PLANS: PricingPlan[] = [
   {
     id: 'custom',
     name: 'Custom',
-    price: 'Hubungi Kami',
-    period: '',
+    price: 'Diskusikan',
+    period: 'Kebutuhan',
     features: [
-      'Sistem Skala Tinggi (High-Load)',
-      'Pengembangan Custom API',
-      'DevOps & Infrastruktur Keamanan',
-      'Solusi Label Putih (White-label)',
-      'Konsultasi Arsitektur IT'
+      'Fitur & sistem sesuai kebutuhan',
+      'Custom API & integrasi',
+      'Dashboard / admin system',
+      'Database & authentication',
+      'Integrasi layanan pihak ketiga',
+      'Konsultasi arsitektur solusi'
     ],
     color: 'border-white/5',
-    buttonText: 'Hubungi Kami'
+    buttonText: 'Konsultasi Sekarang'
   }
 ];
 

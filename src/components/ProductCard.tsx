@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
 import { 
   Layout, 
   Code2, 
@@ -23,10 +25,9 @@ import { DigitalProduct } from '../lib/types';
 
 interface ProductCardProps {
   product: DigitalProduct;
-  onSelectProduct?: (product: DigitalProduct) => void;
 }
 
-export default function ProductCard({ product, onSelectProduct }: ProductCardProps) {
+export default function ProductCard({ product }: ProductCardProps) {
   const [showDetailModal, setShowDetailModal] = useState(false);
   const [showCheckout, setShowCheckout] = useState(false);
   const [cardImageLoaded, setCardImageLoaded] = useState(false);
@@ -180,11 +181,7 @@ export default function ProductCard({ product, onSelectProduct }: ProductCardPro
   };
 
   const handleOpenDetailModal = () => {
-    if (onSelectProduct) {
-      onSelectProduct(product);
-    } else {
-      setShowDetailModal(true);
-    }
+    setShowDetailModal(true);
   };
 
   const handleCloseDetailModal = () => {
@@ -203,20 +200,21 @@ export default function ProductCard({ product, onSelectProduct }: ProductCardPro
 
   return (
     <>
-      <div 
-        onClick={handleOpenDetailModal}
-        className="glass-card p-5 md:p-6 rounded-[1.75rem] sm:rounded-[2.5rem] flex flex-col border border-white/5 hover:border-white/10 hover:scale-[1.01] transition-all duration-300 h-full relative group cursor-pointer"
+      <Link 
+        href={`/products/${product.id}`}
+        className="glass-card p-5 md:p-6 rounded-[1.75rem] sm:rounded-[2.5rem] flex flex-col border border-white/5 hover:border-white/10 hover:scale-[1.01] transition-all duration-300 h-full relative group cursor-pointer block"
       >
         {/* Product Preview Image */}
         <div className="-mt-5 -mx-5 md:-mt-6 md:-mx-6 rounded-t-[1.65rem] sm:rounded-t-[2.4rem] rounded-b-2xl overflow-hidden aspect-[16/10] relative mb-6 bg-[#0c0c0e]/60 border-b border-white/10 shadow-inner">
-          <img
+          <Image
             src={product.image}
             alt={product.title}
-            referrerPolicy="no-referrer"
-            onLoad={() => setCardImageLoaded(true)}
-            className={`w-full h-full object-cover transition-all duration-700 group-hover:scale-105 ${
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            className={`object-cover transition-all duration-700 group-hover:scale-105 ${
               cardImageLoaded ? 'opacity-100' : 'opacity-0'
             }`}
+            onLoad={() => setCardImageLoaded(true)}
           />
           {!cardImageLoaded && (
             <div className="absolute inset-0 bg-[#12131a] animate-pulse flex items-center justify-center">
@@ -252,7 +250,7 @@ export default function ProductCard({ product, onSelectProduct }: ProductCardPro
             <ArrowRight className="w-3.5 h-3.5 text-primary group-hover:translate-x-0.5 transition-transform" />
           </button>
         </div>
-      </div>
+      </Link>
 
       {/* ================= PRODUCT DETAIL MODAL ================= */}
       {showDetailModal && (
@@ -286,14 +284,15 @@ export default function ProductCard({ product, onSelectProduct }: ProductCardPro
                 <div className="lg:col-span-2 bg-white/[0.02] border border-white/5 p-6 rounded-3xl flex flex-col items-center justify-center text-center">
                   {/* Image container inside modal */}
                   <div className="w-full aspect-[16/10] rounded-2xl overflow-hidden mb-5 border border-white/10 bg-[#0c0c0e]/60 relative">
-                    <img
+                    <Image
                       src={product.image}
                       alt={product.title}
-                      referrerPolicy="no-referrer"
-                      onLoad={() => setModalImageLoaded(true)}
-                      className={`w-full h-full object-cover ${
+                      fill
+                      sizes="(max-width: 768px) 100vw, 40vw"
+                      className={`object-cover ${
                         modalImageLoaded ? 'opacity-100' : 'opacity-0'
                       }`}
+                      onLoad={() => setModalImageLoaded(true)}
                     />
                     {!modalImageLoaded && (
                       <div className="absolute inset-0 bg-[#12131a] animate-pulse flex items-center justify-center">

@@ -31,11 +31,10 @@ export default function Footer() {
 
   const handleNavigate = (path: string) => {
     router.push(path);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
-    <footer className="relative z-10 w-full bg-[#07070a]/90 backdrop-blur-md border-t border-white/5 pt-16 md:pt-24 mt-20 md:mt-32">
+    <footer className="relative z-10 w-full backdrop-blur-md border-t border-white/5 pt-16 md:pt-24 mt-20 md:mt-32 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         {/* Top section: Newsletter & Info */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start pb-16 border-b border-white/5">
@@ -264,14 +263,14 @@ export default function Footer() {
         </div>
 
         {/* HUGE WATERMARK TYPOGRAPHY AT THE ABSOLUTE BOTTOM */}
-        <div className="relative select-none pointer-events-none mt-8 md:mt-12 lg:mt-16 mb-[-1.5rem] md:mb-[-3rem] lg:mb-[-4.5rem] flex justify-center w-full">
+        <div className="relative select-none pointer-events-none top-10 mt-3 -mt-8 md:-mt-12 lg:-mt-16 flex justify-center w-full overflow-visible">
           <ShinyText
             text="yazidcodes"
             disabled={false}
             speed={3}
             color="rgba(255, 255, 255, 0.22)"
             shineColor="rgba(255, 255, 255, 0.95)"
-            className="font-headline font-black text-center tracking-wider uppercase leading-none text-[15vw] w-full"
+            className="font-headline font-semibold  text-center tracking-wider uppercase leading-none text-[15vw]"
             style={{
               maskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.36) 50%, rgba(0,0,0,0) 100%)',
               WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.36) 50%, rgba(0,0,0,0) 100%)'
