@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import type { gsap as GsapType } from 'gsap';
-import { Sparkles, Send, ArrowUpRight } from 'lucide-react';
+import { Sparkles, MessageSquareText, Send, ArrowUpRight, Sun, Moon } from 'lucide-react';
+import { useTheme } from '../lib/ThemeContext';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import { handleOpenInquiry } from '../lib/utils';
@@ -24,6 +25,7 @@ type CardNavItem = {
 export default function Navbar() {
   const pathname = usePathname();
   const router = useRouter();
+  const { theme, toggleTheme } = useTheme();
 
   // Map path to view for active styles
   let currentView: 'home' | 'portfolio' | 'products' | 'portfolio-detail' | 'product-detail' = 'home';
@@ -249,7 +251,7 @@ export default function Navbar() {
   };
 
   return (
-    <div className="card-nav-container fixed left-1/2 -translate-x-1/2 w-[94%] md:w-[90%] max-w-[880px] z-[99] top-[1.2em] md:top-[2em]">
+    <div className="card-nav-container fixed inset-x-4 md:inset-x-auto md:left-1/2 md:-translate-x-1/2 md:w-[90%] max-w-[880px] z-[99] top-4 md:top-[2em]">
       <nav
         ref={navRef}
         className={`card-nav ${isExpanded ? 'open' : ''} block h-[72px] p-0 rounded-2xl relative overflow-hidden will-change-[height] liquid-glass`}
@@ -259,20 +261,20 @@ export default function Navbar() {
 
           {/* Logo Container */}
           <div
-            className="logo-container flex items-center cursor-pointer group gap-1.5 md:gap-2.5 py-1.5 px-2 md:py-2 md:px-3 rounded-xl  active:scale-95 transition-all md:absolute md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2"
+            className="logo-container flex items-center cursor-pointer group gap-1.5 md:gap-2.5 py-1.5 px-2 md:py-2 md:px-3 rounded-xl active:scale-95 transition-all md:absolute md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2"
             onClick={() => handleItemClick('hero')}
           >
             <div className="w-14 h-14 ">
               <Image src="/web-app-manifest-512x512.png" alt="Logo Yazidcodes" width={56} height={56} className='w-full h-full' priority />
             </div>
-            <span className="font-headline font-bold text-sm md:text-xl tracking-tight text-white group-hover:text-primary transition-colors">
+            <span className="font-headline font-semibold text-sm md:text-xl tracking-tight text-[var(--color-on-surface)] group-hover:text-primary transition-colors">
               yazidcodes
             </span>
           </div>
 
           {/* Desktop Only: Hamburger on the left */}
           <div
-            className={`hamburger-menu ${isHamburgerOpen ? 'open' : ''} group h-12 w-12 hidden md:flex flex-col items-center justify-center cursor-pointer gap-[6px] rounded-xl btn-ghost-tactile transition-all`}
+            className={`hamburger-menu ${isHamburgerOpen ? 'open' : ''} group h-12 w-12 hidden md:flex flex-col items-center justify-center cursor-pointer gap-[6px] rounded-xl btn-hamburger-tactile transition-all`}
             onClick={toggleMenu}
             onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) => {
               if (e.key === 'Enter' || e.key === ' ') {
@@ -284,7 +286,6 @@ export default function Navbar() {
             aria-label={isExpanded ? 'Close menu' : 'Open menu'}
             aria-expanded={isExpanded}
             tabIndex={0}
-            style={{ color: '#fff' }}
           >
             <div
               className={`hamburger-line w-[24px] h-[2px] bg-white transition-[transform,opacity,margin] duration-250 ease-out [transform-origin:50%_50%] ${isHamburgerOpen ? 'translate-y-[4px] rotate-45' : ''
@@ -298,6 +299,20 @@ export default function Navbar() {
 
           {/* Mobile Only actions container (Right aligned on mobile) */}
           <div className="flex items-center gap-1.5 md:hidden">
+            {/* Theme Toggle Button (Mobile) */}
+            <button
+              onClick={toggleTheme}
+              className="btn-theme-toggle w-9 h-9 shrink-0 md:w-10 md:h-10"
+              aria-label="Toggle theme"
+            >
+              <div className={`icon-wrapper absolute transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] ${theme === 'dark' ? 'rotate-0 opacity-100 scale-100' : '-rotate-90 opacity-0 scale-50'}`}>
+                <Sun className="w-[18px] h-[18px]" />
+              </div>
+              <div className={`icon-wrapper absolute transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] ${theme === 'light' ? 'rotate-0 opacity-100 scale-100' : 'rotate-90 opacity-0 scale-50'}`}>
+                <Moon className="w-[18px] h-[18px]" />
+              </div>
+            </button>
+
             {/* Contact CTA Button (Compact on mobile) */}
             <button
               onClick={() => {
@@ -305,21 +320,20 @@ export default function Navbar() {
                 setIsHamburgerOpen(false);
                 handleOpenInquiry();
               }}
-              className="btn-gradient-tactile px-3.5 py-2 rounded-xl text-white font-bold text-[11px] flex items-center gap-1 cursor-pointer transition-all"
+              className="hidden px-3.5 py-2 rounded-xl text-white font-semibold text-[11px] gap-1.5 cursor-pointer transition-all"
             >
-              Hubungi
-              <Send className="w-3 h-3" />
+              Hubungi Saya
+              <Send className="w-3.5 h-3.5" />
             </button>
 
             {/* Hamburger on mobile */}
             <div
-              className={`hamburger-menu ${isHamburgerOpen ? 'open' : ''} group h-10 w-10 flex flex-col items-center justify-center cursor-pointer gap-[5px] rounded-xl btn-ghost-tactile transition-all`}
+              className={`hamburger-menu ${isHamburgerOpen ? 'open' : ''} group h-10 w-10 flex flex-col items-center justify-center cursor-pointer gap-[5px] rounded-xl btn-hamburger-tactile transition-all`}
               onClick={toggleMenu}
               role="button"
               aria-label={isExpanded ? 'Close menu' : 'Open menu'}
               aria-expanded={isExpanded}
               tabIndex={0}
-              style={{ color: '#fff' }}
             >
               <div
                 className={`hamburger-line w-[20px] h-[2px] bg-white transition-[transform,opacity,margin] duration-250 ease-out [transform-origin:50%_50%] ${isHamburgerOpen ? 'translate-y-[3.5px] rotate-45' : ''
@@ -332,18 +346,35 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Desktop Only: Contact CTA Button */}
-          <button
-            onClick={() => {
-              setIsExpanded(false);
-              setIsHamburgerOpen(false);
-              handleOpenInquiry();
-            }}
-            className="btn-gradient-tactile hidden md:flex px-6 py-2.5 rounded-xl text-white font-bold text-sm items-center gap-2 group cursor-pointer transition-all"
-          >
-            Hubungi
-            <Send className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-          </button>
+          {/* Desktop Only: Theme Toggle + Contact CTA */}
+          <div className="hidden md:flex items-center gap-2">
+            {/* Theme Toggle Button (Desktop) */}
+            <button
+              onClick={toggleTheme}
+              className="btn-theme-toggle w-10 h-10 group shrink-0"
+              aria-label="Toggle theme"
+            >
+              <div className={`icon-wrapper absolute transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:-rotate-[15deg] ${theme === 'dark' ? 'rotate-0 opacity-100 scale-100' : '-rotate-90 opacity-0 scale-50'}`}>
+                <Sun className="w-5 h-5" />
+              </div>
+              <div className={`icon-wrapper absolute transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:rotate-[15deg] ${theme === 'light' ? 'rotate-0 opacity-100 scale-100' : 'rotate-90 opacity-0 scale-50'}`}>
+                <Moon className="w-[18px] h-[18px]" />
+              </div>
+            </button>
+
+            {/* Contact CTA Button */}
+            <button
+              onClick={() => {
+                setIsExpanded(false);
+                setIsHamburgerOpen(false);
+                handleOpenInquiry();
+              }}
+              className="btn-gradient-tactile px-6 py-2.5 rounded-xl text-white font-semibold text-sm items-center gap-2 group cursor-pointer transition-all flex"
+            >
+              Hubungi Saya
+              <Send className="w-4 h-4 group-hover:-translate-y-0.5 group-hover:rotate-6 transition-transform" />
+            </button>
+          </div>
          
         </div>
 
@@ -356,10 +387,10 @@ export default function Navbar() {
           {items.map((item, idx) => (
             <div
               key={`${item.label}-${idx}`}
-              className="nav-card select-none relative flex flex-col justify-between gap-2.5 p-4 rounded-xl min-w-0 flex-[1_1_auto] h-auto md:h-full md:min-h-0 md:flex-[1_1_0%] bg-[#0c0c0e]/50 backdrop-blur-3xl border border-white/10 hover:border-primary/40 hover:shadow-[0_8px_30px_rgba(99,102,241,0.15)] transition-all duration-300"
+              className="nav-card select-none relative flex flex-col justify-between gap-2.5 p-4 rounded-xl min-w-0 flex-[1_1_auto] h-auto md:h-full md:min-h-0 md:flex-[1_1_0%] bg-[var(--color-surface)]/90 backdrop-blur-3xl border border-[var(--color-border-specular)] hover:border-primary/40 hover:shadow-[0_8px_30px_rgba(99,102,241,0.15)] transition-all duration-300"
               ref={setCardRef(idx)}
             >
-              <div className="nav-card-label font-headline font-bold tracking-tight text-zinc-400 md:text-white uppercase md:normal-case text-[11px] md:text-[21px]">
+              <div className="nav-card-label font-headline font-semibold tracking-tight text-[var(--color-text-muted)] md:text-[var(--color-on-surface)] uppercase md:normal-case text-[11px] md:text-[21px]">
                 {item.label}
               </div>
               <div className="nav-card-links mt-auto flex flex-row md:flex-col gap-3 md:gap-2.5">
@@ -372,7 +403,7 @@ export default function Navbar() {
                   return (
                     <button
                       key={`${lnk.label}-${i}`}
-                      className={`nav-card-link inline-flex items-center gap-1.5 md:gap-2 no-underline cursor-pointer transition-all duration-250 text-[13.5px] md:text-[16px] font-sans font-semibold text-left flex-1 md:flex-none py-1 md:py-0 hover:-translate-y-0.5 active:translate-y-0.5 ${isActive ? 'text-primary' : 'text-text-muted hover:text-white'
+                      className={`nav-card-link inline-flex items-center gap-1.5 md:gap-2 no-underline cursor-pointer transition-all duration-250 text-[13.5px] md:text-[16px] font-sans font-semibold text-left flex-1 md:flex-none py-1 md:py-0 hover:-translate-y-0.5 active:translate-y-0.5 ${isActive ? 'text-primary' : 'text-[var(--color-text-muted)] hover:text-[var(--color-on-surface)]'
                         }`}
                       onClick={() => handleItemClick(lnk.id)}
                       aria-label={lnk.ariaLabel}

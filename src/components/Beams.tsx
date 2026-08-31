@@ -1,6 +1,7 @@
 "use client";
 
 import { forwardRef, useImperativeHandle, useEffect, useRef, useMemo, FC, ReactNode } from 'react';
+import { useTheme } from '../lib/ThemeContext';
 
 import * as THREE from 'three';
 
@@ -189,7 +190,12 @@ const Beams: FC<BeamsProps> = ({
   scale = 0.2,
   rotation = 0
 }) => {
+  const { theme } = useTheme();
   const meshRef = useRef<THREE.Mesh<THREE.BufferGeometry, THREE.ShaderMaterial>>(null!);
+
+  // Theme-aware light color
+  const beamColor = theme === 'light' ? '#93C5FD' : (lightColor === '#ffffff' ? '#4f46e5' : lightColor);
+  const beamOpacity = theme === 'light' ? 0.1 : 1;
 
   const beamMaterial = useMemo(
     () =>
@@ -241,18 +247,18 @@ const Beams: FC<BeamsProps> = ({
           metalness: 0.3,
           uSpeed: { shared: true, mixed: true, linked: true, value: speed },
           envMapIntensity: 10,
-          uNoiseIntensity: noiseIntensity,
+          uNoiseIntensity: noiseIntensity * beamOpacity,
           uScale: scale
         }
       }),
-    [speed, noiseIntensity, scale]
+    [speed, noiseIntensity, scale, beamOpacity]
   );
 
   return (
     <CanvasWrapper>
       <group rotation={[0, 0, MathUtils.degToRad(rotation)]}>
         <PlaneNoise ref={meshRef} material={beamMaterial} count={beamNumber} width={beamWidth} height={beamHeight} />
-        <DirLight color={lightColor} position={[0, 3, 10]} />
+        <DirLight color={beamColor} position={[0, 3, 10]} />
       </group>
       <ambientLight intensity={1} />
       <PerspectiveCamera makeDefault position={[0, 0, 20]} fov={30} />

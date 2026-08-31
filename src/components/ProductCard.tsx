@@ -3,18 +3,18 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { 
-  Layout, 
-  Code2, 
-  Sparkles, 
-  Check, 
-  ShoppingBag, 
-  QrCode, 
-  CreditCard, 
-  ChevronRight, 
-  CheckCircle2, 
-  X, 
-  Download, 
+import {
+  Layout,
+  Code2,
+  Sparkles,
+  Check,
+  ShoppingBag,
+  QrCode,
+  CreditCard,
+  ChevronRight,
+  CheckCircle2,
+  X,
+  Download,
   Info,
   Layers,
   ArrowRight,
@@ -32,7 +32,7 @@ export default function ProductCard({ product }: ProductCardProps) {
   const [showCheckout, setShowCheckout] = useState(false);
   const [cardImageLoaded, setCardImageLoaded] = useState(false);
   const [modalImageLoaded, setModalImageLoaded] = useState(false);
-  
+
   // Checkout form states
   const [promoCode, setPromoCode] = useState('');
   const [discountApplied, setDiscountApplied] = useState(false);
@@ -72,39 +72,39 @@ export default function ProductCard({ product }: ProductCardProps) {
     switch (color) {
       case 'primary':
         return {
-          text: 'text-primary',
-          border: 'border-primary/30',
-          bg: 'bg-primary/10 hover:bg-primary hover:text-on-primary',
-          solidBg: 'bg-primary text-on-primary',
-          glow: 'shadow-[0_0_20px_rgba(184,196,255,0.1)]',
-          badge: 'bg-primary/10 text-primary border-primary/20'
+          text: 'text-[var(--color-primary)]',
+          border: 'border-[var(--color-primary)]/30',
+          bg: 'bg-[var(--color-primary)]/10 hover:bg-[var(--color-primary)] hover:text-[var(--color-on-primary)]',
+          solidBg: 'bg-[var(--color-primary)] text-[var(--color-on-primary)]',
+          glow: 'shadow-[0_0_20px_rgba(37,99,235,0.1)]',
+          badge: 'bg-[var(--color-primary)]/10 text-[var(--color-primary)] border-[var(--color-primary)]/20'
         };
       case 'secondary':
         return {
-          text: 'text-secondary',
-          border: 'border-secondary/30',
-          bg: 'bg-secondary/10 hover:bg-secondary hover:text-on-secondary',
-          solidBg: 'bg-secondary text-on-secondary',
-          glow: 'shadow-[0_0_20px_rgba(211,187,255,0.1)]',
-          badge: 'bg-secondary/10 text-secondary border-secondary/20'
+          text: 'text-[var(--color-secondary)]',
+          border: 'border-[var(--color-secondary)]/30',
+          bg: 'bg-[var(--color-secondary)]/10 hover:bg-[var(--color-secondary)] hover:text-[var(--color-on-secondary)]',
+          solidBg: 'bg-[var(--color-secondary)] text-[var(--color-on-secondary)]',
+          glow: 'shadow-[0_0_20px_rgba(79,70,229,0.1)]',
+          badge: 'bg-[var(--color-secondary)]/10 text-[var(--color-secondary)] border-[var(--color-secondary)]/20'
         };
       case 'tertiary':
         return {
-          text: 'text-tertiary',
-          border: 'border-tertiary/30',
-          bg: 'bg-tertiary/10 hover:bg-tertiary hover:text-on-tertiary',
-          solidBg: 'bg-tertiary text-on-tertiary',
-          glow: 'shadow-[0_0_20px_rgba(255,181,154,0.1)]',
-          badge: 'bg-tertiary/10 text-tertiary border-tertiary/20'
+          text: 'text-[var(--color-tertiary)]',
+          border: 'border-[var(--color-tertiary)]/30',
+          bg: 'bg-[var(--color-tertiary)]/10 hover:bg-[var(--color-tertiary)] hover:text-[var(--color-on-tertiary)]',
+          solidBg: 'bg-[var(--color-tertiary)] text-[var(--color-on-tertiary)]',
+          glow: 'shadow-[0_0_20px_rgba(234,88,12,0.1)]',
+          badge: 'bg-[var(--color-tertiary)]/10 text-[var(--color-tertiary)] border-[var(--color-tertiary)]/20'
         };
       default:
         return {
-          text: 'text-primary',
-          border: 'border-primary/30',
-          bg: 'bg-primary/10 hover:bg-primary hover:text-on-primary',
-          solidBg: 'bg-primary text-on-primary',
-          glow: 'shadow-[0_0_20px_rgba(184,196,255,0.1)]',
-          badge: 'bg-primary/10 text-primary border-primary/20'
+          text: 'text-[var(--color-primary)]',
+          border: 'border-[var(--color-primary)]/30',
+          bg: 'bg-[var(--color-primary)]/10 hover:bg-[var(--color-primary)] hover:text-[var(--color-on-primary)]',
+          solidBg: 'bg-[var(--color-primary)] text-[var(--color-on-primary)]',
+          glow: 'shadow-[0_0_20px_rgba(37,99,235,0.1)]',
+          badge: 'bg-[var(--color-primary)]/10 text-[var(--color-primary)] border-[var(--color-primary)]/20'
         };
     }
   };
@@ -126,7 +126,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         return { category: 'Landing Web Template', size: '8.2 MB', format: 'HTML & React App Source', license: 'Personal Portfolio Use' };
       case 'figma-design-system':
         return { category: 'Figma Library UI', size: '45.7 MB', format: '.FIG File Format', license: 'Design Team Lifetime' };
-      
+
       // Portfolio items
       case 'luxury-brand':
         return { category: 'E-Commerce & Branding', size: 'Live Demo', format: 'Custom Website', license: 'Exclusive Project' };
@@ -140,7 +140,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         return { category: 'Branding & Agency', size: 'Live Demo', format: 'Creative Portfolio Web', license: 'Exclusive Project' };
       case 'fintech-wealth':
         return { category: 'Finance & Cloud Computing', size: 'Live Demo', format: 'Secured Cloud Service', license: 'Exclusive Project' };
-      
+
       default:
         return { category: 'Digital Resource', size: '15.0 MB', format: 'Instant Download ZIP', license: 'Standard Personal Use' };
     }
@@ -200,67 +200,87 @@ export default function ProductCard({ product }: ProductCardProps) {
 
   return (
     <>
-      <Link 
+      <Link
         href={`/products/${product.id}`}
-        className="glass-card p-5 md:p-6 rounded-[1.75rem] sm:rounded-[2.5rem] flex flex-col border border-white/5 hover:border-white/10 hover:scale-[1.01] transition-all duration-300 h-full relative group cursor-pointer block"
+        className="glass-card p-5 md:p-6 rounded-2xl flex flex-col border border-[var(--color-border-specular)] hover:border-[var(--color-primary)] hover:scale-[1.01] transition-all duration-300 h-full relative group cursor-pointer block"
       >
         {/* Product Preview Image */}
-        <div className="-mt-5 -mx-5 md:-mt-6 md:-mx-6 rounded-t-[1.65rem] sm:rounded-t-[2.4rem] rounded-b-2xl overflow-hidden aspect-[16/10] relative mb-6 bg-[#0c0c0e]/60 border-b border-white/10 shadow-inner">
+        <div className="-mt-5 -mx-5 md:-mt-6 md:-mx-6 rounded-t-2xl m-3 overflow-hidden aspect-[16/10] relative mb-6 bg-[var(--color-surface-dim)]/60 border-b border-[var(--color-border-specular)] shadow-inner ">
           <Image
             src={product.image}
             alt={product.title}
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            className={`object-cover transition-all duration-700 group-hover:scale-105 ${
-              cardImageLoaded ? 'opacity-100' : 'opacity-0'
-            }`}
+            className={`object-cover transition-all duration-700 group-hover:scale-105 ${cardImageLoaded ? 'opacity-100' : 'opacity-0'
+              }`}
             onLoad={() => setCardImageLoaded(true)}
           />
           {!cardImageLoaded && (
-            <div className="absolute inset-0 bg-[#12131a] animate-pulse flex items-center justify-center">
-              <div className="w-10 h-10 rounded-full border border-white/5 bg-white/[0.02] flex items-center justify-center">
-                <Sparkles className="w-4 h-4 text-primary/30 animate-spin" style={{ animationDuration: '4s' }} />
+            <div className="absolute inset-0 bg-[var(--color-surface)] animate-pulse flex items-center justify-center">
+              <div className="w-10 h-10 rounded-full border border-[var(--color-border-specular)] bg-[var(--color-surface)]/[0.02] flex items-center justify-center">
+                <Sparkles className="w-4 h-4 text-[var(--color-primary)]/30 animate-spin" style={{ animationDuration: '4s' }} />
               </div>
             </div>
           )}
         </div>
 
         {/* Info */}
-        <h4 className="text-lg sm:text-xl font-bold text-white mb-2 font-headline group-hover:text-primary transition-colors">
+        <h4 className="text-lg sm:text-xl font-semibold text-[var(--color-on-surface)] mb-2 font-[var(--font-headline)] group-hover:text-[var(--color-primary)] transition-colors">
           {product.title}
         </h4>
-        <p className="text-text-muted text-sm mb-6 flex-grow line-clamp-3 leading-relaxed">
+        <p className="text-[var(--color-text-muted)] text-sm mb-3 flex-grow line-clamp-3 leading-relaxed">
           {product.description}
         </p>
 
         {/* Pricing / CTA Row */}
-        <div className="flex items-center justify-between pt-4 border-t border-white/5">
-          <div>
-            <span className="text-[10px] text-text-muted uppercase block tracking-wider">
+        <div className="flex flex-col gap-3 pt-4 border-t border-[var(--color-border-specular)]/5">
+          <div className="flex flex-col">
+            <span className="text-[10px] text-[var(--color-text-muted)] uppercase block tracking-wider mb-0.5">
               {isPortfolio ? "Kategori Proyek" : "Aset Digital"}
             </span>
-            <span className="text-base font-extrabold text-white">{product.price}</span>
+            <div className="flex items-center gap-1.5 flex-wrap mt-0.5">
+              <span className="text-xl font-semibold text-[var(--color-on-surface)] leading-none">{product.price}</span>
+              {!isPortfolio && product.price !== 'Gratis' && (
+                <span className="text-[15px] font-medium text-[var(--color-text-muted)] opacity-70 line-through decoration-[var(--color-text-muted)]/60 leading-none">
+                  {product.price.replace(/(\d+)/, (match) => (parseInt(match) * 2).toString())}
+                </span>
+              )}
+            </div>
           </div>
-          
-          <button
-            type="button"
-            className="px-4 py-2 rounded-xl btn-outline-tactile text-white font-bold text-xs flex items-center gap-1.5 cursor-pointer group-hover:border-white/20 transition-all"
-          >
-            Lihat Detail
-            <ArrowRight className="w-3.5 h-3.5 text-primary group-hover:translate-x-0.5 transition-transform" />
-          </button>
+
+          <div className="grid grid-cols-2 gap-2 mt-1">
+            <button
+              type="button"
+              className="w-full py-2 rounded-xl btn-hamburger-tactile text-white font-semibold text-xs flex justify-center items-center gap-1.5 cursor-pointer transition-all"
+            >
+              Lihat Detail
+              <ArrowRight className="w-3.5 h-3.5 text-white group-hover:translate-x-0.5 transition-transform" />
+            </button>
+            <button
+              type="button"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                window.open('https://lynk.id/yazidcodes', '_blank', 'noopener,noreferrer');
+              }}
+              className="w-full py-2 rounded-xl btn-gradient-tactile text-white font-semibold text-xs flex justify-center items-center gap-1.5 cursor-pointer shadow-md transition-all"
+            >
+              Beli Sekarang
+              <ExternalLink className="w-3.5 h-3.5 text-white" />
+            </button>
+          </div>
         </div>
       </Link>
 
       {/* ================= PRODUCT DETAIL MODAL ================= */}
       {showDetailModal && (
         <div className="fixed inset-0 z-[80] bg-black/90 backdrop-blur-md p-4 pt-28 md:pt-36 pb-6 flex justify-center items-start animate-in fade-in duration-300">
-          <div className="glass-card w-full max-w-4xl rounded-[1.75rem] sm:rounded-[2.5rem] overflow-hidden relative flex flex-col border border-white/10 shadow-2xl bg-[#0c0c0e]/95 max-h-[calc(100vh-120px)] md:max-h-[calc(100vh-160px)]">
-            
+          <div className="glass-card w-full max-w-4xl rounded-[1.75rem] sm:rounded-[2.5rem] overflow-hidden relative flex flex-col border border-[var(--color-border-specular)] shadow-2xl bg-[var(--color-surface)] max-h-[calc(100vh-120px)] md:max-h-[calc(100vh-160px)]">
+
             {/* Top Close Bar */}
             <div className="py-2 px-4 md:py-2.5 md:px-5 border-b border-white/5 flex items-center justify-between bg-[#12131a]/40 shrink-0">
               <div className="flex items-center gap-3">
-                <span className={`text-[9px] uppercase tracking-widest font-bold px-2 py-0.5 rounded-full border ${colors.badge}`}>
+                <span className={`text-[9px] uppercase tracking-widest font-semibold px-2 py-0.5 rounded-full border ${colors.badge}`}>
                   {meta.category}
                 </span>
                 <span className="text-[11px] text-text-muted">
@@ -274,12 +294,12 @@ export default function ProductCard({ product }: ProductCardProps) {
                 <X className="w-3.5 h-3.5" />
               </button>
             </div>
- 
+
             {/* Split Content */}
             <div className="flex-1 overflow-y-auto min-h-0 p-6 md:p-8 space-y-8 scrollbar-thin">
-              
+
               <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
-                
+
                 {/* Left product visual card info */}
                 <div className="lg:col-span-2 bg-white/[0.02] border border-white/5 p-6 rounded-3xl flex flex-col items-center justify-center text-center">
                   {/* Image container inside modal */}
@@ -289,9 +309,8 @@ export default function ProductCard({ product }: ProductCardProps) {
                       alt={product.title}
                       fill
                       sizes="(max-width: 768px) 100vw, 40vw"
-                      className={`object-cover ${
-                        modalImageLoaded ? 'opacity-100' : 'opacity-0'
-                      }`}
+                      className={`object-cover ${modalImageLoaded ? 'opacity-100' : 'opacity-0'
+                        }`}
                       onLoad={() => setModalImageLoaded(true)}
                     />
                     {!modalImageLoaded && (
@@ -305,9 +324,9 @@ export default function ProductCard({ product }: ProductCardProps) {
                       {getIcon(product.iconName, "w-4.5 h-4.5")}
                     </div>
                   </div>
-                  <h3 className="text-xl font-headline font-bold text-white mb-1">{product.title}</h3>
+                  <h3 className="text-xl font-headline font-semibold text-white mb-1">{product.title}</h3>
                   <p className="text-xs text-text-muted mb-4">{meta.format}</p>
-                  
+
                   <div className="w-full bg-[#0c0c0e]/60 rounded-2xl p-4 border border-white/5 space-y-2 text-left mb-6">
                     <div className="flex justify-between text-xs">
                       <span className="text-text-muted">{isPortfolio ? "Metode Kerja" : "File Size"}</span>
@@ -327,14 +346,14 @@ export default function ProductCard({ product }: ProductCardProps) {
                     <span className="text-xs text-text-muted block mb-1">
                       {isPortfolio ? "Status Proyek" : "Investasi Aset"}
                     </span>
-                    <span className="text-2xl font-extrabold text-white block mb-4">
+                    <span className="text-2xl font-semibold text-white block mb-4">
                       {isPortfolio ? "Custom Website" : product.price}
                     </span>
-                    
+
                     {isPortfolio ? (
                       <button
                         onClick={handleWhatsAppInquiry}
-                        className="w-full py-3 px-5 rounded-2xl btn-gradient-tactile text-white font-bold text-sm flex items-center justify-center gap-2 cursor-pointer"
+                        className="w-full py-3 px-5 rounded-2xl btn-gradient-tactile text-white font-semibold text-sm flex items-center justify-center gap-2 cursor-pointer"
                       >
                         <HeartHandshake className="w-4 h-4" />
                         Pesan Website Serupa
@@ -342,7 +361,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                     ) : (
                       <button
                         onClick={handleTriggerCheckout}
-                        className="w-full py-3 px-5 rounded-2xl btn-primary-tactile text-white font-bold text-sm flex items-center justify-center gap-2 cursor-pointer"
+                        className="w-full py-3 px-5 rounded-2xl btn-primary-tactile text-white font-semibold text-sm flex items-center justify-center gap-2 cursor-pointer"
                       >
                         <ExternalLink className="w-4 h-4" />
                         Beli di Lynk.id
@@ -354,7 +373,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                 {/* Right extensive features & desc */}
                 <div className="lg:col-span-3 space-y-6">
                   <div>
-                    <h4 className="text-lg font-headline font-bold text-white mb-3">
+                    <h4 className="text-lg font-headline font-semibold text-white mb-3">
                       {isPortfolio ? "Deskripsi Proyek" : "Deskripsi Produk"}
                     </h4>
                     <p className="text-text-muted text-sm leading-relaxed font-sans">
@@ -363,7 +382,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                   </div>
 
                   <div className="space-y-3">
-                    <h4 className="text-sm font-bold text-white uppercase tracking-wider">
+                    <h4 className="text-sm font-semibold text-white uppercase tracking-wider">
                       {isPortfolio ? "Fitur & Integrasi Utama" : "Spesifikasi & Keunggulan"}
                     </h4>
                     <div className="grid grid-cols-1 gap-2.5">
@@ -413,13 +432,13 @@ export default function ProductCard({ product }: ProductCardProps) {
       {/* ================= SIMULATED LYNK.ID POPUP CHECKOUT ================= */}
       {showCheckout && (
         <div className="fixed inset-0 z-[85] bg-black/90 backdrop-blur-sm p-4 pt-28 md:pt-36 pb-6 flex items-start justify-center animate-in fade-in duration-200">
-          <div className="bg-[#12131a] border border-white/15 w-full max-w-md rounded-3xl overflow-hidden shadow-2xl flex flex-col max-h-[calc(100vh-120px)] md:max-h-[calc(100vh-160px)]">
-            
+          <div className="bg-[var(--color-surface)] border border-[var(--color-border-specular)] w-full max-w-md rounded-3xl overflow-hidden shadow-2xl flex flex-col max-h-[calc(100vh-120px)] md:max-h-[calc(100vh-160px)]">
+
             {/* Mock Lynk.id Header */}
-            <div className="bg-[#1e1f26] px-4.5 py-2.5 border-b border-white/5 flex items-center justify-between shrink-0">
+            <div className="bg-[var(--color-surface-container)] px-4.5 py-2.5 border-b border-[var(--color-border-specular)] flex items-center justify-between shrink-0">
               <div className="flex items-center gap-1.5">
                 <div className="w-3.5 h-3.5 rounded-full bg-primary flex items-center justify-center text-[8px] font-black text-white">L</div>
-                <span className="text-xs font-bold text-white tracking-tight">
+                <span className="text-xs font-semibold text-white tracking-tight">
                   lynk<span className="text-primary">.id</span>/yazidcodes
                 </span>
               </div>
@@ -430,7 +449,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                 Kembali
               </button>
             </div>
- 
+
             {step === 'details' ? (
               <form onSubmit={handlePay} className="flex-1 overflow-y-auto min-h-0 p-6 space-y-6 scrollbar-thin">
                 {/* Product mini header */}
@@ -439,15 +458,15 @@ export default function ProductCard({ product }: ProductCardProps) {
                     {getIcon(product.iconName)}
                   </div>
                   <div>
-                    <h5 className="font-bold text-white text-sm">{product.title}</h5>
+                    <h5 className="font-semibold text-white text-sm">{product.title}</h5>
                     <p className="text-xs text-text-muted line-clamp-1">{product.description}</p>
-                    <p className="text-xs text-primary font-bold mt-1">E-Book & Panduan Digital</p>
+                    <p className="text-xs text-primary font-semibold mt-1">E-Book & Panduan Digital</p>
                   </div>
                 </div>
 
                 {/* Buyer Information */}
                 <div className="space-y-3">
-                  <span className="text-xs font-bold text-white uppercase tracking-wider block">Informasi Pembeli</span>
+                  <span className="text-xs font-semibold text-white uppercase tracking-wider block">Informasi Pembeli</span>
                   <div className="space-y-2">
                     <input
                       type="text"
@@ -470,7 +489,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
                 {/* Promo Code area */}
                 <div className="space-y-2">
-                  <span className="text-xs font-bold text-white uppercase tracking-wider block">Gunakan Kode Promo</span>
+                  <span className="text-xs font-semibold text-white uppercase tracking-wider block">Gunakan Kode Promo</span>
                   <div className="flex gap-2">
                     <input
                       type="text"
@@ -482,7 +501,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                     <button
                       type="button"
                       onClick={handleApplyPromo}
-                      className="px-4 py-2 rounded-xl btn-primary-tactile text-xs text-white font-bold cursor-pointer"
+                      className="px-4 py-2 rounded-xl btn-primary-tactile text-xs text-white font-semibold cursor-pointer"
                     >
                       Terapkan
                     </button>
@@ -500,43 +519,40 @@ export default function ProductCard({ product }: ProductCardProps) {
 
                 {/* Payment Methods */}
                 <div className="space-y-2">
-                  <span className="text-xs font-bold text-white uppercase tracking-wider block">Metode Pembayaran</span>
+                  <span className="text-xs font-semibold text-white uppercase tracking-wider block">Metode Pembayaran</span>
                   <div className="grid grid-cols-3 gap-2">
                     <button
                       type="button"
                       onClick={() => setPaymentMethod('qris')}
-                      className={`p-3 rounded-xl border flex flex-col items-center justify-center gap-1.5 cursor-pointer ${
-                        paymentMethod === 'qris'
-                          ? 'btn-active-tactile text-white'
-                          : 'btn-ghost-tactile text-text-muted'
-                      }`}
+                      className={`p-3 rounded-xl border flex flex-col items-center justify-center gap-1.5 cursor-pointer ${paymentMethod === 'qris'
+                        ? 'btn-active-tactile text-white'
+                        : 'btn-ghost-tactile text-text-muted'
+                        }`}
                     >
                       <QrCode className="w-5 h-5 text-primary" />
-                      <span className="text-[10px] font-bold">QRIS (Otomatis)</span>
+                      <span className="text-[10px] font-semibold">QRIS (Otomatis)</span>
                     </button>
                     <button
                       type="button"
                       onClick={() => setPaymentMethod('gopay')}
-                      className={`p-3 rounded-xl border flex flex-col items-center justify-center gap-1.5 cursor-pointer ${
-                        paymentMethod === 'gopay'
-                          ? 'btn-active-tactile text-white'
-                          : 'btn-ghost-tactile text-text-muted'
-                      }`}
+                      className={`p-3 rounded-xl border flex flex-col items-center justify-center gap-1.5 cursor-pointer ${paymentMethod === 'gopay'
+                        ? 'btn-active-tactile text-white'
+                        : 'btn-ghost-tactile text-text-muted'
+                        }`}
                     >
                       <ShoppingBag className="w-5 h-5 text-primary" />
-                      <span className="text-[10px] font-bold">GoPay / Shopee</span>
+                      <span className="text-[10px] font-semibold">GoPay / Shopee</span>
                     </button>
                     <button
                       type="button"
                       onClick={() => setPaymentMethod('va')}
-                      className={`p-3 rounded-xl border flex flex-col items-center justify-center gap-1.5 cursor-pointer ${
-                        paymentMethod === 'va'
-                          ? 'btn-active-tactile text-white'
-                          : 'btn-ghost-tactile text-text-muted'
-                      }`}
+                      className={`p-3 rounded-xl border flex flex-col items-center justify-center gap-1.5 cursor-pointer ${paymentMethod === 'va'
+                        ? 'btn-active-tactile text-white'
+                        : 'btn-ghost-tactile text-text-muted'
+                        }`}
                     >
                       <CreditCard className="w-5 h-5 text-primary" />
-                      <span className="text-[10px] font-bold">Virtual Account</span>
+                      <span className="text-[10px] font-semibold">Virtual Account</span>
                     </button>
                   </div>
                 </div>
@@ -545,25 +561,25 @@ export default function ProductCard({ product }: ProductCardProps) {
                 <div className="bg-white/[0.02] border border-white/5 p-4 rounded-xl space-y-2">
                   <div className="flex justify-between text-xs text-text-muted">
                     <span>Harga Produk</span>
-                    <span>IDR {basePrice.toLocaleString('id-ID')}</span>
+                    <span>Rp {basePrice.toLocaleString('id-ID')}</span>
                   </div>
                   {discountApplied && (
                     <div className="flex justify-between text-xs text-green-400">
                       <span>Potongan Promo (30%)</span>
-                      <span>- IDR {(basePrice * 0.3).toLocaleString('id-ID')}</span>
+                      <span>- Rp {(basePrice * 0.3).toLocaleString('id-ID')}</span>
                     </div>
                   )}
                   <div className="h-[1px] bg-white/10 my-1"></div>
-                  <div className="flex justify-between text-sm font-bold text-white">
+                  <div className="flex justify-between text-sm font-semibold text-white">
                     <span>Total Bayar</span>
-                    <span className="text-primary">IDR {currentPrice.toLocaleString('id-ID')}</span>
+                    <span className="text-primary">Rp {currentPrice.toLocaleString('id-ID')}</span>
                   </div>
                 </div>
 
                 {/* Submit button */}
                 <button
                   type="submit"
-                  className="resin-button w-full py-3.5 rounded-xl text-white font-bold text-sm flex items-center justify-center gap-1.5 cursor-pointer"
+                  className="resin-button w-full py-3.5 rounded-xl text-white font-semibold text-sm flex items-center justify-center gap-1.5 cursor-pointer"
                 >
                   Bayar & Selesaikan Transaksi
                   <ChevronRight className="w-4 h-4" />
@@ -575,7 +591,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                   <CheckCircle2 className="w-10 h-10 text-green-400" />
                 </div>
                 <div className="space-y-2">
-                  <h5 className="text-xl font-bold text-white font-headline">Pembayaran Berhasil!</h5>
+                  <h5 className="text-xl font-semibold text-white font-headline">Pembayaran Berhasil!</h5>
                   <p className="text-text-muted text-sm px-4">
                     Terima kasih, <strong className="text-white">{name}</strong>. Pembayaran untuk <strong className="text-white">{product.title}</strong> telah kami terima.
                   </p>

@@ -6,6 +6,11 @@ export interface PortfolioProject {
   description: string;
   alt: string;
   features: string[];
+  timeline?: string;
+  client?: string;
+  siteUrl?: string;
+  detailedOverview?: string[];
+  detailImages?: string[];
 }
 
 export interface ServiceItem {
@@ -31,6 +36,7 @@ export interface DigitalProduct {
 export interface PricingPlan {
   id: string;
   name: string;
+  desc: string;
   price: string;
   period: string;
   description?: string;

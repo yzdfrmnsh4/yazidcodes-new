@@ -18,6 +18,7 @@ type BlurTextProps = {
   stepDuration?: number;
   highlightWords?: string[];
   highlightClassName?: string;
+  highlightWrapper?: React.ComponentType<{ children: React.ReactNode }>;
 };
 
 const buildKeyframes = (
@@ -47,7 +48,8 @@ const BlurText: React.FC<BlurTextProps> = ({
   onAnimationComplete,
   stepDuration = 0.35,
   highlightWords = [],
-  highlightClassName = ''
+  highlightClassName = '',
+  highlightWrapper: HighlightWrapper
 }) => {
   const elements = animateBy === 'words' ? text.split(' ') : text.split('');
   const [inView, setInView] = useState(false);
@@ -106,25 +108,32 @@ const BlurText: React.FC<BlurTextProps> = ({
         };
 
         // Strip punctuation for matching highlights (e.g. "Profesional" can be highlighted)
-        const cleanSegment = segment.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "").trim();
+        const cleanSegment = segment.replace(/[.,\/#!$%\^\&\*;:{}=\-_`~()]/g, "").trim();
         const isHighlighted = highlightWords.includes(cleanSegment);
 
-        return (
+        const motionSpan = (
           <motion.span
-            key={index}
             initial={fromSnapshot}
             animate={inView ? animateKeyframes : fromSnapshot}
             transition={spanTransition}
             onAnimationComplete={index === elements.length - 1 ? onAnimationComplete : undefined}
-            className={isHighlighted ? highlightClassName : undefined}
+            className={isHighlighted && !HighlightWrapper ? highlightClassName : (isHighlighted && HighlightWrapper ? highlightClassName : undefined)}
             style={{
               display: 'inline-block',
               willChange: 'transform, filter, opacity'
             }}
           >
             {segment === ' ' ? '\u00A0' : segment}
-            {animateBy === 'words' && index < elements.length - 1 && '\u00A0'}
           </motion.span>
+        );
+
+        return (
+          <React.Fragment key={index}>
+            {isHighlighted && HighlightWrapper ? (
+              <HighlightWrapper>{motionSpan}</HighlightWrapper>
+            ) : motionSpan}
+            {animateBy === 'words' && index < elements.length - 1 && '\u00A0'}
+          </React.Fragment>
         );
       })}
     </div>

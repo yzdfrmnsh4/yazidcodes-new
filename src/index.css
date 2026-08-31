@@ -1,15 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Inter:wght@400;500;600;700&family=Geist:wght@400;500;600&display=swap');
 @import "tailwindcss";
 
-@theme {
-  --font-sans: var(--font-sf-pro), "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-headline: var(--font-sf-pro), "Plus Jakarta Sans", "Inter", sans-serif;
-  --font-geist: "Geist", monospace;
-
+/* ========== THEME COLOR VARIABLES ========== */
+:root[data-theme="dark"],
+:root {
+  /* Light Colors - Dark Mode (DEFAULT) */
   --color-glass-fill: rgba(255, 255, 255, 0.04);
   --color-border-specular: rgba(255, 255, 255, 0.12);
   --color-surface-card: rgba(16, 16, 22, 0.65);
-  
+
   --color-background: #0c0c0e;
   --color-surface: #12131a;
   --color-surface-dim: #12131a;
@@ -21,17 +20,17 @@
   --color-surface-container-highest: #33343c;
   --color-on-surface: #e3e1eb;
   --color-on-surface-variant: #c4c5d5;
-  
+
   --color-primary: #3b82f6;
   --color-on-primary: #ffffff;
   --color-primary-container: #1d4ed8;
   --color-on-primary-container: #dbeafe;
-  
+
   --color-secondary: #6366f1;
   --color-on-secondary: #ffffff;
   --color-secondary-container: #4f46e5;
   --color-on-secondary-container: #e0e7ff;
-  
+
   --color-tertiary: #ffb59a;
   --color-on-tertiary: #5a1b00;
   --color-tertiary-container: #872d00;
@@ -44,11 +43,58 @@
   --color-text-muted: #94a3b8;
 }
 
+@theme {
+  --font-sans: var(--font-sf-pro), "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-headline: var(--font-sf-pro), "Plus Jakarta Sans", "Inter", sans-serif;
+  --font-geist: "Geist", monospace;
+}
+
+:root[data-theme="light"] {
+  /* Light Colors - Light Mode (Warm Premium Minimal) */
+  --color-glass-fill: rgba(0, 0, 0, 0.02);
+  --color-border-specular: rgba(249, 249, 249, 0.856);
+  --color-surface-card: rgba(255, 255, 255, 0.98);
+
+  --color-background: #f2f2f2;
+  --color-surface: #FFFFFF;
+  --color-surface-dim: #F5F3F0;
+  --color-surface-bright: #FFFFFF;
+  --color-surface-container-lowest: #F5F3F0;
+  --color-surface-container-low: #F9F8F6;
+  --color-surface-container: #FCFBFA;
+  --color-surface-container-high: #FFFFFF;
+  --color-surface-container-highest: #FFFFFF;
+  --color-on-surface: #2D2520;
+  --color-on-surface-variant: #6B6460;
+
+  --color-primary: #2563EB;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #DBEAFE;
+  --color-on-primary-container: #1D4ED8;
+
+  --color-secondary: #4F46E5;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #E0E7FF;
+  --color-on-secondary-container: #2D1B69;
+
+  --color-tertiary: #EA580C;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #FFDCC8;
+  --color-on-tertiary-container: #5A1B00;
+
+  --color-quaternary: #059669;
+  --color-on-quaternary: #ffffff;
+
+  --color-text-main: #2D2520;
+  --color-text-muted: #6B6460;
+}
+
 body {
-  background-color: #0c0c0e;
-  color: #e3e1eb;
+  background-color: var(--color-background);
+  color: var(--color-on-surface);
   overflow-x: hidden;
   font-family: var(--font-sans);
+  transition: background-color 300ms ease-out, color 300ms ease-out;
 }
 
 @media (min-width: 1024px) {
@@ -63,7 +109,31 @@ body {
   backdrop-filter: blur(24px);
   border: 1px solid rgba(255, 255, 255, 0.05);
   border-top: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 20px 40px -15px rgba(0,0,0,0.8), inset 0 1px 1px rgba(255,255,255,0.1);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.8), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  transition: background-color 300ms ease-out, border-color 300ms ease-out, box-shadow 300ms ease-out;
+}
+
+:root[data-theme="light"] .glass-card {
+  background: linear-gradient(135deg, #ffffff 0%, #faf8f5 100%);
+  border: 1px solid rgba(45, 37, 32, 0.16);
+  border-top: 1.5px solid rgb(228, 228, 228, 1);
+  border-bottom: 1px solid rgba(45, 37, 32, 0.12);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    inset 0 -1px 2px rgba(45, 37, 32, 0.04),
+    0 12px 30px -6px rgba(45, 37, 32, 0.10),
+    0 4px 10px rgba(45, 37, 32, 0.04);
+  transition: background 300ms ease-out, border-color 300ms ease-out, box-shadow 300ms ease-out;
+}
+
+:root[data-theme="light"] .glass-card:hover {
+  border-color: rgba(45, 37, 32, 0.28);
+  border-top-color: rgb(223, 223, 223);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    inset 0 -1px 2px rgba(45, 37, 32, 0.05),
+    0 18px 38px -8px rgba(45, 37, 32, 0.15),
+    0 6px 14px rgba(45, 37, 32, 0.08);
 }
 
 .liquid-glass {
@@ -72,11 +142,22 @@ body {
   -webkit-backdrop-filter: blur(35px) saturate(180%);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-top: 1px solid rgba(255, 255, 255, 0.4);
-  box-shadow: 
+  box-shadow:
     0 30px 70px -10px rgba(0, 0, 0, 0.95),
     inset 0 1px 2.5px rgba(255, 255, 255, 0.25),
     inset 0 -1.5px 3px rgba(0, 0, 0, 0.45);
   position: relative;
+  transition: background 300ms ease-out, border-color 300ms ease-out, box-shadow 300ms ease-out;
+}
+
+:root[data-theme="light"] .liquid-glass {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(252, 251, 250, 0.95) 100%);
+  border: 1px solid rgba(232, 227, 222, 0.6);
+  border-top: 1px solid rgba(245, 243, 240, 0.9);
+  box-shadow:
+    0 4px 16px rgba(45, 37, 32, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    inset 0 -1px 2px rgba(45, 37, 32, 0.02);
 }
 
 /* Subtle gloss reflection light sweep across the glass */
@@ -84,17 +165,119 @@ body {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    120deg,
-    rgba(255, 255, 255, 0.12) 0%,
-    rgba(255, 255, 255, 0.02) 20%,
-    transparent 50%,
-    rgba(255, 255, 255, 0.01) 80%,
-    rgba(255, 255, 255, 0.05) 100%
-  );
+  background: linear-gradient(120deg,
+      rgba(255, 255, 255, 0.12) 0%,
+      rgba(255, 255, 255, 0.02) 20%,
+      transparent 50%,
+      rgba(255, 255, 255, 0.01) 80%,
+      rgba(255, 255, 255, 0.05) 100%);
+  border-radius: inherit;
   pointer-events: none;
   z-index: 1;
+  transition: background 300ms ease-out;
 }
+
+:root[data-theme="light"] .liquid-glass::before {
+  background: linear-gradient(120deg,
+      rgba(255, 255, 255, 0.6) 0%,
+      rgba(255, 255, 255, 0.15) 20%,
+      transparent 50%,
+      rgba(45, 37, 32, 0.02) 80%,
+      rgba(45, 37, 32, 0.03) 100%);
+}
+
+/* ==========================================================================
+   THEME TOGGLE BUTTON (CIRCULAR LIQUID GLASS + SOFT BLUE EMBEDDED GLOW)
+   ========================================================================== */
+.btn-theme-toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.2),
+    inset 0 1px 1px rgba(255, 255, 255, 0.15);
+  transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.2s ease, border-color 0.3s ease, background 0.3s ease;
+  overflow: hidden;
+  /* Kept to ensure glow behaves nicely inside the rounded glass */
+  cursor: pointer;
+  outline: none;
+  touch-action: manipulation;
+}
+
+/* Inner embedded soft blue glow */
+.btn-theme-toggle::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, rgba(59, 130, 246, 0.5) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  opacity: 0.6;
+  z-index: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease, background 0.4s ease;
+}
+
+.btn-theme-toggle:hover {
+  transform: translateY(-1px);
+}
+
+.btn-theme-toggle:active {
+  transform: translateY(1px);
+}
+
+.btn-theme-toggle .icon-wrapper {
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* Base Light Mode adaptations */
+:root[data-theme="light"] .btn-theme-toggle {
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow:
+    0 4px 12px rgba(59, 130, 246, 0.1),
+    inset 0 1px 1px rgba(255, 255, 255, 0.9);
+}
+
+/* Increase contrast for white icon in light mode via stronger centered glow */
+:root[data-theme="light"] .btn-theme-toggle::before {
+  background: radial-gradient(circle at center, rgba(37, 99, 235, 0.6) 0%, rgba(96, 165, 250, 0.1) 70%, transparent 100%);
+  opacity: 1;
+}
+
+/* Ensure icon shadow pop for better legibility against light surfaces */
+:root[data-theme="light"] .btn-theme-toggle .icon-wrapper {
+  color: #ffffff;
+  /* Soft shadow matching the blue tone to make the white icon legible */
+  filter: drop-shadow(0 1px 3px rgba(30, 64, 175, 0.4));
+}
+
+/* Base Dark Mode controlled glow */
+:root[data-theme="dark"] .btn-theme-toggle {
+  background: rgba(22, 22, 24, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.4),
+    inset 0 1px 1px rgba(255, 255, 255, 0.1);
+}
+
+:root[data-theme="dark"] .btn-theme-toggle::before {
+  background: radial-gradient(circle at center, rgba(59, 130, 246, 0.25) 0%, transparent 70%);
+  opacity: 0.8;
+}
+
 
 /* ==========================================================================
    3D TACTILE / SOFT-BEVELED GLOBAL BUTTON DESIGN SYSTEM (PHYSICAL DEPTH)
@@ -104,9 +287,9 @@ body {
 .btn-tactile-base {
   position: relative;
   transition: transform 180ms cubic-bezier(0.22, 1, 0.36, 1),
-              box-shadow 180ms cubic-bezier(0.22, 1, 0.36, 1),
-              background-color 180ms cubic-bezier(0.22, 1, 0.36, 1),
-              border-color 180ms cubic-bezier(0.22, 1, 0.36, 1);
+    box-shadow 180ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 180ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 180ms cubic-bezier(0.22, 1, 0.36, 1);
   outline: none;
   touch-action: manipulation;
 }
@@ -425,6 +608,66 @@ body {
     0 1px 2px rgba(0, 0, 0, 0.15);
 }
 
+/* Light Mode Overrides for Tactile Buttons */
+:root[data-theme="light"] .btn-outline-tactile {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(245, 243, 240, 0.90) 100%);
+  color: var(--color-on-surface);
+  border: 1px solid rgba(220, 215, 210, 0.9);
+  border-top-color: rgba(255, 255, 255, 1);
+  border-bottom-color: rgba(45, 37, 32, 0.18);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    inset 0 -1px 0 rgba(45, 37, 32, 0.05),
+    0 2px 0 rgba(45, 37, 32, 0.08),
+    0 4px 10px rgba(45, 37, 32, 0.04);
+}
+
+:root[data-theme="light"] .btn-outline-tactile:hover {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(248, 246, 244, 1) 100%);
+  border-color: rgba(200, 195, 188, 1);
+  border-top-color: rgba(255, 255, 255, 1);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    inset 0 -1px 0 rgba(45, 37, 32, 0.06),
+    0 3px 0 rgba(45, 37, 32, 0.10),
+    0 6px 14px rgba(45, 37, 32, 0.06);
+}
+
+:root[data-theme="light"] .btn-outline-tactile:active {
+  background: rgba(240, 237, 232, 0.95);
+  box-shadow:
+    inset 0 1px 2px rgba(45, 37, 32, 0.10),
+    0 1px 2px rgba(45, 37, 32, 0.05);
+}
+
+:root[data-theme="light"] .btn-ghost-tactile {
+  background: rgba(0, 0, 0, 0.03);
+  color: var(--color-on-surface);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-top-color: rgba(255, 255, 255, 0.9);
+  border-bottom-color: rgba(45, 37, 32, 0.12);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    0 2px 0 rgba(45, 37, 32, 0.06);
+}
+
+:root[data-theme="light"] .btn-ghost-tactile:hover {
+  background: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.12);
+}
+
+:root[data-theme="light"] .btn-hero-secondary {
+  background: #F1F3F9;
+  color: #1E293B;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  border-top-color: rgba(255, 255, 255, 0.9);
+  border-bottom-color: rgba(45, 37, 32, 0.15);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    0 3px 0 rgba(45, 37, 32, 0.10),
+    0 6px 12px rgba(45, 37, 32, 0.05);
+}
+
 /* 7. Active Chip / Filter Tab Tactile State */
 .btn-active-tactile {
   background: linear-gradient(180deg, #3b82f6 0%, #2563eb 100%);
@@ -470,13 +713,18 @@ body {
 .pricing-premium {
   transform: scale(1.05);
   border-top: 1px solid rgba(59, 130, 246, 0.3);
-  box-shadow: 0 30px 60px -12px rgba(0,0,0,0.9), inset 0 1px 2px rgba(255,255,255,0.2);
+  box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.9), inset 0 1px 2px rgba(255, 255, 255, 0.2);
 }
 
 /* Keyframe Animations */
 @keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-100%); }
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
 }
 
 .animate-marquee {
@@ -489,17 +737,706 @@ body {
 
 /* Star Border Animations */
 @keyframes star-movement-bottom {
-  0% { transform: translate(0%, 0%); opacity: 1; }
-  100% { transform: translate(-100%, 0%); opacity: 0; }
+  0% {
+    transform: translate(0%, 0%);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(-100%, 0%);
+    opacity: 0;
+  }
 }
+
 @keyframes star-movement-top {
-  0% { transform: translate(0%, 0%); opacity: 1; }
-  100% { transform: translate(100%, 0%); opacity: 0; }
+  0% {
+    transform: translate(0%, 0%);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(100%, 0%);
+    opacity: 0;
+  }
 }
 
 .animate-star-movement-bottom {
   animation: star-movement-bottom var(--star-speed, 6s) linear infinite alternate;
 }
+
 .animate-star-movement-top {
   animation: star-movement-top var(--star-speed, 6s) linear infinite alternate;
+}
+
+/* Navbar White Translucent Liquid-Glass in Light Mode */
+:root[data-theme="light"] .card-nav.liquid-glass {
+  background: linear-gradient(135deg, rgba(229, 229, 229, 0.82) 0%, rgba(233, 231, 228, 0.72) 100%) !important;
+  backdrop-filter: blur(15px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.8) !important;
+  border-top: 1px solid rgba(255, 255, 255, 1) !important;
+  box-shadow:
+    0 12px 36px -6px rgba(45, 37, 32, 0.08),
+    inset 0 1px 2px rgba(255, 255, 255, 1),
+    inset 0 -1px 2px rgba(45, 37, 32, 0.03) !important;
+}
+
+:root[data-theme="light"] .card-nav.liquid-glass::before {
+  background: linear-gradient(120deg,
+      rgba(255, 255, 255, 0.65) 0%,
+      rgba(255, 255, 255, 0.15) 20%,
+      transparent 50%,
+      rgba(45, 37, 32, 0.02) 80%,
+      rgba(45, 37, 32, 0.04) 100%) !important;
+}
+
+/* Hamburger Button 3D Tactile Gradient (#282828 to #0a0a0a) */
+.btn-hamburger-tactile {
+  position: relative;
+  background: linear-gradient(180deg, #2a2a2a 0%, #0f0f10 100%) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  border-top-color: rgba(255, 255, 255, 0.35) !important;
+  border-bottom-color: rgba(0, 0, 0, 0.85) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.20),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.40),
+    0 3px 0 #000000,
+    0 6px 14px rgba(0, 0, 0, 0.30) !important;
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease, background 180ms ease !important;
+  touch-action: manipulation;
+  outline: none;
+}
+
+.btn-hamburger-tactile:hover {
+  transform: translateY(-1px) !important;
+  background: linear-gradient(180deg, #363636 0%, #161616 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.22) !important;
+  border-top-color: rgba(255, 255, 255, 0.55) !important;
+  border-bottom-color: rgba(0, 0, 0, 0.95) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.30),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.50),
+    0 4px 0 #000000,
+    0 8px 18px rgba(0, 0, 0, 0.35) !important;
+}
+
+.btn-hamburger-tactile:active {
+  transform: translateY(1px) !important;
+  background: linear-gradient(180deg, #1a1a1a 0%, #050505 100%) !important;
+  border-top-color: rgba(255, 255, 255, 0.20) !important;
+  border-bottom-color: rgba(0, 0, 0, 0.60) !important;
+  box-shadow:
+    inset 0 2px 4px rgba(0, 0, 0, 0.55),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.08),
+    0 1px 0 #000000,
+    0 2px 4px rgba(0, 0, 0, 0.25) !important;
+}
+
+/* Light Mode Button Shadow Overrides (Warm, Soft Organic Shadows preserving 3D Tactile Depth) */
+:root[data-theme="light"] .btn-hamburger-tactile {
+  background: linear-gradient(180deg, #242426 0%, #0d0d0e 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  border-top-color: rgba(255, 255, 255, 0.38) !important;
+  border-bottom-color: rgba(0, 0, 0, 0.90) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.25),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.45),
+    0 3px 0 #000000,
+    0 6px 14px rgba(45, 37, 32, 0.22) !important;
+}
+
+:root[data-theme="light"] .btn-hamburger-tactile:hover {
+  background: linear-gradient(180deg, #303034 0%, #141416 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  border-top-color: rgba(255, 255, 255, 0.60) !important;
+  border-bottom-color: rgba(0, 0, 0, 0.95) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.50),
+    0 4px 0 #000000,
+    0 8px 18px rgba(45, 37, 32, 0.28) !important;
+}
+
+:root[data-theme="light"] .btn-hamburger-tactile:active {
+  background: linear-gradient(180deg, #18181a 0%, #050506 100%) !important;
+  border-top-color: rgba(255, 255, 255, 0.18) !important;
+  border-bottom-color: rgba(0, 0, 0, 0.70) !important;
+  box-shadow:
+    inset 0 2px 4px rgba(0, 0, 0, 0.55),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.08),
+    0 1px 0 #000000,
+    0 2px 4px rgba(45, 37, 32, 0.15) !important;
+}
+
+:root[data-theme="light"] .btn-gradient-tactile {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.25),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.25),
+    0 3px 0 #1d4ed8,
+    0 6px 14px rgba(37, 99, 235, 0.22) !important;
+}
+
+:root[data-theme="light"] .btn-gradient-tactile:hover {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.30),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.25),
+    0 4px 0 #1e40af,
+    0 8px 18px rgba(37, 99, 235, 0.28) !important;
+}
+
+:root[data-theme="light"] .btn-outline-tactile {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 246, 242, 0.85) 100%) !important;
+  color: var(--color-on-surface) !important;
+  border: 1px solid rgba(225, 220, 212, 0.9) !important;
+  border-top-color: rgba(255, 255, 255, 1) !important;
+  border-bottom-color: rgba(200, 192, 182, 0.8) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    inset 0 -1px 0 rgba(45, 37, 32, 0.05),
+    0 3px 0 rgba(210, 202, 192, 0.8),
+    0 6px 12px rgba(45, 37, 32, 0.06) !important;
+}
+
+:root[data-theme="light"] .btn-outline-tactile:hover {
+  background: linear-gradient(180deg, #ffffff 0%, rgba(250, 248, 244, 0.95) 100%) !important;
+  border-color: rgba(210, 202, 192, 1) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    inset 0 -1px 0 rgba(45, 37, 32, 0.05),
+    0 4px 0 rgba(195, 186, 175, 0.9),
+    0 8px 16px rgba(45, 37, 32, 0.08) !important;
+}
+
+/* Pricing Plan Cards 3D Border & Physical Depth */
+.pricing-card-wrapper {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.20) !important;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1), inset 0 -1px 1px rgba(0, 0, 0, 0.3), 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+  transition: background 300ms ease-out, border-color 300ms ease-out, box-shadow 300ms ease-out;
+}
+
+.pricing-card-popular {
+  background: radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.08), transparent 60%), linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%);
+  border: 1px solid rgba(59, 130, 246, 0.35) !important;
+  border-top: 1px solid rgba(147, 197, 253, 0.5) !important;
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.2), inset 0 -1px 2px rgba(0, 0, 0, 0.4), 0 20px 50px -15px rgba(59, 130, 246, 0.25), 0 20px 60px -20px rgba(0, 0, 0, 0.8);
+}
+
+:root[data-theme="light"] .pricing-card-wrapper {
+  background: linear-gradient(135deg, #ffffff 0%, #faf8f5 100%) !important;
+  border: 1px solid rgba(215, 207, 196, 0.85) !important;
+  border-top: 1.5px solid rgba(209, 209, 209) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    inset 0 -1px 2px rgba(45, 37, 32, 0.04),
+    0 14px 32px -8px rgba(45, 37, 32, 0.10) !important;
+}
+
+:root[data-theme="light"] .pricing-card-popular {
+  background: radial-gradient(circle at 50% 0%, rgba(37, 99, 235, 0.07), transparent 60%), linear-gradient(135deg, #ffffff 0%, #f4f8ff 100%) !important;
+  border: 1.5px solid rgba(37, 99, 235, 0.45) !important;
+  border-top: 2px solid rgba(147, 197, 253, 0.9) !important;
+  box-shadow:
+    inset 0 1px 2px rgba(255, 255, 255, 1),
+    inset 0 -1px 2px rgba(37, 99, 235, 0.08),
+    0 20px 48px -10px rgba(37, 99, 235, 0.20),
+    0 8px 20px rgba(45, 37, 32, 0.08) !important;
+}
+
+/* Hero Headline Text Selection Highlight (Light Mode Only) */
+.text-selection-highlight {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+/* Pale blue selection background */
+:root[data-theme="light"] .text-selection-highlight::before {
+  content: '';
+  position: absolute;
+  inset: 0.06em -0.14em 0.06em -0.14em;
+  background-color: #DBEAFE;
+  border-radius: 2px;
+  z-index: -1;
+  pointer-events: none;
+  transform-origin: left center;
+  transform: scaleX(0);
+  opacity: 0;
+  animation: text-selection-reveal 550ms cubic-bezier(0.16, 1, 0.3, 1) 400ms forwards;
+}
+
+/* ---- DOM-based Handle Lines & Circles ---- */
+
+/* Base: hidden in Dark Mode */
+.sel-handle,
+.sel-dot {
+  display: none;
+  pointer-events: none;
+}
+
+/* Active only in Light Mode */
+:root[data-theme="light"] .sel-handle {
+  display: block;
+  position: absolute;
+  width: 2px;
+  background-color: #2563EB;
+  top: 0.06em;
+  /* align with ::before selection box top */
+  bottom: 0.06em;
+  /* align with ::before selection box bottom */
+  opacity: 0;
+  animation: text-selection-reveal 550ms cubic-bezier(0.16, 1, 0.3, 1) 400ms forwards;
+}
+
+:root[data-theme="light"] .sel-handle-left {
+  left: -0.14em;
+  /* match ::before left inset */
+}
+
+:root[data-theme="light"] .sel-handle-right {
+  right: -0.14em;
+  /* match ::before right inset */
+  left: auto;
+}
+
+/* Circle dots at ends of handle lines */
+:root[data-theme="light"] .sel-dot {
+  display: block;
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #2563EB;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Top-left circle: top of left handle line */
+:root[data-theme="light"] .sel-handle-left .sel-dot-top {
+  top: -5px;
+  bottom: auto;
+}
+
+/* Bottom-right circle: bottom of right handle line */
+:root[data-theme="light"] .sel-handle-right .sel-dot-bottom {
+  bottom: -5px;
+  top: auto;
+}
+
+@keyframes text-selection-reveal {
+  0% {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+
+  1% {
+    transform: scaleX(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+/* ==========================================================================
+   HERO STICKY NOTES — Light Mode Only (Reference Aligned)
+   Render null at JSX level (theme !== 'light') + display:none as CSS fallback.
+   ========================================================================== */
+
+/* ── Base: always hidden in dark mode ─────────────────────────────────── */
+.hero-sticky-note {
+  display: none;
+}
+
+/* ── Active wrapper: paper card ────────────────────────────────────────── */
+:root[data-theme="light"] .hero-sticky-note {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+  z-index: 5;
+
+  /* Card dimensions to comfortably fit icon, title & description */
+  width: 175px;
+  padding: 16px 14px 14px;
+
+  /* Color-driven paper — overridden per note via CSS custom properties */
+  background: linear-gradient(160deg, var(--sn-bg-from, #FAFAF7) 0%, var(--sn-bg-to, #F5F4F0) 100%);
+  border-radius: 6px 6px 7px 7px;
+
+  /* Per-note tinted border */
+  border-top: 1.5px solid rgba(255, 255, 255, 0.95);
+  border-left: 1px solid var(--sn-border-color, rgba(220, 218, 210, 0.5));
+  border-right: 1px solid var(--sn-border-color, rgba(210, 207, 198, 0.4));
+  border-bottom: 1px solid var(--sn-border-color, rgba(200, 196, 186, 0.6));
+
+  /* 3-layer physical shadow: contact, cast, ambient */
+  box-shadow:
+    0 1px 2px rgba(50, 40, 20, 0.08),
+    0 5px 14px rgba(50, 40, 20, 0.09),
+    0 18px 40px -10px rgba(50, 40, 20, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.025);
+
+  animation: sticky-note-enter 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ── Push pin ─────────────────────────────────────────────────────────── */
+.hero-sticky-pin {
+  display: none;
+}
+
+:root[data-theme="light"] .hero-sticky-pin {
+  display: block;
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 15px;
+  height: 15px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Default Red Cap sphere */
+:root[data-theme="light"] .hero-sticky-pin::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 38% 32%,
+      #EC6B5E 0%,
+      #C0392B 42%,
+      #7D1515 100%);
+  box-shadow:
+    0 2px 5px rgba(0, 0, 0, 0.32),
+    0 1px 2px rgba(0, 0, 0, 0.18),
+    inset 0 1px 2px rgba(255, 155, 130, 0.55);
+}
+
+/* Blue Cap sphere variant */
+:root[data-theme="light"] .hero-sticky-pin.pin-blue::before {
+  background: radial-gradient(circle at 38% 32%,
+      #60A5FA 0%,
+      #2563EB 42%,
+      #1E3A8A 100%);
+  box-shadow:
+    0 2px 5px rgba(0, 0, 0, 0.32),
+    0 1px 2px rgba(0, 0, 0, 0.18),
+    inset 0 1px 2px rgba(147, 197, 253, 0.55);
+}
+
+/* Needle stub below cap */
+:root[data-theme="light"] .hero-sticky-pin::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 3px;
+  height: 5px;
+  border-radius: 0 0 2px 2px;
+  background: linear-gradient(to bottom, rgba(80, 25, 10, 0.55), transparent);
+}
+
+/* ── Anchor Dot (Node where dashed line connects) ────────────────────── */
+.hero-sticky-anchor-dot {
+  display: none;
+}
+
+:root[data-theme="light"] .hero-sticky-anchor-dot {
+  display: block;
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--sn-anchor-bg, #F97316);
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.25),
+    inset 0 1px 1px rgba(255, 255, 255, 0.6);
+  z-index: 12;
+}
+
+:root[data-theme="light"] .hero-sticky-anchor-dot.anchor-right {
+  right: 0;
+  top: 40%;
+  transform: translate(50%, -50%);
+}
+
+:root[data-theme="light"] .hero-sticky-anchor-dot.anchor-right-top {
+  right: 0;
+  top: 16%;
+  transform: translate(50%, -50%);
+}
+
+:root[data-theme="light"] .hero-sticky-anchor-dot.anchor-left {
+  left: 0;
+  top: 40%;
+  transform: translate(-50%, -50%);
+}
+
+:root[data-theme="light"] .hero-sticky-anchor-dot.anchor-left-top {
+  left: 0;
+  top: 16%;
+  transform: translate(-50%, -50%);
+}
+
+/* ── Icon ───────────────────────────────────────────────────────────── */
+:root[data-theme="light"] .hero-sticky-note-icon {
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* ── Inner paper body ────────────────────────────────────────────────── */
+.hero-sticky-note-body {
+  display: none;
+}
+
+:root[data-theme="light"] .hero-sticky-note-body {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* ── Title text ─────────────────────────────────────────────────────── */
+:root[data-theme="light"] .hero-sticky-note-label {
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--sn-ink, #3A2E1C);
+  line-height: 1.35;
+  font-family: var(--font-headline);
+  margin-bottom: 6px;
+}
+
+/* ── Indonesian Description text ─────────────────────────────────────── */
+:root[data-theme="light"] .hero-sticky-note-desc {
+  font-size: 10.5px;
+  font-weight: 500;
+  color: var(--sn-desc-ink, rgba(60, 50, 40, 0.72));
+  line-height: 1.45;
+  font-family: var(--font-sans);
+}
+
+/* ── Entry animation ─────────────────────────────────────────────────── */
+@keyframes sticky-note-enter {
+  0% {
+    opacity: 0;
+    transform: var(--sn-transform) translateY(8px) scale(0.93);
+  }
+
+  65% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
+    transform: var(--sn-transform) translateY(0) scale(1);
+  }
+}
+
+/* ==========================================================================
+   HERO CONNECTOR LINES — Light Mode Only
+   Curved dashed SVG paths connecting top-left ↔ bottom-left & top-right ↔ bottom-right.
+   ========================================================================== */
+
+/* Base: hidden in dark mode */
+.hero-connector-lines {
+  display: none;
+}
+
+:root[data-theme="light"] .hero-connector-lines {
+  display: block;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  pointer-events: none;
+  user-select: none;
+  opacity: 0;
+  animation: connector-fade-in 600ms ease-out 1050ms forwards;
+}
+
+@keyframes connector-fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+/* ==========================================================================
+   LIGHT MODE DOT GRID BACKGROUND TEXTURE — Light Mode Only
+   Adds subtle repeating dot pattern with smooth top/bottom edge masks.
+   Disabled completely in Dark Mode.
+   ========================================================================== */
+
+.light-dot-grid {
+  display: none;
+}
+
+:root[data-theme="light"] .light-dot-grid {
+  display: block;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+
+  /* Small circular dots with 28px spacing — increased opacity for subtle visibility */
+  background-image: radial-gradient(rgba(45, 37, 32, 0.11) 1.4px, transparent 1.4px);
+  background-size: 28px 28px;
+  background-position: center;
+
+  /* Smooth edge fade mask (gradual appear/disappear at section boundaries) */
+  mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+}
+
+/* ==========================================================================
+   LIGHT MODE EDITORIAL LINE GRID OVERLAY — Light Mode Only
+   Adds subtle repeating 44px line grid texture matching Hero section.
+   Disabled completely in Dark Mode.
+   ========================================================================== */
+
+.light-editorial-grid {
+  display: none;
+}
+
+:root[data-theme="light"] .light-editorial-grid {
+  display: block;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+
+  background-image:
+    linear-gradient(to right, rgba(45, 37, 32, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(45, 37, 32, 0.08) 1px, transparent 1px);
+  background-size: 44px 44px;
+
+  mask-image: radial-gradient(ellipse 85% 75% at 50% 50%, black 20%, transparent 85%);
+  -webkit-mask-image: radial-gradient(ellipse 85% 75% at 50% 50%, black 20%, transparent 85%);
+}
+
+/* ==========================================================================
+   PORTFOLIO DUAL-ROW INFINITE MARQUEE
+   Hardware-accelerated linear infinite marquee scrolling with pause on hover
+   ========================================================================== */
+
+@keyframes marquee-left {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes marquee-right {
+  0% {
+    transform: translate3d(-50%, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.animate-marquee-left {
+  display: flex;
+  width: max-content;
+  animation: marquee-left 48s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-right {
+  display: flex;
+  width: max-content;
+  animation: marquee-right 48s linear infinite;
+  will-change: transform;
+}
+
+/* Pause marquee track when hovered */
+.animate-marquee-left:hover,
+.animate-marquee-right:hover,
+.marquee-row-wrapper:hover .animate-marquee-left,
+.marquee-row-wrapper:hover .animate-marquee-right {
+  animation-play-state: paused;
+}
+
+/* ==========================================================================
+   SHIMMER SKELETON ANIMATION (PREMIUM LOADING)
+   ========================================================================== */
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.animate-shimmer::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.03) 20%,
+      rgba(255, 255, 255, 0.08) 50%,
+      rgba(255, 255, 255, 0) 100%);
+  animation: shimmer 2s infinite linear;
+  content: '';
+  z-index: 10;
+  pointer-events: none;
+}
+
+:root[data-theme="light"] .animate-shimmer::after {
+  background: linear-gradient(90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.4) 20%,
+      rgba(255, 255, 255, 0.8) 50%,
+      rgba(255, 255, 255, 0) 100%);
+}
+
+/* ==========================================================================
+   TEXT FILL ANIMATION (ROOT LOADER)
+   ========================================================================== */
+@keyframes text-fill {
+  0% {
+    clip-path: inset(0 100% 0 0);
+  }
+
+  50% {
+    clip-path: inset(0 0 0 0);
+  }
+
+  100% {
+    clip-path: inset(0 0 0 100%);
+  }
+}
+
+.animate-text-fill {
+  animation: text-fill 2s infinite cubic-bezier(0.86, 0, 0.07, 1);
 }

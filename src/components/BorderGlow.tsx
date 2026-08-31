@@ -2,6 +2,7 @@
 
 import { useRef, useCallback, useState, useEffect, type ReactNode } from 'react';
 import React from 'react';
+import { useTheme } from '../lib/ThemeContext';
 
 interface BorderGlowProps {
   children?: ReactNode;
@@ -218,7 +219,12 @@ const BorderGlow: React.FC<BorderGlowProps> = ({
     ? Math.max(0, (edgeProximity * 100 - edgeSensitivity) / (100 - edgeSensitivity))
     : 0;
 
-  const maskColor = backgroundColor === 'transparent' ? '#0c0c0e' : backgroundColor;
+  const { theme } = useTheme();
+  const isLight = theme === 'light';
+
+  const maskColor = backgroundColor === 'transparent'
+    ? (isLight ? '#FFFFFF' : '#0c0c0e')
+    : backgroundColor;
   const meshGradients = buildMeshGradients(colors);
   const borderBg = meshGradients.map(g => `${g} border-box`);
   const fillBg = meshGradients.map(g => `${g} padding-box`);
@@ -233,18 +239,23 @@ const BorderGlow: React.FC<BorderGlowProps> = ({
         setIsHovered(false);
         targetProximityRef.current = 0; // Smoothly fade out proximity
       }}
-      className={`relative grid isolate border border-white/5 border-t-white/15 backdrop-blur-xl ${className}`}
+      className={`relative grid isolate backdrop-blur-xl ${
+        isLight ? 'border border-[var(--color-border-specular)]' : 'border border-white/5 border-t-white/15'
+      } ${className}`}
       style={{
         background: backgroundColor !== 'transparent' ? backgroundColor : undefined,
         borderRadius: `${borderRadius}px`,
         transform: 'translate3d(0, 0, 0.01px)',
-        boxShadow: '0 20px 40px -15px rgba(0,0,0,0.8), inset 0 1px 1px rgba(255,255,255,0.15)',
+        boxShadow: isLight
+          ? '0 12px 30px rgba(45,37,32,0.06), inset 0 1px 0 rgba(255,255,255,1)'
+          : '0 20px 40px -15px rgba(0,0,0,0.8), inset 0 1px 1px rgba(255,255,255,0.15)',
       }}
     >
       {/* mesh gradient border */}
       <div
-        className="absolute inset-0 rounded-[inherit] -z-[1]"
+        className="absolute inset-0 -z-[1]"
         style={{
+          borderRadius: 'inherit',
           border: '1px solid transparent',
           background: [
             `linear-gradient(${maskColor} 0 100%) padding-box`,
@@ -260,8 +271,9 @@ const BorderGlow: React.FC<BorderGlowProps> = ({
 
       {/* mesh gradient fill near edges */}
       <div
-        className="absolute inset-0 rounded-[inherit] -z-[1]"
+        className="absolute inset-0 -z-[1]"
         style={{
+          borderRadius: 'inherit',
           border: '1px solid transparent',
           background: fillBg.join(', '),
           maskImage: [
@@ -292,8 +304,9 @@ const BorderGlow: React.FC<BorderGlowProps> = ({
 
       {/* outer glow */}
       <span
-        className="absolute pointer-events-none z-[1] rounded-[inherit]"
+        className="absolute pointer-events-none z-[1]"
         style={{
+          borderRadius: 'inherit',
           inset: `${-glowRadius}px`,
           maskImage: `conic-gradient(from ${angleDeg} at center, black 2.5%, transparent 10%, transparent 90%, black 97.5%)`,
           WebkitMaskImage: `conic-gradient(from ${angleDeg} at center, black 2.5%, transparent 10%, transparent 90%, black 97.5%)`,
@@ -303,15 +316,16 @@ const BorderGlow: React.FC<BorderGlowProps> = ({
         } as React.CSSProperties}
       >
         <span
-          className="absolute rounded-[inherit]"
+          className="absolute"
           style={{
+            borderRadius: 'inherit',
             inset: `${glowRadius}px`,
             boxShadow: buildBoxShadow(glowColor, glowIntensity),
           }}
         />
       </span>
 
-      <div className="flex flex-col relative overflow-hidden z-[1] h-full w-full">
+      <div className="flex flex-col relative overflow-visible z-[1] h-full w-full">
         {children}
       </div>
     </div>
