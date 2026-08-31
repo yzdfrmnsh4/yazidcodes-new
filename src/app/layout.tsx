@@ -69,6 +69,9 @@ export const metadata: Metadata = {
     creator: '@yaziddev',
     images: ['/mockup.webp'],
   },
+  verification: {
+    google: 'C3bM9_cv7eTBru9_1hz2IAdBdbK6nIgfleAlexhIKto',
+  },
 };
 
 const jsonLd = {
