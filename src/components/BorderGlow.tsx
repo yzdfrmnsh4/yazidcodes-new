@@ -90,9 +90,12 @@ const BorderGlow: React.FC<BorderGlowProps> = ({
 }) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
-  const [cursorAngle, setCursorAngle] = useState(45);
-  const [edgeProximity, setEdgeProximity] = useState(0);
   const [sweepActive, setSweepActive] = useState(false);
+
+  const currentAngleRef = useRef(45);
+  const currentProximityRef = useRef(0);
+  const isHoveredRef = useRef(false);
+  const sweepActiveRef = useRef(false);
 
   const targetAngleRef = useRef(45);
   const targetProximityRef = useRef(0);
@@ -142,25 +145,37 @@ const BorderGlow: React.FC<BorderGlowProps> = ({
     const update = () => {
       if (!isVisible) return;
 
-      setCursorAngle(prevAngle => {
-        const target = targetAngleRef.current;
-        let diff = target - prevAngle;
-        while (diff < -180) diff += 360;
-        while (diff > 180) diff -= 360;
-        if (Math.abs(diff) < 0.01) {
-          return target;
-        }
-        return prevAngle + diff * 0.12;
-      });
+      const targetA = targetAngleRef.current;
+      let diffA = targetA - currentAngleRef.current;
+      while (diffA < -180) diffA += 360;
+      while (diffA > 180) diffA -= 360;
+      if (Math.abs(diffA) >= 0.01) {
+        currentAngleRef.current += diffA * 0.12;
+      }
 
-      setEdgeProximity(prevProximity => {
-        const target = targetProximityRef.current;
-        const diff = target - prevProximity;
-        if (Math.abs(diff) < 0.001) {
-          return target;
-        }
-        return prevProximity + diff * 0.12;
-      });
+      const targetP = targetProximityRef.current;
+      const diffP = targetP - currentProximityRef.current;
+      if (Math.abs(diffP) >= 0.001) {
+        currentProximityRef.current += diffP * 0.12;
+      }
+
+      const isVis = isHoveredRef.current || sweepActiveRef.current || currentProximityRef.current > 0.01;
+      const calcColorSensitivity = edgeSensitivity + 20;
+      
+      const bOp = isVis
+        ? Math.max(0, (currentProximityRef.current * 100 - calcColorSensitivity) / (100 - calcColorSensitivity))
+        : 0;
+      const gOp = isVis
+        ? Math.max(0, (currentProximityRef.current * 100 - edgeSensitivity) / (100 - edgeSensitivity))
+        : 0;
+
+      const card = cardRef.current;
+      if (card) {
+        card.style.setProperty('--cursor-angle', `${currentAngleRef.current.toFixed(3)}deg`);
+        card.style.setProperty('--border-opacity', bOp.toString());
+        card.style.setProperty('--glow-opacity', gOp.toString());
+        card.style.setProperty('--fill-opacity', (bOp * fillOpacity).toString());
+      }
 
       animationFrameId = requestAnimationFrame(update);
     };
@@ -190,7 +205,8 @@ const BorderGlow: React.FC<BorderGlowProps> = ({
     const angleStart = 110;
     const angleEnd = 465;
     setSweepActive(true);
-    setCursorAngle(angleStart);
+    sweepActiveRef.current = true;
+    currentAngleRef.current = angleStart;
     targetAngleRef.current = angleStart;
 
     animateValue({ duration: 500, onUpdate: v => {
@@ -206,18 +222,13 @@ const BorderGlow: React.FC<BorderGlowProps> = ({
       onUpdate: v => {
         targetProximityRef.current = v / 100;
       },
-      onEnd: () => setSweepActive(false),
+      onEnd: () => {
+        setSweepActive(false);
+        sweepActiveRef.current = false;
+      },
     });
   }, [animated]);
 
-  const colorSensitivity = edgeSensitivity + 20;
-  const isVisible = isHovered || sweepActive || edgeProximity > 0.01;
-  const borderOpacity = isVisible
-    ? Math.max(0, (edgeProximity * 100 - colorSensitivity) / (100 - colorSensitivity))
-    : 0;
-  const glowOpacity = isVisible
-    ? Math.max(0, (edgeProximity * 100 - edgeSensitivity) / (100 - edgeSensitivity))
-    : 0;
 
   const { theme } = useTheme();
   const isLight = theme === 'light';
@@ -228,15 +239,16 @@ const BorderGlow: React.FC<BorderGlowProps> = ({
   const meshGradients = buildMeshGradients(colors);
   const borderBg = meshGradients.map(g => `${g} border-box`);
   const fillBg = meshGradients.map(g => `${g} padding-box`);
-  const angleDeg = `${cursorAngle.toFixed(3)}deg`;
+
 
   return (
     <div
       ref={cardRef}
       onPointerMove={handlePointerMove}
-      onPointerEnter={() => setIsHovered(true)}
+      onPointerEnter={() => { setIsHovered(true); isHoveredRef.current = true; }}
       onPointerLeave={() => {
         setIsHovered(false);
+        isHoveredRef.current = false;
         targetProximityRef.current = 0; // Smoothly fade out proximity
       }}
       className={`relative grid isolate backdrop-blur-xl ${
@@ -249,7 +261,11 @@ const BorderGlow: React.FC<BorderGlowProps> = ({
         boxShadow: isLight
           ? '0 12px 30px rgba(45,37,32,0.06), inset 0 1px 0 rgba(255,255,255,1)'
           : '0 20px 40px -15px rgba(0,0,0,0.8), inset 0 1px 1px rgba(255,255,255,0.15)',
-      }}
+        '--cursor-angle': '45deg',
+        '--border-opacity': '0',
+        '--glow-opacity': '0',
+        '--fill-opacity': '0',
+      } as React.CSSProperties}
     >
       {/* mesh gradient border */}
       <div
@@ -262,10 +278,9 @@ const BorderGlow: React.FC<BorderGlowProps> = ({
             'linear-gradient(rgb(255 255 255 / 0%) 0% 100%) border-box',
             ...borderBg,
           ].join(', '),
-          opacity: borderOpacity,
-          maskImage: `conic-gradient(from ${angleDeg} at center, black ${coneSpread}%, transparent ${coneSpread + 15}%, transparent ${100 - coneSpread - 15}%, black ${100 - coneSpread}%)`,
-          WebkitMaskImage: `conic-gradient(from ${angleDeg} at center, black ${coneSpread}%, transparent ${coneSpread + 15}%, transparent ${100 - coneSpread - 15}%, black ${100 - coneSpread}%)`,
-          transition: isVisible ? 'opacity 0.25s ease-out' : 'opacity 0.75s ease-in-out',
+          opacity: 'var(--border-opacity)',
+          maskImage: `conic-gradient(from var(--cursor-angle) at center, black ${coneSpread}%, transparent ${coneSpread + 15}%, transparent ${100 - coneSpread - 15}%, black ${100 - coneSpread}%)`,
+          WebkitMaskImage: `conic-gradient(from var(--cursor-angle) at center, black ${coneSpread}%, transparent ${coneSpread + 15}%, transparent ${100 - coneSpread - 15}%, black ${100 - coneSpread}%)`,
         }}
       />
 
@@ -283,7 +298,7 @@ const BorderGlow: React.FC<BorderGlowProps> = ({
             'radial-gradient(ellipse at 33% 33%, black 5%, transparent 40%)',
             'radial-gradient(ellipse at 66% 33%, black 5%, transparent 40%)',
             'radial-gradient(ellipse at 33% 66%, black 5%, transparent 40%)',
-            `conic-gradient(from ${angleDeg} at center, transparent 5%, black 15%, black 85%, transparent 95%)`,
+            `conic-gradient(from var(--cursor-angle) at center, transparent 5%, black 15%, black 85%, transparent 95%)`,
           ].join(', '),
           WebkitMaskImage: [
             'linear-gradient(to bottom, black, black)',
@@ -292,13 +307,12 @@ const BorderGlow: React.FC<BorderGlowProps> = ({
             'radial-gradient(ellipse at 33% 33%, black 5%, transparent 40%)',
             'radial-gradient(ellipse at 66% 33%, black 5%, transparent 40%)',
             'radial-gradient(ellipse at 33% 66%, black 5%, transparent 40%)',
-            `conic-gradient(from ${angleDeg} at center, transparent 5%, black 15%, black 85%, transparent 95%)`,
+            `conic-gradient(from var(--cursor-angle) at center, transparent 5%, black 15%, black 85%, transparent 95%)`,
           ].join(', '),
           maskComposite: 'subtract, add, add, add, add, add',
           WebkitMaskComposite: 'source-out, source-over, source-over, source-over, source-over, source-over',
-          opacity: borderOpacity * fillOpacity,
+          opacity: 'var(--fill-opacity)',
           mixBlendMode: 'soft-light',
-          transition: isVisible ? 'opacity 0.25s ease-out' : 'opacity 0.75s ease-in-out',
         } as React.CSSProperties}
       />
 
@@ -308,11 +322,10 @@ const BorderGlow: React.FC<BorderGlowProps> = ({
         style={{
           borderRadius: 'inherit',
           inset: `${-glowRadius}px`,
-          maskImage: `conic-gradient(from ${angleDeg} at center, black 2.5%, transparent 10%, transparent 90%, black 97.5%)`,
-          WebkitMaskImage: `conic-gradient(from ${angleDeg} at center, black 2.5%, transparent 10%, transparent 90%, black 97.5%)`,
-          opacity: glowOpacity,
+          maskImage: `conic-gradient(from var(--cursor-angle) at center, black 2.5%, transparent 10%, transparent 90%, black 97.5%)`,
+          WebkitMaskImage: `conic-gradient(from var(--cursor-angle) at center, black 2.5%, transparent 10%, transparent 90%, black 97.5%)`,
+          opacity: 'var(--glow-opacity)',
           mixBlendMode: 'plus-lighter',
-          transition: isVisible ? 'opacity 0.25s ease-out' : 'opacity 0.75s ease-in-out',
         } as React.CSSProperties}
       >
         <span

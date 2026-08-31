@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import { motion } from 'motion/react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 
 import dynamic from 'next/dynamic';
@@ -755,9 +756,11 @@ export default function HomeClient() {
               <div className="absolute inset-0 bg-blue-500/12 dark:bg-blue-400/15 blur-3xl rounded-[100px] scale-75 translate-y-32" />
 
               {/* Image is shifted down to reveal the top entirely while the bottom gets chopped flush by the card's boundary */}
-              <img
+              <Image
                 src="/mockup.webp"
                 alt="Yazidcodes iMessage Showcase Mockup"
+                width={380}
+                height={760}
                 className="relative z-10 w-full h-auto object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.30)] translate-y-[20%] md:translate-y-[25%] lg:translate-y-[28%] xl:translate-y-[32%]"
               />
             </div>

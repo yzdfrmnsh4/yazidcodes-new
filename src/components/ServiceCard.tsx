@@ -1,7 +1,6 @@
 import React from 'react';
 import { Monitor, Palette, Rocket, GraduationCap } from 'lucide-react';
 import { ServiceItem } from '../lib/types';
-import SpotlightCard from './SpotlightCard';
 
 interface ServiceCardProps {
   service: ServiceItem;
@@ -67,9 +66,8 @@ export default function ServiceCard({ service, onOpenInquiry }: ServiceCardProps
   const classes = getColorClasses(service.color);
 
   return (
-    <SpotlightCard
-      className="p-6 sm:p-8 md:p-10 rounded-[1.75rem] sm:rounded-[2.5rem]"
-      spotlightColor={classes.glow}
+    <div
+      className="glass-card p-6 sm:p-8 md:p-10 rounded-[1.75rem] sm:rounded-[2.5rem] border border-[var(--color-border-specular)] hover:border-[var(--color-primary)] transition-all duration-300 relative overflow-hidden group"
     >
       <div
         className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-8 border transition-all duration-300 ${classes.bg} ${classes.shadow}`}
@@ -77,13 +75,13 @@ export default function ServiceCard({ service, onOpenInquiry }: ServiceCardProps
         {getIcon(service.iconName)}
       </div>
 
-      <h3 className="font-headline text-2xl font-semibold text-[var(--color-on-surface)] mb-4">
+      <h3 className="font-headline text-2xl font-semibold text-[var(--color-on-surface)] mb-4 group-hover:text-[var(--color-primary)] transition-colors">
         {service.title}
       </h3>
 
       <p className="text-[var(--color-text-muted)] font-sans text-base leading-relaxed mb-2">
         {service.description}
       </p>
-    </SpotlightCard>
+    </div>
   );
 }
