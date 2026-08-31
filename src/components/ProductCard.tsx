@@ -145,7 +145,7 @@ export default function ProductCard({ product }: ProductCardProps) {
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                window.open('https://lynk.id/yazidcodes', '_blank', 'noopener,noreferrer');
+                window.open(product.previewUrl, '_blank', 'noopener,noreferrer');
               }}
               className="w-full py-2 rounded-xl btn-gradient-tactile text-white font-semibold text-xs flex justify-center items-center gap-1.5 cursor-pointer shadow-md transition-all"
             >

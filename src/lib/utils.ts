@@ -1,13 +1,13 @@
 export const handleOpenInquiry = (planName: string = 'General') => {
   const text = `Halo Yazidcodes, saya ingin tanya rencana web atau berkonsultasi mengenai rencana proyek kami${planName !== 'General' ? ` (Paket: ${planName})` : ''}.`;
   const encodedText = encodeURIComponent(text);
-  window.open(`https://wa.me/628123456789?text=${encodedText}`, '_blank', 'noopener,noreferrer');
+  window.open(`https://wa.me/628818208207?text=${encodedText}`, '_blank', 'noopener,noreferrer');
 };
 
 export const handleWhatsAppInquiryProject = (projectTitle: string) => {
   const text = `Halo Yazidcodes, saya sangat tertarik dengan proyek "${projectTitle}" dan ingin berkonsultasi mengenai pembuatan website serupa.`;
   const encodedText = encodeURIComponent(text);
-  window.open(`https://wa.me/628123456789?text=${encodedText}`, '_blank', 'noopener,noreferrer');
+  window.open(`https://wa.me/628818208207?text=${encodedText}`, '_blank', 'noopener,noreferrer');
 };
 
 export const getProductMeta = (id: string) => {

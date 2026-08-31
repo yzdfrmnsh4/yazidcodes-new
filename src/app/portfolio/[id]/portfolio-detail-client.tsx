@@ -33,9 +33,9 @@ export default function PortfolioDetailClient({ project }: PortfolioDetailClient
   const paragraph2 = project.detailedOverview?.[1] ||
     'Proyek ini dikembangkan menggunakan pendekatan user-centered design, memastikan setiap elemen visual, kecepatan responsif, serta keamanan arsitektur sistem berjalan optimal di seluruh perangkat pengguna.';
 
-  const detailImagesList = project.detailImages && project.detailImages.length > 0
+  const detailImagesList = (project.detailImages && project.detailImages.length > 0
     ? project.detailImages
-    : [project.image];
+    : [project.image]).slice(0, 3);
 
   return (
     <motion.main
@@ -128,21 +128,25 @@ export default function PortfolioDetailClient({ project }: PortfolioDetailClient
         {/* Akses Situs Button */}
         <div className={`p-3.5 rounded-2xl border flex items-center ${isLight ? 'bg-[var(--color-surface)] border-[var(--color-border-specular)]' : 'bg-white/[0.02] border-white/10'
           }`}>
-          <a
-            href={project.siteUrl || '#'}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={(e) => {
-              if (!project.siteUrl || project.siteUrl === '#') {
-                e.preventDefault();
-                handleWhatsAppInquiryProject(project.title);
-              }
-            }}
-            className="w-full py-3 px-4 rounded-xl btn-gradient-tactile text-white font-semibold text-xs flex items-center justify-center gap-2 cursor-pointer shadow-md"
-          >
-            <span>Kunjungi Website Live</span>
-            <ExternalLink className="w-4 h-4" />
-          </a>
+          {project.siteUrl && project.siteUrl !== '#' ? (
+            <a
+              href={project.siteUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full py-3 px-4 rounded-xl btn-gradient-tactile text-white font-semibold text-xs flex items-center justify-center gap-2 cursor-pointer shadow-md"
+            >
+              <span>Kunjungi Website Live</span>
+              <ExternalLink className="w-4 h-4" />
+            </a>
+          ) : (
+            <button
+              disabled
+              className="w-full py-3 px-4 rounded-xl bg-[var(--color-surface-bright)] dark:bg-white/5 border border-[var(--color-border-specular)] text-[var(--color-text-muted)] font-semibold text-xs flex items-center justify-center gap-2 cursor-not-allowed shadow-none opacity-60"
+            >
+              <span>Website Tidak Tersedia</span>
+              <ExternalLink className="w-4 h-4" />
+            </button>
+          )}
         </div>
       </div>
 

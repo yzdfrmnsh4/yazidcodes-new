@@ -41,7 +41,9 @@ export const PORTFOLIO: PortfolioProject[] = [
       'Sistem ini dilengkapi dengan manajemen produk yang komprehensif, fitur filter kategori busana yang dinamis, keranjang belanja interaktif, hingga alur checkout otomatis. Integrasi notifikasi pesanan langsung ke admin memastikan komunikasi transaksi berjalan cepat dan efisien.'
     ],
     detailImages: [
-      '/porto/caysie/preview.webp'
+      '/porto/caysie/caysie-5.webp',
+      '/porto/caysie/caysie-4.webp',
+      '/porto/caysie/caysie full.webp',
     ]
   },
   {
@@ -60,7 +62,7 @@ export const PORTFOLIO: PortfolioProject[] = [
       'Antarmuka baru ini menyajikan galeri kegiatan interaktif, modul narasi program konservasi, serta tata letak responsif fluid yang memberikan kenyamanan navigasi maksimal di seluruh tipe layar smartphone, tablet, hingga desktop.'
     ],
     detailImages: [
-      '/porto/himba/preview.webp'
+      '/porto/himba/himba-full.webp'
     ]
   },
   {
@@ -79,7 +81,7 @@ export const PORTFOLIO: PortfolioProject[] = [
       'Situs ini mengombinasikan estetika editorial yang bersih dengan mikro-interaksi halus saat kursor bergerak, memberikan kesan pertama yang sangat impresif bagi calon klien maupun agensi kreatif internasional.'
     ],
     detailImages: [
-      '/porto/nelson/prview.webp'
+      '/porto/nelson/nelson-full.webp'
     ]
   },
   {
@@ -98,7 +100,7 @@ export const PORTFOLIO: PortfolioProject[] = [
       'Platform ini terintegrasi dengan modul pengumuman publik, publikasi berita penegakan perda, serta galeri kegiatan instansi yang disajikan secara informatif dan memenuhi standar kepatuhan aksesibilitas web.'
     ],
     detailImages: [
-      '/porto/satpol/preview.webp'
+      '/porto/satpol/satpol-1.webp'
     ]
   },
   {
@@ -117,7 +119,9 @@ export const PORTFOLIO: PortfolioProject[] = [
       'Sistem mencakup alur lengkap dari pendaftaran pelamar, verifikasi berkas otomatis, penilaian berbobot otomatis, penjadwalan seleksi wawancara, hingga generasi otomatis laporan PDF rekapitulasi nilai kandidat untuk dewan HRD.'
     ],
     detailImages: [
-      '/porto/sipekar/preview.webp'
+      '/porto/sipekar/sipekar-login-1.webp',
+      '/porto/sipekar/sipekar-1.webp',
+      '/porto/sipekar/sipekar-login-3.webp',
     ]
   },
   {
@@ -136,77 +140,86 @@ export const PORTFOLIO: PortfolioProject[] = [
       'Melalui dashboard manajemen yang efisien, tim operasional bengkel dapat memantau status pesanan barang keluar-masuk secara real-time, melacak riwayat inventaris, serta mengunduh laporan stok berkala dengan cepat dan akurat.'
     ],
     detailImages: [
-      '/porto/smoq/preview.webp'
+      '/porto/smoq/kabeng.webp',
+      '/porto/smoq/partman.webp',
+      '/porto/smoq/sa.webp'
+    ]
+  },
+  {
+    id: 'linkbio',
+    title: 'macOS/iOS Style Link Bio',
+    category: 'Web App & UI/UX Design',
+    image: '/porto/linkbio/preview.webp',
+    description: 'Personal project web link bio interaktif dengan desain UI unik mengadopsi gaya macOS pada desktop dan iOS pada layar mobile.',
+    alt: 'macOS/iOS Style Link Bio Preview',
+    features: ['macOS Desktop UI', 'iOS Mobile UI', 'Interactive Application Icons', 'Fluid Animations', 'Responsive Glassmorphism', 'Personal Micro-Platform'],
+    timeline: '1.5 Minggu',
+    client: 'Personal Project',
+    siteUrl: '#',
+    detailedOverview: [
+      'Web link bio ini dirancang untuk mendobrak batasan desain halaman profil yang standar dengan mengusung antarmuka interaktif yang sangat familier. Tampilan visualnya mengadopsi ekosistem desain Apple, menyajikan pengalaman desktop macOS bagi pengguna layar besar dan antarmuka iOS bagi pengguna mobile.',
+      'Berbeda dari link bio biasa, pengunjung disuguhkan layar interaktif yang responsif dengan ikon bergaya aplikasi, window management yang mulus, dan efek glassmorphism mendetail yang memanjakan mata.'
+    ],
+    detailImages: [
+      '/porto/linkbio/preview.webp',
+      '/porto/linkbio/linkbio-1.webp'
+    ]
+  },
+  {
+    id: 'yazidcodes-1',
+    title: 'Yazidcodes v1 Portfolio',
+    category: 'Personal Portfolio & Web Development',
+    image: '/porto/yazidcodes 1.0/preview.webp',
+    description: 'Website portofolio Yazidcodes versi pertama sebelum dilakukan iterasi pembaruan dan redesign menyeluruh.',
+    alt: 'Yazidcodes v1 Portfolio Preview',
+    features: ['Next.js React Frontend', 'Tailwind CSS Styling', 'Personal Portfolio', 'Animated UI Elements', 'Responsive Layout', 'Form Integration'],
+    timeline: '2 Minggu',
+    client: 'Personal Project',
+    siteUrl: '#',
+    detailedOverview: [
+      'Yazidcodes v1 merupakan iterasi pertama dari website portofolio pribadi. Proyek ini dikembangkan dengan fokus pada tampilan yang fungsional sebagai jembatan awal untuk memamerkan resume, layanan teknis, dan portofolio karya ke klien potensial.',
+      'Walaupun kini telah digantikan dengan versi portofolio yang secara signifikan lebih modern dan berkinerja tinggi, portofolio v1 ini menggunakan teknologi modern seperti React dan Tailwind CSS serta memiliki peran fundamental dalam perkembangan personal branding Yazidcodes.'
+    ],
+    detailImages: [
+      '/porto/yazidcodes 1.0/preview.webp',
+      '/porto/yazidcodes 1.0/yazidcodes 1.0-1.webp'
     ]
   }
 ];
 
 export const PRODUCTS: DigitalProduct[] = [
   {
-    id: 'dashboard-template',
-    title: 'Template Dashboard',
-    description: 'Admin dashboard premium dengan 50+ komponen glassmorphic siap pakai yang kompatibel dengan React & Next.js.',
-    iconName: 'dashboard',
-    color: 'primary',
-    price: 'Rp 149k',
-    previewUrl: 'https://lynk.id/yazidcodes/dashboard-template',
-    features: ['50+ Tailwind Components', 'Figma File Included', 'React & Next.js Boilerplate', 'Dark & Light Glassmorphism', 'Clean TypeScript Code', 'Full Responsive Layout'],
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop'
-  },
-  {
-    id: 'backend-boilerplate',
-    title: 'Source Code Backend',
-    description: 'Rest API boilerplate tangguh menggunakan Node.js, Express, dan PostgreSQL dengan arsitektur bersih yang siap di-deploy.',
-    iconName: 'code',
-    color: 'secondary',
-    price: 'Rp 199k',
-    previewUrl: 'https://lynk.id/yazidcodes/backend-boilerplate',
-    features: ['JWT Auth & CORS configured', 'Knex.js/Drizzle ORM migration', 'Clean Architecture', 'Dockerized & CI/CD Ready', 'Unit Testing with Jest included', 'Automatic API Documentation'],
-    image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800&auto=format&fit=crop'
-  },
-  {
-    id: 'vibe-coding-guide',
-    title: 'Panduan Vibe Coding',
-    description: 'E-book eksklusif berisi rahasia koding modern dengan efisiensi tinggi serta estetika visual pixel-perfect.',
+    id: 'ai-ui-skill',
+    title: 'UI/UX Skill untuk AI',
+    description: 'Template skill (DESIGN_MD_GENERATOR, dll.) untuk AI agar dapat memecah dan mereproduksi desain yang presisi dengan referensi UI.',
     iconName: 'auto_awesome',
-    color: 'tertiary',
-    price: 'Rp 79k',
-    previewUrl: 'https://lynk.id/yazidcodes/vibe-coding-guide',
-    features: ['AI-Assisted workflows', 'Visual Hierarchy rules', 'Speculative rendering secrets', 'Figma to Code conversion', 'Prompt engineering templates', 'Fluid typography formulas'],
-    image: 'https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?q=80&w=800&auto=format&fit=crop'
-  },
-  {
-    id: 'nextjs-saas-boilerplate',
-    title: 'Next.js SaaS Boilerplate',
-    description: 'Starter-kit SaaS lengkap dengan sistem pembayaran Stripe, autentikasi NextAuth, database Prisma, dan email transaksional.',
-    iconName: 'code',
     color: 'primary',
-    price: 'Rp 299k',
-    previewUrl: 'https://lynk.id/yazidcodes/nextjs-saas',
-    features: ['Stripe subscription pre-setup', 'NextAuth database adapters', 'Resend transactional email boilerplate', 'Pre-designed landing sections', 'Strict TypeScript configuration', 'PostgreSQL database schemas'],
-    image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=800&auto=format&fit=crop'
+    price: 'Rp 25.000',
+    previewUrl: 'http://lynk.id/yazidcodes/qp42qgy1px80/checkout',
+    features: ['DESIGN_MD_GENERATOR.md', 'STITCH_PROMPT_GENERATOR.md', 'UI_UX_TECHNICAL_DICTIONARY.md', 'Memecah hierarki, spacing & tipe', 'Implementasi figma-to-code', 'Cocok untuk ChatGPT, Claude, Gemini'],
+    image: '/products/uiux-skills.webp'
   },
   {
-    id: 'minimalist-portfolio',
-    title: 'Minimalist Portfolio Template',
-    description: 'Template portfolio agensi personal dengan visual modern yang memanjakan mata, layout fluid, serta setup SEO cepat.',
+    id: 'modern-dashboard-templates',
+    title: '5 Modern Dashboard Templates',
+    description: '5 template dashboard modern responsif (Analytics, Business, SaaS, E-Commerce, Management) yang siap digunakan untuk aplikasi web.',
     iconName: 'dashboard',
     color: 'secondary',
-    price: 'Rp 99k',
-    previewUrl: 'https://lynk.id/yazidcodes/minimalist-portfolio',
-    features: ['Modern Swiss Layout Design', 'Framer Motion layout transition', 'EmailJS Contact Form integration', 'Super lightweight (under 2MB)', 'Fully responsive design', 'Ready-to-deploy to Vercel/Netlify'],
-    image: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=800&auto=format&fit=crop'
+    price: 'Rp 35.000',
+    previewUrl: 'http://lynk.id/yazidcodes/2q7918y1o5j1/checkout',
+    features: ['Analytics & Business Dashboards', 'SaaS Dashboard', 'E-Commerce Dashboard', 'Management Dashboard', 'Kompatibel Laravel', 'Kompatibel React & Next.js'],
+    image: '/products/5-template-dashboard.webp'
   },
   {
-    id: 'figma-design-system',
-    title: 'Figma Design System Pro',
-    description: 'Sistem desain UI fungsional terlengkap dengan auto-layout 5.0, library komponen variatif, dan panduan token warna adaptif.',
-    iconName: 'auto_awesome',
+    id: 'modern-landing-pages',
+    title: '5 Modern Landing Pages + Portfolio',
+    description: 'Koleksi 5 template landing page modern (SaaS, Agency, Product, Creative, Business) ditambah bonus 1 template Developer Portfolio.',
+    iconName: 'code',
     color: 'tertiary',
-    price: 'Rp 189k',
-    previewUrl: 'https://lynk.id/yazidcodes/figma-design-system',
-    features: ['1,200+ Interactive variants', 'Dark & Light color variables ready', 'Responsive page grid templates', 'Typography & spacing scales', 'Free lifetime version updates', 'Comprehensive Figma usage video tutorial'],
-    image: 'https://images.unsplash.com/photo-1581291518655-9523c932dedf?q=80&w=800&auto=format&fit=crop'
+    price: 'Rp 30.000',
+    previewUrl: 'http://lynk.id/yazidcodes/d8v51qzqe0rk/checkout',
+    features: ['SaaS / Startup & Agency', 'Product / Software Pages', 'Creative / Studio & Business', 'UI Setup Lengkap', 'Bonus Developer Portfolio', 'Kompatibel React & HTML'],
+    image: '/products/5-template-landing-page.webp'
   }
 ];
 

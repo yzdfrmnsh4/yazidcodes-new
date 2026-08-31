@@ -35,9 +35,117 @@ const sfProDisplay = localFont({
 });
 
 export const metadata: Metadata = {
-  title: 'yazidcodes.site | Jasa Pembuatan Website Profesional & Modern',
-  description: 'Kami membangun identitas digital masa depan dengan estetika 3D liquid glass yang memukau.',
+  metadataBase: new URL('https://yazidcodes.id'),
+  title: 'Jasa Pembuatan Website Profesional & Modern | YazidCodes',
+  description: 'YazidCodes menyediakan jasa pembuatan website profesional dan modern untuk bisnis, UMKM, startup, dan personal brand. Website cepat, responsive, dan dirancang sesuai kebutuhan Anda.',
   manifest: '/site.webmanifest',
+  icons: {
+    icon: '/favicon-96x96.png',
+    apple: '/web-app-manifest-192x192.png',
+  },
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    title: 'Jasa Pembuatan Website Profesional & Modern | YazidCodes',
+    description: 'YazidCodes menyediakan jasa pembuatan website profesional dan modern untuk bisnis, UMKM, startup, dan personal brand. Website cepat, responsive, dan dirancang sesuai kebutuhan Anda.',
+    url: 'https://yazidcodes.id',
+    siteName: 'YazidCodes',
+    images: [
+      {
+        url: '/mockup.webp', 
+        width: 1200,
+        height: 630,
+        alt: 'YazidCodes - Jasa Pembuatan Website Profesional & Modern',
+      },
+    ],
+    locale: 'id_ID',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Jasa Pembuatan Website Profesional & Modern | YazidCodes',
+    description: 'YazidCodes menyediakan jasa pembuatan website profesional dan modern untuk bisnis, UMKM, startup, dan personal brand. Website cepat, responsive, dan dirancang sesuai kebutuhan Anda.',
+    creator: '@yaziddev',
+    images: ['/mockup.webp'],
+  },
+};
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': 'https://yazidcodes.id/#organization',
+      'name': 'YazidCodes',
+      'url': 'https://yazidcodes.id',
+      'logo': 'https://yazidcodes.id/web-app-manifest-512x512.png',
+      'sameAs': [
+        'https://tiktok.com/@yaziddev',
+        'https://instagram.com/yazidcodes'
+      ],
+      'contactPoint': {
+        '@type': 'ContactPoint',
+        'telephone': '+62-881-8208-207',
+        'contactType': 'customer service',
+        'email': 'yaziddev04@gmail.com',
+        'availableLanguage': 'Indonesian'
+      }
+    },
+    {
+      '@type': 'WebSite',
+      '@id': 'https://yazidcodes.id/#website',
+      'url': 'https://yazidcodes.id',
+      'name': 'YazidCodes',
+      'publisher': {
+        '@id': 'https://yazidcodes.id/#organization'
+      }
+    },
+    {
+      '@type': 'Service',
+      '@id': 'https://yazidcodes.id/#service',
+      'name': 'Jasa Pembuatan Website',
+      'provider': {
+        '@id': 'https://yazidcodes.id/#organization'
+      },
+      'description': 'Jasa pembuatan website profesional, redesign website, optimasi website, dan pembuatan landing page.',
+      'areaServed': 'ID',
+      'hasOfferCatalog': {
+        '@type': 'OfferCatalog',
+        'name': 'Website Development Services',
+        'itemListElement': [
+          {
+            '@type': 'Offer',
+            'itemOffered': {
+              '@type': 'Service',
+              'name': 'Website Development'
+            }
+          },
+          {
+            '@type': 'Offer',
+            'itemOffered': {
+              '@type': 'Service',
+              'name': 'Website Redesign'
+            }
+          },
+          {
+            '@type': 'Offer',
+            'itemOffered': {
+              '@type': 'Service',
+              'name': 'Website Optimization'
+            }
+          },
+          {
+            '@type': 'Offer',
+            'itemOffered': {
+              '@type': 'Service',
+              'name': 'Landing Page Development'
+            }
+          }
+        ]
+      }
+    }
+  ]
 };
 
 export default function RootLayout({
@@ -48,6 +156,10 @@ export default function RootLayout({
   return (
     <html lang="id" className={`${sfProDisplay.variable} overflow-x-hidden`} data-theme="light">
       <body className="min-h-screen max-w-full relative bg-[var(--color-background)] text-[var(--color-on-surface)] overflow-x-hidden font-sans transition-colors duration-300">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <ThemeProvider>
           {/* 1. Atmospheric Ambient Backdrop Orbs */}
           <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">

@@ -28,7 +28,6 @@ const PlanCard = dynamic(() => import('../components/PlanCard'));
 const Beams = dynamic(() => import('../components/Beams'), { ssr: false });
 const WhyChooseBento = dynamic(() => import('../components/WhyChooseBento'));
 const BorderGlow = dynamic(() => import('../components/BorderGlow'), { ssr: false });
-const SideRays = dynamic(() => import('../components/SideRays'), { ssr: false });
 const BlurText = dynamic(() => import('../components/BlurText'));
 const StarBorder = dynamic(() => import('../components/StarBorder'));
 const ShinyText = dynamic(() => import('../components/ShinyText'));

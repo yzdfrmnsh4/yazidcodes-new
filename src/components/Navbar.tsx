@@ -265,7 +265,7 @@ export default function Navbar() {
             onClick={() => handleItemClick('hero')}
           >
             <div className="w-14 h-14 ">
-              <Image src="/web-app-manifest-512x512.png" alt="Logo Yazidcodes" width={56} height={56} className='w-full h-full' priority />
+              <Image src="/web-app-manifest-512x512.png" alt="YazidCodes - Jasa Pembuatan Website Profesional" width={56} height={56} className='w-full h-full' priority />
             </div>
             <span className="font-headline font-semibold text-sm md:text-xl tracking-tight text-[var(--color-on-surface)] group-hover:text-primary transition-colors">
               yazidcodes

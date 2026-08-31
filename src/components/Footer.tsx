@@ -5,7 +5,14 @@ import { useRouter, usePathname } from 'next/navigation';
 import ShinyText from './ShinyText';
 import { useTheme } from '../lib/ThemeContext';
 import Image from 'next/image';
-import { Mail, Instagram, Linkedin, Github } from 'lucide-react';
+import { Mail, Instagram, Github } from 'lucide-react';
+
+const TiktokIcon = ({ className }: { className?: string }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" className={className} viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
+    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+    <path d="M21 7.917v4.034a9.948 9.948 0 0 1 -5 -1.951v4.5a6.5 6.5 0 1 1 -8 -6.326v4.326a2.5 2.5 0 1 0 4 2v-11.5h4.083a6.005 6.005 0 0 0 4.917 4.917z" />
+  </svg>
+);
 
 export default function Footer() {
   const router = useRouter();
@@ -57,7 +64,7 @@ export default function Footer() {
           <div className="col-span-2 flex flex-col gap-6 lg:pr-8">
             <div className="flex items-center gap-2 -ml-2">
               <div className="w-12 h-12 shrink-0">
-                <Image src="/web-app-manifest-512x512.png" alt="Logo Yazidcodes" width={48} height={48} className="w-full h-full" />
+                <Image src="/web-app-manifest-512x512.png" alt="YazidCodes - Jasa Pembuatan Website Profesional" width={48} height={48} className="w-full h-full" />
               </div>
               <span className="font-headline font-bold text-2xl tracking-tight text-[var(--color-on-surface)]">
                 yazidcodes
@@ -70,10 +77,10 @@ export default function Footer() {
               <a href="https://instagram.com/yazidcodes" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-[var(--color-text-muted)] hover:text-primary transition-colors p-2 hover:bg-[var(--color-on-surface)]/5 rounded-full">
                 <Instagram className="w-[18px] h-[18px]" />
               </a>
-              <a href="https://linkedin.com/in/yazidcodes" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-[var(--color-text-muted)] hover:text-primary transition-colors p-2 hover:bg-[var(--color-on-surface)]/5 rounded-full">
-                <Linkedin className="w-[18px] h-[18px]" />
+              <a href="https://tiktok.com/@yaziddev" target="_blank" rel="noopener noreferrer" aria-label="TikTok" className="text-[var(--color-text-muted)] hover:text-primary transition-colors p-2 hover:bg-[var(--color-on-surface)]/5 rounded-full">
+                <TiktokIcon className="w-[18px] h-[18px]" />
               </a>
-              <a href="https://github.com/yazidcodes" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="text-[var(--color-text-muted)] hover:text-primary transition-colors p-2 hover:bg-[var(--color-on-surface)]/5 rounded-full">
+              <a href="https://github.com/yzdfrmnsh4" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="text-[var(--color-text-muted)] hover:text-primary transition-colors p-2 hover:bg-[var(--color-on-surface)]/5 rounded-full">
                 <Github className="w-[18px] h-[18px]" />
               </a>
             </div>
@@ -193,7 +200,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="https://wa.me/628123456789"
+                  href="https://wa.me/628818208207"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-[var(--color-on-surface)] transition-colors"
@@ -242,7 +249,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="https://wa.me/628123456789"
+                  href="https://wa.me/628818208207"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-[var(--color-on-surface)] transition-colors"
