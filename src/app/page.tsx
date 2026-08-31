@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import HomeClient from './home-client';
 
 export const metadata: Metadata = {
-  title: 'yazidcodes.site | Jasa Pembuatan Website Profesional & Modern',
-  description: 'Kami membangun identitas digital masa depan dengan estetika 3D liquid glass yang memukau dan performa teknologi terkini untuk meningkatkan skala bisnis global Anda.',
+  title: 'Jasa Pembuatan Website Profesional & Modern | YazidCodes',
+  description: 'YazidCodes menyediakan jasa pembuatan website profesional dan modern untuk bisnis, UMKM, startup, dan personal brand. Website cepat, responsive, dan dirancang sesuai kebutuhan Anda.',
 };
 
 export default function Page() {

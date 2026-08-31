@@ -19,12 +19,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   if (!product) {
     return {
-      title: 'Product Not Found | yazidcodes.site',
+      title: 'Product Not Found | yazidcodes.id',
     };
   }
 
   return {
-    title: `${product.title} - Digital Assets | yazidcodes.site`,
+    title: `${product.title} - Digital Assets | yazidcodes.id`,
     description: product.description,
   };
 }

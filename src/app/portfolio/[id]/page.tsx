@@ -19,12 +19,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   if (!project) {
     return {
-      title: 'Project Not Found | yazidcodes.site',
+      title: 'Project Not Found | yazidcodes.id',
     };
   }
 
   return {
-    title: `${project.title} - Portofolio Karya | yazidcodes.site`,
+    title: `${project.title} - Portofolio Karya | yazidcodes.id`,
     description: project.description,
   };
 }
