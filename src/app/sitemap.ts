@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next';
 import { PORTFOLIO, PRODUCTS } from '../lib/data';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://yazidcodes.id';
+  const baseUrl = 'https://www.yazidcodes.id';
 
   const portfolioEntries: MetadataRoute.Sitemap = PORTFOLIO.map((project) => ({
     url: `${baseUrl}/portfolio/${project.id}`,

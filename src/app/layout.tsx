@@ -35,7 +35,7 @@ const sfProDisplay = localFont({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://yazidcodes.id'),
+  metadataBase: new URL('https://www.yazidcodes.id'),
   title: 'Jasa Pembuatan Website Profesional & Modern | YazidCodes',
   description: 'YazidCodes menyediakan jasa pembuatan website profesional dan modern untuk bisnis, UMKM, startup, dan personal brand. Website cepat, responsive, dan dirancang sesuai kebutuhan Anda.',
   manifest: '/site.webmanifest',
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Jasa Pembuatan Website Profesional & Modern | YazidCodes',
     description: 'YazidCodes menyediakan jasa pembuatan website profesional dan modern untuk bisnis, UMKM, startup, dan personal brand. Website cepat, responsive, dan dirancang sesuai kebutuhan Anda.',
-    url: 'https://yazidcodes.id',
+    url: 'https://www.yazidcodes.id',
     siteName: 'YazidCodes',
     images: [
       {
@@ -79,10 +79,10 @@ const jsonLd = {
   '@graph': [
     {
       '@type': 'Organization',
-      '@id': 'https://yazidcodes.id/#organization',
+      '@id': 'https://www.yazidcodes.id/#organization',
       'name': 'YazidCodes',
-      'url': 'https://yazidcodes.id',
-      'logo': 'https://yazidcodes.id/web-app-manifest-512x512.png',
+      'url': 'https://www.yazidcodes.id',
+      'logo': 'https://www.yazidcodes.id/web-app-manifest-512x512.png',
       'sameAs': [
         'https://tiktok.com/@yaziddev',
         'https://instagram.com/yazidcodes'
@@ -97,19 +97,19 @@ const jsonLd = {
     },
     {
       '@type': 'WebSite',
-      '@id': 'https://yazidcodes.id/#website',
-      'url': 'https://yazidcodes.id',
+      '@id': 'https://www.yazidcodes.id/#website',
+      'url': 'https://www.yazidcodes.id',
       'name': 'YazidCodes',
       'publisher': {
-        '@id': 'https://yazidcodes.id/#organization'
+        '@id': 'https://www.yazidcodes.id/#organization'
       }
     },
     {
       '@type': 'Service',
-      '@id': 'https://yazidcodes.id/#service',
+      '@id': 'https://www.yazidcodes.id/#service',
       'name': 'Jasa Pembuatan Website',
       'provider': {
-        '@id': 'https://yazidcodes.id/#organization'
+        '@id': 'https://www.yazidcodes.id/#organization'
       },
       'description': 'Jasa pembuatan website profesional, redesign website, optimasi website, dan pembuatan landing page.',
       'areaServed': 'ID',

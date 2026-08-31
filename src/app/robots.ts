@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://yazidcodes.id/sitemap.xml',
+    sitemap: 'https://www.yazidcodes.id/sitemap.xml',
   };
 }
