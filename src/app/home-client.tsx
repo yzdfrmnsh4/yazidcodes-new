@@ -19,6 +19,8 @@ import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 
 import dynamic from 'next/dynamic';
+import LazyMount from '../components/LazyMount';
+import DelayMount from '../components/DelayMount';
 
 const SocialProofMarquee = dynamic(() => import('../components/SocialProofMarquee'), { ssr: false });
 const ServiceCard = dynamic(() => import('../components/ServiceCard'));
@@ -215,16 +217,18 @@ export default function HomeClient() {
                 WebkitMaskImage: 'linear-gradient(to bottom, black 50%, transparent 95%)',
               }}
             >
-              <Beams
-                beamWidth={2}
-                beamHeight={16}
-                beamNumber={16}
-                lightColor="#4f46e5"
-                speed={1.5}
-                noiseIntensity={1.8}
-                scale={0.25}
-                rotation={15}
-              />
+              <DelayMount delay={1200}>
+                <Beams
+                  beamWidth={2}
+                  beamHeight={16}
+                  beamNumber={16}
+                  lightColor="#4f46e5"
+                  speed={1.5}
+                  noiseIntensity={1.8}
+                  scale={0.25}
+                  rotation={15}
+                />
+              </DelayMount>
             </div>
           </>
         ) : (
@@ -374,7 +378,9 @@ export default function HomeClient() {
       {/* MARQUEE */}
       <section className="relative mb-28 md:mb-40 overflow-hidden bg-[var(--color-background)]">
         <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-full max-w-[1400px] h-[400px] bg-gradient-to-b from-[#4f46e5]/[0.06] to-transparent blur-[120px] rounded-full pointer-events-none -z-10" />
-        <SocialProofMarquee />
+        <LazyMount minHeight="120px">
+          <SocialProofMarquee />
+        </LazyMount>
       </section>
 
       {/* SERVICES */}
@@ -548,17 +554,17 @@ export default function HomeClient() {
         </div>
 
         {/* Project Showcase Full Width Marquee */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative z-10 w-full"
-        >
-          <ProjectShowcase
-            projects={PORTFOLIO}
-          />
-        </motion.div>
+        <LazyMount minHeight="450px" className="relative z-10 w-full">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="w-full"
+          >
+            <ProjectShowcase projects={PORTFOLIO} />
+          </motion.div>
+        </LazyMount>
       </motion.section>
 
       {/* PRICING PLANS */}
@@ -658,7 +664,9 @@ export default function HomeClient() {
           </motion.div>
         </div>
 
-        <WhyChooseBento />
+        <LazyMount minHeight="800px">
+          <WhyChooseBento />
+        </LazyMount>
       </motion.section>
 
       {/* FAQ ACCORDION */}
@@ -726,81 +734,81 @@ export default function HomeClient() {
         <div className="light-dot-grid" />
         <div className="absolute -left-12 -top-12 w-64 h-64 bg-primary/15 blur-3xl rounded-full pointer-events-none" />
         <div className="absolute -right-12 -bottom-12 w-64 h-64 bg-secondary/15 blur-3xl rounded-full pointer-events-none" />
-
-        <BorderGlow
-          edgeSensitivity={30}
-          glowColor={theme === 'light' ? '217 90 60' : '244 80 80'}
-          backgroundColor="transparent"
-          borderRadius={32}
-          glowRadius={50}
-          glowIntensity={theme === 'light' ? 0.8 : 1.2}
-          coneSpread={25}
-          animated={true}
-          colors={
-            theme === 'light'
-              ? ['#2563eb', '#38bdf8', '#818cf8']
-              : ['#b8c4ff', '#ff9191', '#38bdf8']
-          }
-          className="w-full relative overflow-visible liquid-glass rounded-[32px] md:rounded-[36px]"
-        >
-          {/* MOCKUP CLIP CONTAINER - covers the card exactly matching its raw edges. 
-              The clip-path allows massive overflow on top/sides but cleanly clips at bottom: 0px. */}
-          <div
-            className="absolute inset-0 z-20 pointer-events-none hidden md:block"
-            style={{ clipPath: 'inset(-1200px -200px 0px -200px)' }}
+        <LazyMount minHeight="600px">
+          <BorderGlow
+            edgeSensitivity={30}
+            glowColor={theme === 'light' ? '217 90 60' : '244 80 80'}
+            backgroundColor="transparent"
+            borderRadius={32}
+            glowRadius={50}
+            glowIntensity={theme === 'light' ? 0.8 : 1.2}
+            coneSpread={25}
+            animated={true}
+            colors={
+              theme === 'light'
+                ? ['#2563eb', '#38bdf8', '#818cf8']
+                : ['#b8c4ff', '#ff9191', '#38bdf8']
+            }
+            className="w-full relative overflow-visible liquid-glass rounded-[32px] md:rounded-[36px]"
           >
-            {/* Mockup wrapper perfectly touches bottom-0 of the exterior root card */}
-            <div className="absolute right-4 lg:right-10 xl:right-16 bottom-0 flex flex-col items-center justify-end w-[380px] ">
-              {/* Ambient glow behind phone */}
-              <div className="absolute inset-0 bg-blue-500/12 dark:bg-blue-400/15 blur-3xl rounded-[100px] scale-75 translate-y-32" />
+            {/* MOCKUP CLIP CONTAINER - covers the card exactly matching its raw edges. 
+                The clip-path allows massive overflow on top/sides but cleanly clips at bottom: 0px. */}
+            <div
+              className="absolute inset-0 z-20 pointer-events-none hidden md:block"
+              style={{ clipPath: 'inset(-1200px -200px 0px -200px)' }}
+            >
+              {/* Mockup wrapper perfectly touches bottom-0 of the exterior root card */}
+              <div className="absolute right-4 lg:right-10 xl:right-16 bottom-0 flex flex-col items-center justify-end w-[380px] ">
+                {/* Ambient glow behind phone */}
+                <div className="absolute inset-0 bg-blue-500/12 dark:bg-blue-400/15 blur-3xl rounded-[100px] scale-75 translate-y-32" />
 
-              {/* Image is shifted down to reveal the top entirely while the bottom gets chopped flush by the card's boundary */}
-              <Image
-                src="/mockup.webp"
-                alt="Yazidcodes iMessage Showcase Mockup"
-                width={380}
-                height={760}
-                className="relative z-10 w-full h-auto object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.30)] translate-y-[20%] md:translate-y-[25%] lg:translate-y-[28%] xl:translate-y-[32%]"
-              />
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center relative z-10 w-full py-10 px-6 sm:px-10 md:py-12 md:px-14 lg:py-14 lg:px-16">
-            {/* LEFT CONTENT: constrained width to leave space for the overlapping mockup */}
-            <div className="lg:col-span-7 md:max-w-[85%] lg:max-w-none text-left flex flex-col justify-center items-start">
-              <span className="text-xs font-semibold text-[var(--color-primary)] uppercase tracking-widest block mb-2.5">
-                Solusi Digital Terpercaya
-              </span>
-
-              <h2 className="font-headline text-3xl sm:text-4xl lg:text-[42px] font-semibold text-[var(--color-on-surface)] mb-4 tracking-tight leading-[1.15]">
-                Punya Ide Website? Mari Wujudkan Bersama
-              </h2>
-
-              <p className="font-sans text-[var(--color-text-muted)] text-sm sm:text-base md:text-lg mb-7 max-w-md lg:max-w-lg leading-relaxed font-medium">
-                Konsultasikan kebutuhan digital Anda secara gratis dengan kami. Dapatkan website premium berkinerja tinggi yang dirancang khusus untuk mempercepat pertumbuhan bisnis Anda.
-              </p>
-
-              <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto items-stretch sm:items-center">
-                <button
-                  onClick={() => handleOpenInquiry('General')}
-                  className="px-8 py-3.5 md:py-4 rounded-xl md:rounded-2xl btn-gradient-tactile text-white font-semibold text-sm md:text-base flex items-center justify-center gap-2.5 cursor-pointer group"
-                >
-                  Mulai Konsultasi Gratis
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </button>
-
-                <button
-                  onClick={() => handleNavigate('/portfolio')}
-                  className="px-8 py-3.5 md:py-4 rounded-xl md:rounded-2xl btn-hamburger-tactile text-white font-semibold text-sm md:text-base flex items-center justify-center gap-2.5 cursor-pointer"
-                >
-                  Lihat Hasil Karya
-                </button>
+                {/* Image is shifted down to reveal the top entirely while the bottom gets chopped flush by the card's boundary */}
+                <Image
+                  src="/mockup.webp"
+                  alt="Yazidcodes iMessage Showcase Mockup"
+                  width={380}
+                  height={760}
+                  className="relative z-10 w-full h-auto object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.30)] translate-y-[20%] md:translate-y-[25%] lg:translate-y-[28%] xl:translate-y-[32%]"
+                />
               </div>
             </div>
 
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center relative z-10 w-full py-10 px-6 sm:px-10 md:py-12 md:px-14 lg:py-14 lg:px-16">
+              {/* LEFT CONTENT: constrained width to leave space for the overlapping mockup */}
+              <div className="lg:col-span-7 md:max-w-[85%] lg:max-w-none text-left flex flex-col justify-center items-start">
+                <span className="text-xs font-semibold text-[var(--color-primary)] uppercase tracking-widest block mb-2.5">
+                  Solusi Digital Terpercaya
+                </span>
 
-          </div>
-        </BorderGlow>
+                <h2 className="font-headline text-3xl sm:text-4xl lg:text-[42px] font-semibold text-[var(--color-on-surface)] mb-4 tracking-tight leading-[1.15]">
+                  Punya Ide Website? Mari Wujudkan Bersama
+                </h2>
+
+                <p className="font-sans text-[var(--color-text-muted)] text-sm sm:text-base md:text-lg mb-7 max-w-md lg:max-w-lg leading-relaxed font-medium">
+                  Konsultasikan kebutuhan digital Anda secara gratis dengan kami. Dapatkan website premium berkinerja tinggi yang dirancang khusus untuk mempercepat pertumbuhan bisnis Anda.
+                </p>
+
+                <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto items-stretch sm:items-center">
+                  <button
+                    onClick={() => handleOpenInquiry('General')}
+                    className="px-8 py-3.5 md:py-4 rounded-xl md:rounded-2xl btn-gradient-tactile text-white font-semibold text-sm md:text-base flex items-center justify-center gap-2.5 cursor-pointer group"
+                  >
+                    Mulai Konsultasi Gratis
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  </button>
+
+                  <button
+                    onClick={() => handleNavigate('/portfolio')}
+                    className="px-8 py-3.5 md:py-4 rounded-xl md:rounded-2xl btn-hamburger-tactile text-white font-semibold text-sm md:text-base flex items-center justify-center gap-2.5 cursor-pointer"
+                  >
+                    Lihat Hasil Karya
+                  </button>
+                </div>
+              </div>
+            </div>
+          </BorderGlow>
+        </LazyMount>
+        
       </section>
     </motion.main>
   );

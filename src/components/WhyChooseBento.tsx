@@ -66,7 +66,7 @@ const FeaturedCard = ({ card, shouldReduceMotion }: { card: CardData; shouldRedu
       </div>
 
       <div className="p-8 md:p-10 flex flex-col justify-between flex-grow relative">
-        <div className="absolute -top-16 -right-16 text-9xl md:text-[140px] font-headline font-black text-[var(--color-on-surface)] opacity-[0.07] leading-none pointer-events-none select-none">
+        <div className="absolute -top-16 -right-16 text-9xl md:text-[140px] font-headline font-bold text-[var(--color-on-surface)] opacity-[0.07] leading-none pointer-events-none select-none">
           {card.id}
         </div>
 
@@ -101,7 +101,7 @@ const SupportingCard = ({ card, index, shouldReduceMotion }: { card: CardData; i
     >
       <div className="pointer-events-none absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[var(--color-border-specular)] to-transparent" />
 
-      <div className="absolute -top-8 -left-6 text-8xl md:text-9xl font-headline font-black text-[var(--color-on-surface)] opacity-[0.06] leading-none pointer-events-none select-none">
+      <div className="absolute -top-8 -left-6 text-8xl md:text-9xl font-headline font-bold text-[var(--color-on-surface)] opacity-[0.06] leading-none pointer-events-none select-none">
         {card.id}
       </div>
 
